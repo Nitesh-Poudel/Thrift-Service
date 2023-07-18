@@ -1,0 +1,67 @@
+.header{
+    border-bottom:5px solid rgb(241, 241, 241);
+    box-shadow: 5px 3px 18px 0px #888888;
+}
+.right{font-family: fantasy;}
+.rightHead .topic {
+    text-align: center;
+}
+.nameImg{
+    display:flex;
+  justify-content: space-around;
+    align-items: center ;
+}
+.nameImg img{
+    width:400px;
+    border-radius:16px; 
+   box-shadow: 5px 3px 18px 0px #888888;
+}
+
+
+.detail{
+    box-shadow: 5px 3px 18px 0px #888888;
+    display: flex;
+    flex-direction: column;
+}
+table,tr,td,th{
+    font-size: 22px;
+  
+    border-collapse: collapse;
+    padding:15px;
+    font-family:fantasy;
+    
+}
+table{
+    border-radius: 10px;
+    box-shadow: 5px 3px 18px 0px #888888;
+
+}
+table #price{
+    background-color: rgb(90, 88, 85);
+    color: aliceblue;
+}
+td,th{
+    text-align: center;
+    color: rgb(53, 20, 20);
+}
+
+
+<!--Form__>
+
+
+.form{
+    box-shadow: 5px 3px 18px 0px #888888;
+}
+
+.form input{
+    width:96%;
+    height: 30px;
+    
+}
+
+ .form button {
+    background-color: green;
+    border:none;
+    width: 100%;
+    height:50px;
+}

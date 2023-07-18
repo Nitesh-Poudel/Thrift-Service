@@ -11,7 +11,7 @@
         $encriptpw=md5($password);
 
         
-        $sql="SELECT * from users WHERE email='$email'&& password='$encriptpw'";
+        $sql="SELECT * from user WHERE email='$email'&& password='$encriptpw'";
         
         $qry=mysqli_query($con,$sql);
         if($qry){
@@ -21,7 +21,7 @@
            
            if( isset($data)){
             $_SESSION['user']=$data['name'];
-            $_SESSION['userid']=$data['id'];
+            $_SESSION['userid']=$data['uid'];
                header('Location:index.php');
            }
 

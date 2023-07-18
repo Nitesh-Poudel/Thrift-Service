@@ -76,8 +76,8 @@
 /*starts from here*/
 .right{
     width:90%;
+    margin-left:10px;
  
-    justify-content: left;
 
 }
 .right .header{
@@ -86,6 +86,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 5px 3px 18px 0px #888888;
    
 }
 
@@ -139,7 +140,7 @@
 
 
 
-.container .innercontainer .right .product1 {
+.container .innercontainer .right .intro {
     max-width:1000px;
     min-width:1000px;
     height:30%;
@@ -153,29 +154,46 @@
     margin-left: 20px;
 
 }
-.container .innercontainer .right .product1 .image{
+.container .innercontainer .right .intro .image{
 
     display: flex;
     justify-content: center;
     align-items: center;
     width:35%;
-    height:300px;
+    height:100%;
     overflow:hidden;
-    
    
-
-}
-.container .innercontainer .right .product1 .image img{
-
-   
-    width:90%;
     border-radius: 8px;
    
    
 
 }
 
-.container .innercontainer .right .product1 .productdetail{
+
+.container .innercontainer .right .intro .image .img{
+
+   
+    width:90%;
+    height:90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+   background-color: rgb(37, 37, 37);
+    border-radius: 8px;
+}
+.container .innercontainer .right .intro .image img{
+
+    width:90%;
+    border-radius: 8px;
+    box-shadow: 5px 3px 18px 0px #888888;
+  
+   
+   
+
+}
+
+.container .innercontainer .right .intro .productdetail{
     width:100%;
 
 }
@@ -197,6 +215,7 @@
   
     justify-content: center;
     margin:20px;
+    box-shadow: 5px 3px 18px 0px #888888;
     
     
 }
@@ -212,6 +231,6 @@
     overflow:hidden;
 }
 
-.products .product .img img{
+.intro .product .img img{
     border-radius: 8px;
 }
