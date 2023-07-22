@@ -8,6 +8,7 @@
                         <a href="#"><li><i class="fa-solid fa-family-dress"></i> AboutUs</li></a>
                         <a href="#"><li><i class="fa-regular fa-gear"></i> Setting</li></a>
                         <a href="#"><li><i class="fa-solid fa-mobile"></i> Contact</li></a>
+                        <a href="logout.php"><li>Logout</li></a>
                     </ul>
                 </div>
             </div>

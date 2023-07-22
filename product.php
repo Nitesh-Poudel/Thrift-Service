@@ -1,3 +1,25 @@
+<?php
+
+    include_once('databaseconnection.php');
+   
+    $id='';
+    if(isset($_GET['cloth_id'])){
+        $cloth_id=$_GET['cloth_id'];
+        //$sqlpost="SELECT * FROM Users u JOIN  content c ON u.id=c.createrid ORDER BY newsid DESC"; 
+       $qry=mysqli_query($con,"SELECT * FROM User u JOIN  clothes c ON u.uid=c.retailer_id where cid=$cloth_id");
+       $data=mysqli_fetch_assoc($qry);
+
+
+
+       if(isset($_POST['submit'])){
+            $district=$_POST['district'];
+            $Localgov=$_POST['gov'];
+            $ward=$_POST['ward'];
+            $purposrd_rate=$_POST['cprice'];
+            
+       }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,59 +45,37 @@
 
             <div class="right">
                 
-                   <div class="header">
-                        <div class="moto">
-                            <h1>Clothes</h1>
-                            <h6>From Local market</h6>
-                        </div>
-
-                        <div class="searchMenue">
-                            <form method="post">
-                                <input type="text" placeholder="search product..." name="search">
-                                 <button type="submit" name="search" id="search"><i class="fa-thin fa-magnifying-glass"></i></button>
-                            </form>
-                        </div>
-
-                        <div class="extra">
-                            <ul type="none">
-                                <div class="list">
-                                    <li><a href="#"><i class="fa-sharp fa-solid fa-bell"></i></a><li>
-                                    <li><a href="#"><i class="fa-solid fa-messages"></i></a><li>
-                                    <li><a href="#"><img src="images/1.png"></a><li>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
+                   <?php include_once('header.php');?></div>
 
             <div class="pdetail">
                 <div class="nameImg">
-                    <div class="img"><img src="images/5.png"></div>
+                    <div class="img"><img src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>"></div>
                     <div class="detail">
-                        <h1>Upload By Nitesh Poudel</h1>
+                        <h1>Upload By <?php echo $data['name']; echo $data['uid'];?></h1>
                         <table>
                             <tr>
                                 <th>Dress type</th>
-                                <td>Tshirt</td>
+                                <td><?php echo $data['type'];?></td>
                             </tr>
                             <tr>
                                 <th>Gender</th>
-                                <td>Female</td>
+                                <td><?php echo $data['gender'];?><td>
                             </tr>
                             <tr>
                                 <th>Size</th>
-                                <td>XXL</td>
+                                <td><?php echo $data['size'];?><td>
                             </tr>
                             <tr>
                                 <th>Brand</th>
-                                <td>Loream</td>
+                                <td><?php echo $data['brand'];?></td>
                             </tr>
                             <tr>
                                 <th>Fiber</th>
-                                <td>Silk</td>
+                                <td><?php echo $data['fiber'];?></td>
                             </tr>
                             <tr id="price">
                                 <th>Price</th>
-                                <td>1500</td>
+                                <td><?php echo $data['price'];?></td>
                             </tr>
                         </table>     
                                  
@@ -84,7 +84,27 @@
 
                      <div class="form">
                             <form method="POST">
-                            <input type="text" placeholder ="Full address ie district-local government-ward-tole " name="location"><br>
+                                
+                                
+                                <select id="" name="district">
+                                    <option value="" disabled selected>-- Select District --</option>
+                                    <option value="kathmandu">Kathmandu</option>
+                                    <option value="bhaktapur">Bhaktapur</option>
+                                    <option value="lalitpur">Lalitpur</option>
+                                    <option value="cotrise">Kavre</option>
+                                    <option value="silk">Sindhuli</option>
+                                    <option value="cotton">Jhapa</option>
+                                    <option value="jeanse">Morang</option>
+                                    <option value="cotrise">Sunsari</option>
+                                </select>
+
+                                <input type="text" placeholder ="Local Government " name="gov"><br>
+                                
+                                    <input type="number" placeholder="Ward number" name="ward">
+                               
+
+                               
+
                                 <input type="number" placeholder ="Enter your Price" name="cprice"><br>
                                 <button type="submit" name="submit" id="submit">Send proposal</button>
                             </form>

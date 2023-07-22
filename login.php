@@ -20,9 +20,19 @@
 
            
            if( isset($data)){
-            $_SESSION['user']=$data['name'];
-            $_SESSION['userid']=$data['uid'];
-               header('Location:index.php');
+                
+                
+            if($data['role']=='retailer'){
+                $_SESSION['role']=$data['role'];
+            }
+            else{
+                echo"Herncow";
+            }
+
+                
+                $_SESSION['userid']=$data['uid'];
+                   header('Location:index.php');
+                   echo$_SESSION['role'];
            }
 
            else{

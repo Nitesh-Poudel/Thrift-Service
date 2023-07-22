@@ -1,3 +1,76 @@
+<?php
+session_start();
+include_once('databaseconnection.php');
+
+if(isset($_SESSION['role'])!='retailer'){
+    header('location:index.php');
+   
+}
+$msg='';
+
+ $sql =   "SELECT * FROM balance where rid=$_SESSION[userid]";
+ $qry=mysqli_query($con,$sql);
+
+
+    $data=mysqli_fetch_assoc($qry);
+ 
+    if ($data['amt']>200){
+
+if(isset($_POST['submit'])){
+
+   
+    $retailer=$_SESSION['userid'];
+    $img='';
+    $gender=$_POST['gender'];
+    $catagory=$_POST['catagory'];
+ 
+    $type=$_POST['type'];
+    $size=$_POST['size'];
+    $fiber=$_POST['fiber'];
+    $brand=$_POST['brand'];
+    $price=$_POST['price'];
+    $description=$_POST['description'];
+    $date = date("j M Y");
+
+    $newname = '';
+
+    if ($retailer != '' && $gender != '' && $catagory != ''  && $type != '' && $size != '' && $fiber != ''&& $brand != ''&& $price != ''&& $description != '') {
+        if (isset($_FILES['image'])) {
+            $imgname = $_FILES['image']['name'];
+            $imgtemp = $_FILES['image']['tmp_name'];
+            $imgtype = $_FILES['image']['type'];
+            $extension = pathinfo($imgname, PATHINFO_EXTENSION);
+            $date = date('YmdHisv'); // e.g., 20230719123456789)
+
+            $imgname = str_replace(' ', '-', $imgname);
+            $newname = $retailer . '_' . $date . '.' . $extension;
+            $a = move_uploaded_file($imgtemp, "productimage/" . $newname);
+        }   
+    
+
+
+        
+        $sql="INSERT INTO clothes(retailer_id,gender,catagory,season,type,size,fiber,brand,price,description,date,image) 
+        VALUES('$retailer','$gender','$catagory','','$type','$size','$fiber','$brand','$price','$description','$date','$newname')";
+
+        $qry=mysqli_query($con,$sql);
+        
+        
+        if($qry){
+            mysqli_query($con,"UPDATE balance set amt = amt-200 WHERE rid=$retailer");
+            $msg="Product upload sucessfully";
+        }
+
+    }
+}
+
+else{
+    $msg="Your balance is less than mininum charge";
+}
+ }
+    
+   
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,30 +97,7 @@
 
             <div class="right">
                 
-                   <div class="header">
-                        <div class="moto">
-                            <h1>Clothes</h1>
-                            <h6>From Local market</h6>
-                        </div>
-
-                        <div class="searchMenue">
-                            <form method="post">
-                                <input type="text" placeholder="search product..." name="search">
-                                 <button type="submit" name="search" id="search"><i class="fa-thin fa-magnifying-glass"></i></button>
-                            </form>
-                        </div>
-
-                        <div class="extra">
-                            <ul type="none">
-                                <div class="list">
-                                    <li><a href="#"><i class="fa-sharp fa-solid fa-bell"></i></a><li>
-                                    <li><a href="#"><i class="fa-solid fa-messages"></i></a><li>
-                                    <li><a href="#"><img src="images/1.png"></a><li>
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-
+                  <?php include_once('header.php');?></div>
 
 
                 <div class="topic"><h1>Upload your Product<h1></div>
@@ -60,51 +110,75 @@
 
                        
                         <div class="select">  
-                          <select id="gender">
-                              <option value="" disabled selected>-- Select a Gender --</option>
+                          <select id="gender" name="gender">
+                            <option value="" disabled selected>Select gender for.....</option>
                               <option value="men">Men</option>
                               <option value="women">Women</option>
                               <option value="unisex">Unisex</option>
-                              <option value="child">Child</option>
+                            
                           </select>
                       </div>
 
 
                         <div class="select">
                           
-                            <select id="dress-category">
+                            <select id="dress-category" name="catagory">
                                 <option value="" disabled selected>-- Select a Dress Category --</option>
+                                <option value="casual">Casual</option>
+                                <option value="Formal">Formal</option>
+                                <option value="unisex">party</option>
+                                <option value="sports">Sports</option>
+                                
                             </select>
                         </div>
 
+
+                      
+
+
+
                         <div class="select">
                            
-                            <select id="dress-type">
+                            <select id="dress-type" name="type">
                                 <option value="" disabled selected>-- Select a Dress Type --</option>
+                                <option value="summer">Shirt</option>
+                                <option value="spring">T-shirt</option>
+                                <option value="autumn">Paint</option>
+                                <option value="winter">Jacket</option>
+                                <option value="summer">Sari</option>
+                                <option value="spring">kurtha</option>
+                                <option value="autumn">lehenga</option>
+                                <option value="winter">Hoodie</option>
+                                <option value="summer">Vest</option>
                             </select>
                         </div>
 
 
 
-                        <div class="select">
-                           
-                            <select id="season">
-                                <option value="" disabled selected>-- Select a Season --</option>
-                                <option value="summer">Summer</option>
-                                <option value="spring">Spring</option>
-                                <option value="autumn">Autumn</option>
-                                <option value="winter">Winter</option>
-                            </select>
+                      
                         </div>
 
                         <div class="select">
                             
-                            <select id="size">
+                            <select id="size" name="size">
                                 <option value="" disabled selected>-- Select a Size --</option>
-                                <option value="s">Small</option>
-                                <option value="m">Medium</option>
-                                <option value="l">Large</option>
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
                                 <option value="xl">Extra Large</option>
+                            </select>
+                        </div>
+
+
+
+                        <div class="select">
+                            
+                            <select id="size" name="fiber">
+                                <option value="" disabled selected>-- Select Fiber used --</option>
+                                <option value="silk">Silk</option>
+                                <option value="cotton">Cotton</option>
+                                <option value="jeanse">jense</option>
+                                <option value="cotrise">Cotrise</option>
                             </select>
                         </div>
 
@@ -124,73 +198,45 @@
                           
                         </div>
 
-                        <button type="submit">Upload Product</button>
+                        <button type="submit" name="submit">Upload Product</button>
+                        <h3><?php echo $msg; ?>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-      
+
+    <script>/*
+    document.addEventListener('DOMContentLoaded', function () {
+        const genderSelect = document.getElementById('gender');
         const dressCategorySelect = document.getElementById('dress-category');
         const dressTypeSelect = document.getElementById('dress-type');
 
-      
-        // Define an object that maps dress categories to their respective types
-        const dressCategories = {
-            men: ['Shirt', 'T-Shirt', 'Pants', 'Jacket', 'Shoes'],
-            women: ['Shirt', 'T-Shirt', 'Pants', 'Jacket', 'Shoes', 'Sari', 'Kurta'],
-            unisex: ['Shirt', 'T-Shirt', 'Pants', 'Jacket', 'Shoes', 'Dress', 'Hat'],
-            child: ['Shirt', 'T-Shirt', 'Pants', 'Jacket', 'Shoes', 'Dress', 'Hat'],
-            // Add more dress categories and types as needed
+        const dressTypes = {
+            men: ['Shirt', 'T-Shirt', 'Pants'],
+            women: ['Sari', 'Kurta', 'T-Shirt', 'Pants', 'Lehenga'],
+            unisex: ['T-Shirt', 'Jeans', 'Jacket'],
+       
         };
 
-      
+        genderSelect.addEventListener('change', function () {
+            const selectedGender = this.value;
+            dressCategorySelect.selectedIndex = 0;
+            dressTypeSelect.innerHTML = '';
 
-        // Function to update the dress category options based on the selected gender
-        function updateDressCategoryOptions() {
-            // Clear existing options in the dress category select
-            dressCategorySelect.innerHTML = '<option value="" disabled selected>-- Select a Dress Category --</option>';
-
-            // Get the selected gender
-            const selectedGender = genderSelect.value;
-
-            // If a gender is selected, populate the dress category options accordingly
-            if (selectedGender && dressCategories[selectedGender]) {
-                dressCategories[selectedGender].forEach(dressCategory => {
+            if (selectedGender !== '') {
+                const types = dressTypes[selectedGender];
+                types.forEach(function (type) {
                     const option = document.createElement('option');
-                    option.text = dressCategory;
-                    option.value = dressCategory;
-                    dressCategorySelect.appendChild(option);
+                    option.text = type;
+                    dressTypeSelect.add(option);
                 });
             }
-        }
+        });
+    });*/
+</script>
 
-        // Function to update the dress type options based on the selected dress category
-        function updateDressTypeOptions() {
-            // Clear existing options in the dress type select
-            dressTypeSelect.innerHTML = '<option value="" disabled selected>-- Select a Dress Type --</option>';
-
-            // Get the selected dress category
-            const selectedDressCategory = dressCategorySelect.value;
-
-            // If a dress category is selected, populate the dress type options accordingly
-            if (selectedDressCategory && dressCategories[selectedGender].includes(selectedDressCategory)) {
-                // Dummy dress types, add actual dress types as needed for each dress category
-                const dressTypes = ['Type 1', 'Type 2', 'Type 3'];
-                dressTypes.forEach(dressType => {
-                    const option = document.createElement('option');
-                    option.text = dressType;
-                    option.value = dressType;
-                    dressTypeSelect.appendChild(option);
-                });
-            }
-        }
-
-      
-        genderSelect.addEventListener('change', updateDressCategoryOptions);
-        dressCategorySelect.addEventListener('change', updateDressTypeOptions);
-    </script>
+    
 </body>
 </html>

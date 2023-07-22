@@ -127,7 +127,7 @@
     align-items: center;
 }
 .right .header .extra ul li{
-    float:left;
+    
     margin-right: 10px;
 }
 
@@ -208,7 +208,7 @@
     height:350px;
     width:500px;
    border-radius: 8px;
-    border:1px solid black;
+   
     display: flex;
    
     flex-wrap: wrap;
@@ -224,7 +224,7 @@
     height:90%;
     width:90%;
    border-radius: 8px;
-    border:1px solid black;
+   
     display:flex;
     justify-content: center;
 

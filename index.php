@@ -1,8 +1,10 @@
 <?php
-    session_start();
+    include_once('session.php');
     include_once('databaseconnection.php');
-    
+
     if(isset($_SESSION['userid'])){
+
+
         $id=$_SESSION['userid'];
         $qry=mysqli_query($con,"SELECT * FROM user WHERE uid=$id");
         $data=mysqli_fetch_assoc($qry);
@@ -13,7 +15,7 @@
 
     $link='';
     ($data['role']=='retailer')?
-        $link='<a href="productupload.php?id='.$id.'">Upload Product</a>':$link='<a href="#">About us</a>';
+        $link='<a href="productupload.php">Upload Product</a>':$link='<a href="#">About us</a>';
     
 ?>
 <!DOCTYPE html>
@@ -41,32 +43,12 @@
                         <?php echo $link;?>
                         <a href="#"><li><i class="fa-regular fa-gear"></i> Setting</li></a>
                         <a href="#"><li><i class="fa-solid fa-mobile"></i> Contact</li></a>
+                        <a href="logout.php"><li><i class="fa-solid fa-mobile"></i> Logout</li></a>
                     </ul>
                 </div>
             </div>
             <div class="right">
-                <div class="header">
-                    <div class="moto">
-                        <h1>Clothes</h1>
-                        <h6>From Local market</h6>
-                    </div>
-                    
-                    <div class="searchMenue">
-                        <form method="post">
-                            <input type="text" placeholder="search product..." name="search">
-                            <button type="submit" name="search" id="search"><i class="fa-thin fa-magnifying-glass"></i></button>
-                        </form>
-                    </div>
-
-                    <div class="extra">
-                        <ul type="none">
-                            <div class="list">
-                                <li><a href="#"><i class="fa-sharp fa-solid fa-bell"></i></a><li>
-                                <li><a href="#"><i class="fa-solid fa-messages"></i></a><li>
-                                <li><a href="#"><img src="userimage/<?php echo $data['extra'];?>"></a><li>
-                            </div>
-                        </ul>
-                    </div>
+                <?php include_once('header.php');?>
 
 
                
@@ -84,55 +66,39 @@
 
                 
                 <div class="products">
-                    <div class="product">
-                        <div class="img">
-                            <img src="images/6.png">
-                        </div>
-                        <a href="product.php"><div class="detail">Get Detail</div></a>
-                    </div>
 
+                <?php 
+                    $qry = '';
 
+                    if (isset($_POST['search'])) {
+                        $tosearch = mysqli_real_escape_string($con, $_POST['search']);
+                    
+                        $qry = mysqli_query($con, "SELECT * FROM clothes WHERE gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch' Order by cid desc");
 
-                    <div class="product">
-                        <div class="img">
-                            <img src="images/3.png">
-                            
-                        </div>
-                        <div class="detail"><a href="productDetail.php">Get Detail</a></div>
-                    </div>
+                    } 
+                    else {
+                    
+                        $qry = mysqli_query($con, "SELECT * FROM clothes order by cid desc");
+                    }
 
+                    if (mysqli_num_rows($qry) > 0) {
+                        while ($data = mysqli_fetch_assoc($qry)) {
+                            echo '
+                            <div class="product">
+                                <div class="img">
+                                    <img src="productimage/' . $data['image'] . '">
+                                </div>
+                                <a href="product.php?cloth_id=' . $data['cid'] . '">
+                                    <div class="detail">' . $data['price'] . '</div>
+                                </a>
+                            </div>';
+                        }
+                    } else {
+                        echo 'No results found.';
+                    }
+                ?>
 
-
-                    <div class="product">
-                        <div class="img">
-                            <img src="images/4.png">
-                        </div>
-                        <div class="detail"><a href="productDetail.php">Get Detail</a></div>
-                    </div>
-
-
-                    <div class="product">
-                        <div class="img">
-                            <img src="images/5.png">
-                        </div>
-                        <div class="detail"><a href="productDetail.php">Get Detail</a></div>
-                    </div>
-
-
-                    <div class="product">
-                        <div class="img">
-                            <img src="images/6.png">
-                        </div>
-                        <div class="detail"><a href="productDetail.php">Get Detail</a></div>
-                    </div>
-
-
-                    <div class="product">
-                        <div class="img">
-                            <img src="images/2.png">
-                        </div>
-                        <div class="detail"><p>Rs 1300</p><a href="productDetail.php">Get Detail</a></div>
-                    </div>
+                  
 
 
 
