@@ -1,7 +1,7 @@
 <?php
     include_once('session.php');
     include_once('databaseconnection.php');
-
+$id='';
     if(isset($_SESSION['userid'])){
 
 
@@ -15,7 +15,7 @@
 
     $link='';
     ($data['role']=='retailer')?
-        $link='<a href="productupload.php">Upload Product</a>':$link='<a href="#">About us</a>';
+        $link='<a href="productupload.php">Upload Product</a>':$link='<a href="">About us</a>';
     
 ?>
 <!DOCTYPE html>
@@ -34,11 +34,12 @@
     <div class="container">
         <div class="innercontainer">
             <div class="left">
+           
                 <div class="name"><h1>Clothex.</h1></div>
                 <div class="innerLeft">
                     <ul type="none">
                         <a href="#"><li><i class="fa-solid fa-house"></i> Home</li></a>
-                        <a href="#"><li><i class="fa-solid fa-user"></i> Your Profile</li></a>
+                        <a href="retailerprofile.php?id=<?php echo $id;?>"><li><i class="fa-solid fa-user"></i> Your Profile</li></a>
                         
                         <?php echo $link;?>
                         <a href="#"><li><i class="fa-regular fa-gear"></i> Setting</li></a>
@@ -60,8 +61,7 @@
                         <div class="productName"><h1>Welcome to our retail service<b><?php echo ' '.$data['name'];?></b></h1></div>
                         <div class="reviews"><h6>100views</h6></div>
                         <div class="description"><p>Lhuleluya  oream espan dispasitooream espan dispasito oream espan dispasitooream espan dispasitods in the naeke of the ramere etc loeam daster nirds in the naeke of the ramere etc.</p></div>
-                        <div class="order"><form><button type="Submit" name="order" id="order-btn">Order<button></form></div>
-                    </div>
+                     </div>
                 </div>
 
                 
@@ -81,7 +81,7 @@
                         $qry = mysqli_query($con, "SELECT * FROM clothes order by cid desc");
                     }
 
-                    if (mysqli_num_rows($qry) > 0) {
+                   
                         while ($data = mysqli_fetch_assoc($qry)) {
                             echo '
                             <div class="product">
@@ -93,9 +93,7 @@
                                 </a>
                             </div>';
                         }
-                    } else {
-                        echo 'No results found.';
-                    }
+                    
                 ?>
 
                   

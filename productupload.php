@@ -1,5 +1,6 @@
 <?php
-session_start();
+include_once('session.php');
+
 include_once('databaseconnection.php');
 
 if(isset($_SESSION['role'])!='retailer'){
@@ -68,6 +69,7 @@ else{
     $msg="Your balance is less than mininum charge";
 }
  }
+
     
    
 ?>

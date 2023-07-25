@@ -11,14 +11,14 @@ $name='';
 $newname='';
 
 if (isset($_POST['submit'])) {
-    $name = ucwords($_POST['fullname']);
-    $phone = $_POST['phone'];
-    $email = $_POST['email'];
-    $address = ucwords($_POST['address']);
+    $name =mysqli_real_escape_string($con,ucwords($_POST['fullname']));
+    $phone = mysqli_real_escape_string($con,ucwords($_POST['phone']));;
+    $email = mysqli_real_escape_string($con,ucwords($_POST['email']));
+    $address = mysqli_real_escape_string($con,ucwords($_POST['address']));
     $role = isset($_POST['role']) ? $_POST['role'] : ''; // Use isset() to check if 'role' is set
-    $password = md5($_POST['password']);
+    $password = mysqli_real_escape_string($con,md5($_POST['password']));
     
-    $cpassword = md5($_POST['cpassword']);
+    $cpassword = mysqli_real_escape_string($con,md5($_POST['cpassword']));
 
 
     $newname = '';

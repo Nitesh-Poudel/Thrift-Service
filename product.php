@@ -1,8 +1,8 @@
 <?php
-
+    include('session.php');
     include_once('databaseconnection.php');
    
-    $id='';
+    $cloth_id='';$msg='';
     if(isset($_GET['cloth_id'])){
         $cloth_id=$_GET['cloth_id'];
         //$sqlpost="SELECT * FROM Users u JOIN  content c ON u.id=c.createrid ORDER BY newsid DESC"; 
@@ -12,11 +12,32 @@
 
 
        if(isset($_POST['submit'])){
-            $district=$_POST['district'];
-            $Localgov=$_POST['gov'];
-            $ward=$_POST['ward'];
-            $purposrd_rate=$_POST['cprice'];
+            $byperson=$_SESSION['userid'];
+            $forcloth = $cloth_id;
+            $district=mysqli_real_escape_string($con,ucwords($_POST['district']));
+            $Localgov=mysqli_real_escape_string($con,ucwords($_POST['gov']));
+            $ward=mysqli_real_escape_string($con,$_POST['ward']);
+            $purposalprice=mysqli_real_escape_string($con,$_POST['cprice']);
+            $pdate = date("j M Y");
             
+
+            if($byperson !='' && $forcloth !='' && $district !='' && $Localgov != '' && $ward != '' && $purposalprice !='' && $pdate!=''){
+
+                $sql="INSERT INTO orderproposal
+                    (byperson, forcloth,district,localgov,ward,proposalprice,pdate,accept)
+                    VALUES('$byperson','$forcloth','$district','$Localgov','$ward','$purposalprice','$pdate',0)";
+
+                    if($sql){
+                        $qry=mysqli_query($con,$sql);
+
+                            if($qry){
+                                $msg="Your purposal have been submitted.";
+                            }
+
+                    }
+                    $msg="Sql error happen";
+            }
+            $msg="Please enter every detail";
        }
     }
 ?>
@@ -51,7 +72,7 @@
                 <div class="nameImg">
                     <div class="img"><img src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>"></div>
                     <div class="detail">
-                        <h1>Upload By <?php echo $data['name']; echo $data['uid'];?></h1>
+                        <h1>Upload By <?php echo $data['name'];echo $cloth_id;?></h1>
                         <table>
                             <tr>
                                 <th>Dress type</th>
@@ -91,11 +112,11 @@
                                     <option value="kathmandu">Kathmandu</option>
                                     <option value="bhaktapur">Bhaktapur</option>
                                     <option value="lalitpur">Lalitpur</option>
-                                    <option value="cotrise">Kavre</option>
-                                    <option value="silk">Sindhuli</option>
-                                    <option value="cotton">Jhapa</option>
-                                    <option value="jeanse">Morang</option>
-                                    <option value="cotrise">Sunsari</option>
+                                    <option value="kavre">Kavre</option>
+                                    <option value="sinduli">Sindhuli</option>
+                                    <option value="jhapa">Jhapa</option>
+                                    <option value="morang">Morang</option>
+                                    <option value="sunsari">Sunsari</option>
                                 </select>
 
                                 <input type="text" placeholder ="Local Government " name="gov"><br>
