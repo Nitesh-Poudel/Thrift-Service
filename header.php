@@ -24,7 +24,7 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 5px 3px 18px 0px #888888;
-    min-height:150px;
+    height:100px;
     
    
 }
@@ -38,9 +38,10 @@
 
 .right .header .searchMenue input{
     background:transparent;
-    border:none;
+    border:1px solid gray;
+    border-radius:8px;
     height:20px;
-    width:500px;
+    width:30vw;
   
     
 }
@@ -165,9 +166,7 @@ include_once('session.php');
 <body>
 <div class="header">
                     <div class="moto">
-                        <h1>Clothes</h1>
-                        <h6>Loream loream jpt</h6>
-                   </div>
+                        </div>
                     
                     <div class="searchMenue">
                         <form method="post">

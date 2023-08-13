@@ -1,3 +1,5 @@
+//proposal acceptace:
 accept=1;
-reject=-1;
+reject=2;
 neutrol=0;
+

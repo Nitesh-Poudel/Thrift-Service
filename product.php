@@ -1,5 +1,5 @@
 <?php
-    include('session.php');
+  session_start();
     include_once('databaseconnection.php');
    
     $cloth_id='';$msg='';
@@ -119,7 +119,7 @@
                                     <option value="sunsari">Sunsari</option>
                                 </select>
 
-                                <input type="text" placeholder ="Local Government " name="gov"><br>
+                                <input type="text" placeholder ="Local Government " value="<?Php echo  $data['address']?>" name="gov"><br>
                                 
                                     <input type="number" placeholder="Ward number" name="ward">
                                

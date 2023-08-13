@@ -5,7 +5,7 @@
                 <div class="innerLeft">
                     <ul type="none">
                         <a href="index.php"><li><i class="fa-solid fa-house"></i> Home</li></a>
-                        <a href="retailerprofile.php?id=<?php echo $id;?>"><li><i class="fa-solid fa-user"></i> Your Profile</li></a>
+                        <a href="<?php echo $_SESSION['role'].'profile.php?id='.$id;?>"><li><i class="fa-solid fa-user"></i> <?php echo $_SESSION['role'];?></li></a>
                        
                         <a href="#"><li><i class="fa-solid fa-family-dress"></i> AboutUs</li></a>
                         <a href="#"><li><i class="fa-regular fa-gear"></i> Setting</li></a>

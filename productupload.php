@@ -15,60 +15,60 @@ $msg='';
 
     $data=mysqli_fetch_assoc($qry);
  
-    if ($data['amt']>200){
-
-if(isset($_POST['submit'])){
+    if ($data['amt']<200){
+        $msg="You have less balance please add balace first";
+    }
+    else{
+        if(isset($_POST['submit'])){
 
    
-    $retailer=$_SESSION['userid'];
-    $img='';
-    $gender=$_POST['gender'];
-    $catagory=$_POST['catagory'];
- 
-    $type=$_POST['type'];
-    $size=$_POST['size'];
-    $fiber=$_POST['fiber'];
-    $brand=$_POST['brand'];
-    $price=$_POST['price'];
-    $description=$_POST['description'];
-    $date = date("j M Y");
+            $retailer=$_SESSION['userid'];
+            $img='';
+            $gender=$_POST['gender'];
+            $catagory=$_POST['catagory'];
 
-    $newname = '';
+            $type=$_POST['type'];
+            $size=$_POST['size'];
+            $fiber=$_POST['fiber'];
+            $brand=$_POST['brand'];
+            $price=$_POST['price'];
+            $description=$_POST['description'];
+            $date = date("j M Y");
 
-    if ($retailer != '' && $gender != '' && $catagory != ''  && $type != '' && $size != '' && $fiber != ''&& $brand != ''&& $price != ''&& $description != '') {
-        if (isset($_FILES['image'])) {
-            $imgname = $_FILES['image']['name'];
-            $imgtemp = $_FILES['image']['tmp_name'];
-            $imgtype = $_FILES['image']['type'];
-            $extension = pathinfo($imgname, PATHINFO_EXTENSION);
-            $date = date('YmdHisv'); // e.g., 20230719123456789)
+            $newname = '';
 
-            $imgname = str_replace(' ', '-', $imgname);
-            $newname = $retailer . '_' . $date . '.' . $extension;
-            $a = move_uploaded_file($imgtemp, "productimage/" . $newname);
-        }   
-    
-
+            if ($retailer != '' && $gender != '' && $catagory != ''  && $type != '' && $size != '' && $fiber != ''&& $brand != ''&& $price != ''&& $description != '') {
+                if (isset($_FILES['image'])) {
+                    $imgname = $_FILES['image']['name'];
+                    $imgtemp = $_FILES['image']['tmp_name'];
+                    $imgtype = $_FILES['image']['type'];
+                    $extension = pathinfo($imgname, PATHINFO_EXTENSION);
+                    $date = date('YmdHisv'); // e.g., 20230719123456789)
+                
+                    $imgname = str_replace(' ', '-', $imgname);
+                    $newname = $retailer . '_' . $date . '.' . $extension;
+                    $a = move_uploaded_file($imgtemp, "productimage/" . $newname);
+                }   
+            
+            
 
         
-        $sql="INSERT INTO clothes(retailer_id,gender,catagory,season,type,size,fiber,brand,price,description,date,image) 
-        VALUES('$retailer','$gender','$catagory','','$type','$size','$fiber','$brand','$price','$description','$date','$newname')";
+                    $sql="INSERT INTO clothes(retailer_id,gender,catagory,season,type,size,fiber,brand,price,description,date,image) 
+                    VALUES('$retailer','$gender','$catagory','','$type','$size','$fiber','$brand','$price','$description','$date','$newname')";
 
-        $qry=mysqli_query($con,$sql);
-        
-        
-        if($qry){
-            mysqli_query($con,"UPDATE balance set amt = amt-200 WHERE rid=$retailer");
-            $msg="Product upload sucessfully";
+                    $qry=mysqli_query($con,$sql);
+
+
+                    if($qry){
+                        mysqli_query($con,"UPDATE balance set amt = amt-200 WHERE rid=$retailer");
+                        $msg="Product upload sucessfully";
+                    }
+
+            }
         }
 
-    }
-}
 
-else{
-    $msg="Your balance is less than mininum charge";
-}
- }
+    }
 
     
    
@@ -143,15 +143,15 @@ else{
                            
                             <select id="dress-type" name="type">
                                 <option value="" disabled selected>-- Select a Dress Type --</option>
-                                <option value="summer">Shirt</option>
-                                <option value="spring">T-shirt</option>
-                                <option value="autumn">Paint</option>
-                                <option value="winter">Jacket</option>
-                                <option value="summer">Sari</option>
-                                <option value="spring">kurtha</option>
-                                <option value="autumn">lehenga</option>
-                                <option value="winter">Hoodie</option>
-                                <option value="summer">Vest</option>
+                                <option value="Shirt">Shirt</option>
+                                <option value="T-shirt">T-shirt</option>
+                                <option value="Paint">Paint</option>
+                                <option value="Jacket">Jacket</option>
+                                <option value="Sari">Sari</option>
+                                <option value="kurtha">kurtha</option>
+                                <option value="lehenga">lehenga</option>
+                                <option value="Hoodie">Hoodie</option>
+                                <option value="Vest">Vest</option>
                             </select>
                         </div>
 

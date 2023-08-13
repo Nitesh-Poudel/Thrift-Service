@@ -22,12 +22,10 @@
            if( isset($data)){
                 
                 
-            if($data['role']=='retailer'){
+           
                 $_SESSION['role']=$data['role'];
-            }
-            else{
-                echo"Herncow";
-            }
+            
+          
 
                 
                 $_SESSION['userid']=$data['uid'];
@@ -77,6 +75,16 @@
     #msg1{
         font-size:10px;
         color:red;
+    }
+.container{
+   
+    background-color:white;
+    opacity: 0.8;
+}
+    body{
+        background:url('images/cover.png');
+        opacity: 1;
+        background:cover;
     }
 </style>
 <body>
