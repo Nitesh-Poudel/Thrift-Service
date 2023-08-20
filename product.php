@@ -1,5 +1,5 @@
 <?php
-  session_start();
+include_once('session.php');
     include_once('databaseconnection.php');
    
     $cloth_id='';$msg='';
@@ -40,6 +40,8 @@
             $msg="Please enter every detail";
        }
     }
+    $link='';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,11 +49,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
-    <link rel="stylesheet" href="css/productUpload.css">
+
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="css/prouct.css">
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
+        *{padding:0px;margin:0px}
+        .searchMenue{display:none;}
+       .product-container{display:flex;width:100%;height:50vh; background-color:red}
+       .image{width:50%};
+       .img img{width:100%};
+       .detailAndOrder{display:flex;width:70vw; height:50vw;background-color:yellow}
+       .product-detail{ background-color:red}
+       .product-detail{}
+       tr,table{border:1px solid white;border-collapse:collapse;width:80%;font-size:22px}
+        tr:nth-child(even){background-color: green;color:aliceblue}
+        tr{height:36px}
+        th,td{text-align: left;}
+        tr:hover{background-color: brown;}
+
        
     </style>
 </head>
@@ -67,6 +84,48 @@
             <div class="right">
                 
                    <?php include_once('header.php');?></div>
+
+
+                   <div class="product-container">
+                    <div class="image">
+                         <div class="img"><img src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>"></div>
+                    </div>
+                    <div class="detailAndOrder">
+                    <div class="product-detail">
+                      
+                        <table>
+                            <tr colspan="2"><th>Seller : <?php echo $data['name']?></th></tr>
+                            <tr>
+                                <th>Dress type</th>
+                                <td><?php echo $data['type'];?></td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td><?php echo $data['gender'];?><td>
+                            </tr>
+                            <tr>
+                                <th>Size</th>
+                                <td><?php echo $data['size'];?><td>
+                            </tr>
+                            <tr>
+                                <th>Brand</th>
+                                <td><?php echo $data['brand'];?></td>
+                            </tr>
+                            <tr>
+                                <th>Fiber</th>
+                                <td><?php echo $data['fiber'];?></td>
+                            </tr>
+                            <tr id="price">
+                                <th>Price</th>
+                                <td><?php echo $data['price'];?></td>
+                            </tr>
+                        </table>     
+                                 
+                     </div>
+
+                        <div class="order"></div>
+                    </div>
+                   </div>
 
             <div class="pdetail">
                 <div class="nameImg">

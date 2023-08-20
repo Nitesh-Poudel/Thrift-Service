@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+ 
 </head>
 <style>
 
@@ -11,22 +9,10 @@
 
 
 /*starts from here*/
-.right{
-    width:90%;
-    margin-left:10px;
- 
-
-}
-.right .header{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    line-height: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 5px 3px 18px 0px #888888;
+.right{width:90%; margin-left:10px;}
+.right .header{font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;line-height: 1;
+    display: flex; justify-content: space-between; align-items: center;box-shadow: 5px 3px 18px 0px #888888;
     height:100px;
-    
-   
 }
 
 
@@ -149,6 +135,9 @@
 }
 
 
+.nav{position:stcky;top:0px;background-color:tomato; height:40px; display:flex;align-items:center;}
+.nav a{color:white;margin:20px;text-decoration:none;background-color:#1d4251;padding:5px;border-radius:8px;}
+.nav :hover,#active{background-color:#1d4251;color:gold;transition:0.5s;}
 
 
 
@@ -164,7 +153,9 @@ include_once('session.php');
 
 ?>
 <body>
-<div class="header">
+        <div class="outer">
+                <div class="header">
+
                     <div class="moto">
                         </div>
                     
@@ -174,41 +165,48 @@ include_once('session.php');
                             <button type="submit" name="seearch" id="search"><i class="fa-thin fa-magnifying-glass"></i></button>
                         </form>
                     </div>
+                    
+                        <div class="extra">
+                            <ul type="none">
+                                <div class="list">
 
-                    <div class="extra">
-                        <ul type="none">
-                            <div class="list">
-                                
-                               <li >
-                                        <div class="notification">
-                                                
-                                                    <div class="count">
-                                                        <span id="notification">
-                                                            <b>3</b>
-                                                        </span>
+                                   <li >
+                                            <div class="notification">
+
+                                                        <div class="count">
+                                                            <span id="notification">
+                                                                <b>3</b>
+                                                            </span>
+                                                        </div>
+
+                                                        <i class="fa-sharp fa-solid fa-bell"></i>
+
+
+                                                    <div class="notify">
+                                                        <ul type=none>
+                                                            <li>Rajesh sent you proposal </li>
+
+                                                            <li>Hi</li>
+                                                        </ul>
+
+
                                                     </div>
-
-                                                    <i class="fa-sharp fa-solid fa-bell"></i>
-                                                
-
-                                                <div class="notify">
-                                                    <ul type=none>
-                                                        <li>Rajesh sent you proposal </li>
-                                                  
-                                                        <li>Hi</li>
-                                                    </ul>
-                                               
-
-                                                </div>
-                                        </div>
-                                </li>
+                                            </div>
+                                    </li>
 
 
 
-                                <li><a href="#"><img src="userimage/<?php echo $data2['extra'];?>"></a><li>
-                            </div>
-                        </ul>
-                    </div>
+                                    <li><a href="#"><img src="userimage/<?php echo $data2['extra'];?>"></a><li>
+                                </div>
+                            </ul>
+
+                       
+                </div>
+ 
+                        
+        </div>
+                   
+
 
 
 </body>

@@ -61,7 +61,7 @@ $qry='';$data='';
 
             if(isset($_POST['reject'])){
 
-                mysqli_query($con,"DELETE FROM orderproposal where poid=$opid");
+                mysqli_query($con,"UPDATE orderproposal set accept = 2 WHERE poid=$opid");
             }
         }
 
@@ -79,13 +79,13 @@ $qry='';$data='';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oshop</title>
+    <title>Status</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
         .a{width:100%;height:100%;display:flex;}
         .outerintro{background-color:white;        }
-       .contents{width:100%;height:80%;  overflow:scroll; font-size:small}
+       .contents{width:100%;height:90%;  overflow:scroll; font-size:small}
        .other{width:20%;height:100%;  background-color:white; border-radius:8px;   box-shadow: 5px 3px 18px 0px #888888; }
        .intro {width:100%}
        #accept{color:aliceblue; font-size:20px; background-color:green; padding:5px;}
@@ -97,51 +97,28 @@ $qry='';$data='';
        .header{height:10px; }
        
 .searchMenue{display:none;}
-.nav{position:stcky;top:0px;background-color:tomato; height:40px; display:flex;align-items:center;}
-.nav a{color:white;margin:20px;text-decoration:none;background-color:#1d4251;padding:5px;border-radius:8px;}
-.nav :hover,#active{background-color:#1d4251;color:gold;transition:0.5s;}
+.intro .image img{width:90%;border-radius: 8px;box-shadow: 3px 3px 18px 0px #888888;
+}
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="innercontainer">
-            <div class="left">
-                <div class="name"><h1>Clothex.</h1></div>
-                <div class="innerLeft">
-                    <ul type="none">
-                        <a href="index.php"><li><i class="fa-solid fa-house"></i> Home</li></a>
-                        <a href="<?php echo 'profile.php?id='.$id;?>"><li><i class="fa-solid fa-user"></i> Profile </li></a>
-                        
-                        <?php echo $link;?>
-                        <a href="#"><li><i class="fa-regular fa-gear"></i> Setting</li></a>
-                        <a href="#"><li><i class="fa-solid fa-mobile"></i> Contact</li></a>
-                        <a href="logout.php"><li><i class="fa-solid fa-mobile"></i> Logout</li></a>
-                    </ul>
-                </div>
-            </div>
+        <?php include_once('left.php')?>
             <div class="right">
                 <?php include_once('header.php');?>
-
+                <?php include_once('nav.php');?>
+               
 
                
             </div>
-            <div class="nav"> 
-                        <a href="<?php echo 'profile.php?id='.$id;?>">Your Profile</a>
-                        <a id="active" href="">Request</a>
-                        <a href="#">Proposals</a>
-                   
-                        <a href="#">Sales</a>
-                        <a href="#">Orders</a>
-                        <a href="#">Customers</a>
-                        <a href="#">Balance</a>
-                     
-                     </div>
+           
             <div class="a">
                 <div class="contents">
 
                     <?php
-                  
+
                     while($data=mysqli_fetch_assoc($qry)){
                        
                         
@@ -156,7 +133,7 @@ $qry='';$data='';
                     echo'
                      
                         <div class="intro">
-                            <div class="image"><div class="img"><img src="productimage/'.$data['image'].'"></div></div>
+                            <div class="image"><div class="img"><a href="productimage/'.$data['image'].'"><img src="productimage/'.$data['image'].'"></a></div></div>
                             <div class="productdetail">
                                 <div class="name"><h1>Proposal From : <b>'.$reqsender['name'].'</b></h1>
                                 <img src="userimage/'.$reqsender['extra'].'"width="60px">

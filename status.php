@@ -46,16 +46,13 @@ $qry='';$data='';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oshop_<?php echo $data['name']?></title>
+    <title>Status_<?php echo $data['name']?></title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     
     <style>
         .searchMenue{display:none;}
-        .nav{position:sticky;top:0px;background-color:tomato; height:40px; display:flex;align-items:center;}
-        .nav a{color:white;margin:20px;text-decoration:none;background-color:#1d4251;padding:5px;border-radius:8px;}
-        .nav :hover,#active{background-color:#1d4251;color:gold;transition:0.5s}
-
+      
         .introduction{display:flex;background-color:#249224;color:white;display:flex;align-items:center}
         .description{;width:100%;margin-left:50px;}
         .image img{width:300px}
@@ -63,6 +60,9 @@ $qry='';$data='';
         tr:nth-child(even){background-color: green;color:aliceblue}
         tr{height:36px}
         th,td{text-align: left;}
+        tr:hover{background-color: brown;}
+       nav a{display:nne;}
+       
         
     </style>
 
@@ -71,36 +71,15 @@ $qry='';$data='';
 
     <div class="container">
         <div class="innercontainer">
-            <div class="left">
-                <div class="name"><h1>Clothex.</h1></div>
-                <div class="innerLeft">
-                    <ul type="none">
-                        <a href="index.php"><li><i class="fa-solid fa-house"></i> Home</li></a>
-                        <a href="<?php echo 'profile.php?id='.$id;?>"><li><i class="fa-solid fa-user"></i> Profile </li></a>
-                        
-                        <?php echo $link;?>
-                        <a href="#"><li><i class="fa-regular fa-gear"></i> Setting</li></a>
-                        <a href="#"><li><i class="fa-solid fa-mobile"></i> Contact</li></a>
-                        <a href="logout.php"><li><i class="fa-solid fa-mobile"></i> Logout</li></a>
-                    </ul>
-                </div>
-            </div>
+        <?php include_once('left.php')?>
 
 
             
             <div class="right">
                 <?php include_once('header.php');echo '</div>'?>
+                <?php include_once('nav.php');?>
     
-                    <nav class="nav"> 
-                        <a id="active"href="#">Your Profile</a>
-                        <a href="seerequest.php?id=<?php echo$id;?>">Request</a>
-                        <a href="#">Proposals</a>
                    
-                        <a href="#">Sales</a>
-                        <a href="#">Orders</a>
-                        <a href="#">Customers</a>
-                        <a href="#">Balance</a>
-                    </nav>
            
                 <div class="contents">
                     <div class="introduction">
@@ -114,28 +93,28 @@ $qry='';$data='';
                             <h1><?php echo $data['name'];?></h1>
                            
                             
-                            <h3>Sales Detail</h3>
+                            <h3>Detail</h3>
                             <table>
                                 <tr>
-                                    <th>Upload Item</th>
+                                    <th><a href="index.php?id=<?php echo$id."&&tosee=Item_uploaded";?>">Item Uploaded</a></th>
                                     <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM clothes WHERE retailer_id='$id' ");
                                         $row = mysqli_fetch_assoc($qry);
                                         $totalClothesCount = $row['total_count'];echo $totalClothesCount?>
                                     </td>
                                 </tr>
                                 
-                                <tr>
-                                    <th>Panding Request</th>
+                                 <a href="seerequest.php?id=<?php echo$id;?>"><tr>
+                                    <th><a href="requestview.php?id=<?php echo$id."&&todo=Item_upload";?>">Panding Request</a></th>
                                     <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM orderproposal op 
                                                 INNER JOIN clothes c ON op.forcloth = c.cid 
                                                 WHERE c.retailer_id = '$id' and accept=0");
                                         $row = mysqli_fetch_assoc($qry);
                                         echo  $row['total_count']; ?>
                                     </td>
-                                </tr>
+                                </tr></a>
 
                                 <tr>
-                                    <th>Accept Request</th>
+                                    <th><a href="index.php?id=<?php echo$id."&&todo=acceptedRequest";?>">Accepted Request</a></th>
                                     <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM orderproposal op 
                                                 INNER JOIN clothes c ON op.forcloth = c.cid 
                                                 WHERE c.retailer_id = '$id' and accept=1");
@@ -157,7 +136,7 @@ $qry='';$data='';
                                 </tr>
 
                                 <tr>
-                                    <th>Complete Order</th>
+                                    <th>Completed Order</th>
                                     <td>
                                     <?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM `orders` o
                                             INNER JOIN orderproposal op ON o.pid = op.poid 
@@ -183,7 +162,7 @@ $qry='';$data='';
                                 </tr>
 
                                 <tr>
-                                    <th>Total sales</th>
+                                    <th>Total sales Amount</th>
                                     <td>4</td>
                                 </tr>
                             </table>

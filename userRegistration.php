@@ -112,7 +112,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
                 <div class="msg">
-                    <p id="error"><?php? echo $msg;></p>
+                    <p id="error"><?php echo $msg; ?></p>
                 </div>
             </form>
         </div>

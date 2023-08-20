@@ -3,19 +3,26 @@ include_once('session.php');
 
 include_once('databaseconnection.php');
 
-if(isset($_SESSION['role'])!='retailer'){
-    header('location:index.php');
-   
+if(isset($_SESSION['role'])){
+  $role=$_SESSION['role'];
+  if($role!='retailer'){
+    header('Location:index.php');
+  }
 }
+else{
+    header('Location:index.php');
+  }
+
+
 $msg='';
 
  $sql =   "SELECT * FROM balance where rid=$_SESSION[userid]";
  $qry=mysqli_query($con,$sql);
 
 
-    $data=mysqli_fetch_assoc($qry);
+    $blc=mysqli_fetch_assoc($qry);
  
-    if ($data['amt']<200){
+    if ($blc['amt']<200){
         $msg="You have less balance please add balace first";
     }
     else{
@@ -94,6 +101,8 @@ $msg='';
             
             <?php 
             //Left part
+            $link='profile.php';
+            $id=$_SESSION['userid'];
             include_once('left.php')
             ?>
 
