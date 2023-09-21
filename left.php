@@ -10,7 +10,18 @@
                             <?php echo $link;?>
                             <a href="#"><li><i class="fa-regular fa-gear"></i> Setting</li></a>
                             <a href="#"><li><i class="fa-solid fa-mobile"></i> Contact</li></a>
-                            <a href="logout.php"><li><i class="fa-solid fa-mobile"></i> Logout</li></a>
+                            <a onclick="return conformLogout()" href="logout.php" ><li><i class="fa-solid fa-mobile"></i> Logout</li></a>
                         </ul>
                     </div>
                 </div>
+                <script>
+                    function conformLogout(){
+                        var isConfirmed = confirm('Are you sure you want to logout?');
+        if (isConfirmed) {
+            // Redirect to the logout page if confirmed
+            window.location.href = "logout.php";
+        }
+        // Return false to cancel the default link behavior if not confirmed
+        return isConfirmed;
+                    }
+                </script>

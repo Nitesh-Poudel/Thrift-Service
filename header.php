@@ -161,8 +161,8 @@ include_once('session.php');
                     
                     <div class="searchMenue">
                         <form method="post">
-                            <input type="text" placeholder="search product..." name="search">
-                            <button type="submit" name="seearch" id="search"><i class="fa-thin fa-magnifying-glass"></i></button>
+                            <input type="search" placeholder="search product..." name="search">
+                            <button type="submit" name="seearch" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
                     
@@ -196,7 +196,7 @@ include_once('session.php');
 
 
 
-                                    <li><a href="#"><img src="userimage/<?php echo $data2['extra'];?>"></a><li>
+                                    <li><a href="#"><img src="userimage/<?php echo $data2['userimg'];?>"></a><li>
                                 </div>
                             </ul>
 

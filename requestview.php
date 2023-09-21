@@ -136,7 +136,7 @@ $qry='';$data='';
                             <div class="image"><div class="img"><a href="productimage/'.$data['image'].'"><img src="productimage/'.$data['image'].'"></a></div></div>
                             <div class="productdetail">
                                 <div class="name"><h1>Proposal From : <b>'.$reqsender['name'].'</b></h1>
-                                <img src="userimage/'.$reqsender['extra'].'"width="60px">
+                                <img src="userimage/'.$reqsender['userimg'].'"width="30px">
                                 </div>
                                 <div class="district"><h2>  '.$data['district'].'</h2></div>
                                 <div class="lg"><h3>'.$data['localgov'].' - '.$data['ward'].' </h3></div>

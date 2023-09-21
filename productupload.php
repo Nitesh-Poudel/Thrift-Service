@@ -55,7 +55,10 @@ $msg='';
                     $imgname = str_replace(' ', '-', $imgname);
                     $newname = $retailer . '_' . $date . '.' . $extension;
                     $a = move_uploaded_file($imgtemp, "productimage/" . $newname);
-                }   
+                } 
+                else{
+                    echo "hohrefia oiv aofvaiofvodj vhafuo ha0ifio hio io  doi jgio p";
+                }  
             
             
 
@@ -209,7 +212,7 @@ $msg='';
                           
                         </div>
 
-                        <button type="submit" name="submit">Upload Product</button>
+                        <button type="submit" onclick="return conformUpload()"name="submit">Upload Product</button>
                         <h3><?php echo $msg; ?>
                     </form>
                 </div>
@@ -218,34 +221,15 @@ $msg='';
     </div>
 
 
-    <script>/*
-    document.addEventListener('DOMContentLoaded', function () {
-        const genderSelect = document.getElementById('gender');
-        const dressCategorySelect = document.getElementById('dress-category');
-        const dressTypeSelect = document.getElementById('dress-type');
+    <script>
+    function conformUpload(){
+        var isConfirmed = confirm('Are you sure you want upload the product?');
+        if (isConfirmed) {
+           return true }
+        // Return false to cancel the default link behavior if not confirmed
+        return false; 
 
-        const dressTypes = {
-            men: ['Shirt', 'T-Shirt', 'Pants'],
-            women: ['Sari', 'Kurta', 'T-Shirt', 'Pants', 'Lehenga'],
-            unisex: ['T-Shirt', 'Jeans', 'Jacket'],
-       
-        };
-
-        genderSelect.addEventListener('change', function () {
-            const selectedGender = this.value;
-            dressCategorySelect.selectedIndex = 0;
-            dressTypeSelect.innerHTML = '';
-
-            if (selectedGender !== '') {
-                const types = dressTypes[selectedGender];
-                types.forEach(function (type) {
-                    const option = document.createElement('option');
-                    option.text = type;
-                    dressTypeSelect.add(option);
-                });
-            }
-        });
-    });*/
+    }
 </script>
 
     

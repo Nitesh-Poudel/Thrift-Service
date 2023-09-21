@@ -84,7 +84,7 @@ $qry='';$data='';
                 <div class="contents">
                     <div class="introduction">
                         <div class="image">
-                            <img src=<?php echo '"userimage/'.$data['extra'].'"'?>>
+                            <img src=<?php echo '"userimage/'.$data['userimg'].'"'?>>
         
                         </div>
                         <div class="description">

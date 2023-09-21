@@ -51,7 +51,7 @@ include_once('session.php');
     <title>Product</title>
 
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/prouct.css">
+    <link rel="stylesheet" href="css/prodct.css">
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
@@ -59,15 +59,18 @@ include_once('session.php');
         .searchMenue{display:none;}
        .product-container{display:flex;width:100%;height:50vh; background-color:red}
        .image{width:50%};
-       .img img{width:100%};
+       #img img{width:100px};
        .detailAndOrder{display:flex;width:70vw; height:50vw;background-color:yellow}
        .product-detail{ background-color:red}
        .product-detail{}
        tr,table{border:1px solid white;border-collapse:collapse;width:80%;font-size:22px}
-        tr:nth-child(even){background-color: green;color:aliceblue}
-        tr{height:36px}
+        tr:nth-child(even){background-color: green;color:white}
+        tr:nth-child(odd){background-color: darkgreen;color:aliceblue}
+      
+        tr{height:16px}
         th,td{text-align: left;}
         tr:hover{background-color: brown;}
+        .imgandform{display:flex;justify-content:space-around}
 
        
     </style>
@@ -86,50 +89,40 @@ include_once('session.php');
                    <?php include_once('header.php');?></div>
 
 
-                   <div class="product-container">
-                    <div class="image">
-                         <div class="img"><img src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>"></div>
-                    </div>
-                    <div class="detailAndOrder">
-                    <div class="product-detail">
-                      
-                        <table>
-                            <tr colspan="2"><th>Seller : <?php echo $data['name']?></th></tr>
-                            <tr>
-                                <th>Dress type</th>
-                                <td><?php echo $data['type'];?></td>
-                            </tr>
-                            <tr>
-                                <th>Gender</th>
-                                <td><?php echo $data['gender'];?><td>
-                            </tr>
-                            <tr>
-                                <th>Size</th>
-                                <td><?php echo $data['size'];?><td>
-                            </tr>
-                            <tr>
-                                <th>Brand</th>
-                                <td><?php echo $data['brand'];?></td>
-                            </tr>
-                            <tr>
-                                <th>Fiber</th>
-                                <td><?php echo $data['fiber'];?></td>
-                            </tr>
-                            <tr id="price">
-                                <th>Price</th>
-                                <td><?php echo $data['price'];?></td>
-                            </tr>
-                        </table>     
-                                 
-                     </div>
+                   
 
-                        <div class="order"></div>
-                    </div>
-                   </div>
+            <div class="pcontainer">
+                
+                    <div class="imgandform"><div class="img"><img width="200px" src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>" ></div>
+                    <div class="form">
+                            <form method="POST">
+                                
+                                
+                                <select id="" name="district">
+                                    <option value="" disabled selected>-- Select District --</option>
+                                    <option value="kathmandu">Kathmandu</option>
+                                    <option value="bhaktapur">Bhaktapur</option>
+                                    <option value="lalitpur">lalitpur</option>
+                                    <option value="kavre">Kavre</option>
+                                    <option value="sinduli">Sindhuli</option>
+                                    <option value="jhapa">Jhapa</option>
+                                    <option value="morang">Morang</option>
+                                    <option value="sunsari">Sunsari</option>
+                                </select>
 
-            <div class="pdetail">
-                <div class="nameImg">
-                    <div class="img"><img src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>"></div>
+                                <input type="text" placeholder ="Local Government " value="<?Php echo  $data['address']?>" name="gov"><br>
+                                
+                                    <input type="number" placeholder="Ward number" name="ward">
+                               
+
+                               
+
+                                <input type="number" placeholder ="Enter your Price" name="cprice"><br>
+                                <button type="submit" name="submit" id="submit">Send proposal</button>
+                            </form>
+                        </div> 
+</div>
+               
                     <div class="detail">
                         <h1>Upload By <?php echo $data['name'];echo $cloth_id;?></h1>
                         <table>
@@ -162,33 +155,7 @@ include_once('session.php');
                      </div>
 
 
-                     <div class="form">
-                            <form method="POST">
-                                
-                                
-                                <select id="" name="district">
-                                    <option value="" disabled selected>-- Select District --</option>
-                                    <option value="kathmandu">Kathmandu</option>
-                                    <option value="bhaktapur">Bhaktapur</option>
-                                    <option value="lalitpur">Lalitpur</option>
-                                    <option value="kavre">Kavre</option>
-                                    <option value="sinduli">Sindhuli</option>
-                                    <option value="jhapa">Jhapa</option>
-                                    <option value="morang">Morang</option>
-                                    <option value="sunsari">Sunsari</option>
-                                </select>
-
-                                <input type="text" placeholder ="Local Government " value="<?Php echo  $data['address']?>" name="gov"><br>
-                                
-                                    <input type="number" placeholder="Ward number" name="ward">
-                               
-
-                               
-
-                                <input type="number" placeholder ="Enter your Price" name="cprice"><br>
-                                <button type="submit" name="submit" id="submit">Send proposal</button>
-                            </form>
-                        </div> 
+                     
                 </div>
             </div>
             

@@ -9,8 +9,9 @@
 
 
         $encriptpw=md5($password);
+        $msg='';
 
-        
+        if(!empty($email)&&!empty($password)){
         $sql="SELECT * from user WHERE email='$email'&& password='$encriptpw'";
         
         $qry=mysqli_query($con,$sql);
@@ -34,7 +35,7 @@
            }
 
            else{
-                $msg='Phone and password not matched';
+                $msg='Email and password not matched';
            }
            
 
@@ -44,6 +45,10 @@
         else{
             $msg='Query not happens';
         }
+    }
+    else{
+        $msg='Please Enter every detail';
+    }
 
 
     
@@ -79,7 +84,7 @@
 .container{
    
     background-color:white;
-    opacity: 0.8;
+    opacity: 1;
 }
     body{
         background:url('images/cover.png');
@@ -108,7 +113,8 @@
                     <div class="link">Don't have an Account? <a href="userregistration.php">Register</a></a></div>
 
                 </div>
-                <p id="msg1"><?php echo ''?></p>
+                <a href="forgetpw.php"><b>Forget password</b></a>
+                <span id="msg1"><b><?php if(isset($msg)){echo $msg;}?><b></span>
 
             </form>
         </div>

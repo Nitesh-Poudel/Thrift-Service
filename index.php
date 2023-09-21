@@ -61,7 +61,7 @@ $id='';
                         } 
                         else {
                         
-                            $qry = mysqli_query($con, "SELECT * FROM clothes ");
+                            $qry = mysqli_query($con, "SELECT * FROM clothes order by cid desc");
                         }
                         
                         
@@ -99,11 +99,12 @@ $id='';
                                             }
                                         }
                                     }
+
                                      if(isset($_GET['tosee'])){
                                         $tosee=$_GET['tosee'];
                                         if($tosee=='acceptedRequest'){
-                                            if($accepted['accept']=1){ 
-                                                //if(isset($accepted['byperson'])!==$id){//TO show only those clothes whose proposal in not accepted
+                                            if($accepted['accept']){ 
+                                                if(isset($accepted['byperson'])!==$id){//TO show only those clothes whose proposal in not accepted
                                                     $qry=mysqli_query($con,"SELECT  * from clothes where retailer_id='$id'");
                                                     while ($data = mysqli_fetch_assoc($qry)){
                                                         
@@ -126,12 +127,14 @@ $id='';
                                                 }
                                             }
                                         }
-                                    
+                                    }
                              
                                 else{
-                                if(!isset($accepted['accept'])){ 
-                                //if(isset($accepted['byperson'])!==$id){//TO show only those clothes whose proposal in not accepted
-                                        
+                               if(isset($accepted['accept'])){ 
+                                if($accepted['accept']=='1')  {  
+                                    ;
+                                }}
+                                else{     
                                          echo '
                                          <a href="product.php?cloth_id=' . $data['cid'] . '"><div class="product">
                                              <div class="img">
@@ -147,10 +150,10 @@ $id='';
                                        
                                         
                                 }
-
-                                    
                             }
-                                //}
+                                    
+                            
+                                
                               
                                 }
                                
