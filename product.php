@@ -59,7 +59,7 @@ include_once('session.php');
         .searchMenue{display:none;}
        .product-container{display:flex;width:100%;height:50vh; background-color:red}
        .image{width:50%};
-       #img img{width:100px};
+       #img img{height:00px};
        .detailAndOrder{display:flex;width:70vw; height:50vw;background-color:yellow}
        .product-detail{ background-color:red}
        .product-detail{}
@@ -93,7 +93,7 @@ include_once('session.php');
 
             <div class="pcontainer">
                 
-                    <div class="imgandform"><div class="img"><img width="200px" src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>" ></div>
+                    <div class="imgandform"><div class="img"><img height="300px" src="productimage/<?php echo $data['image'];?>" title="<?php echo $data['name'];?>" ></div>
                     <div class="form">
                             <form method="POST">
                                 

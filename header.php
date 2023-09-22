@@ -135,8 +135,8 @@
 }
 
 
-.nav{position:stcky;top:0px;background-color:tomato; height:40px; display:flex;align-items:center;}
-.nav a{color:white;margin:20px;text-decoration:none;background-color:#1d4251;padding:5px;border-radius:8px;}
+.nav{background-color:#1d4251; height:40px; display:flex;align-items:center;}
+.nav a{color:white;margin-left:auto;margin-right:auto;text-decoration:none;background-color:#1d4251;padding:5px;border-radius:0px;}
 .nav :hover,#active{background-color:#1d4251;color:gold;transition:0.5s;}
 
 

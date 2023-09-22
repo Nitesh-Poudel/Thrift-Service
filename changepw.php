@@ -2,6 +2,7 @@
 <?php
 session_start();
 include_once('databaseconnection.php');
+
 $msg='';
 if(isset($_POST['changepw'])){
    
@@ -13,17 +14,20 @@ if(isset($_POST['changepw'])){
 
             $encriptedPassword=md5($new_password);
             $tochange= $_SESSION['userId'];
-           $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE uid=$tochange");
+            $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE uid=$tochange");
+           
            if($update){
-            header('Location:login.php');
-           }
-        } else {
-            $msg = 'Passwords do not match';
+            echo "<script>alert('Password updated successfully.'); window.location.href = 'login.php';</script>";
+           //}
         }
+        // else {
+           // $msg = 'Passwords do not match';
+        //}
     } 
     else {
         $msg = 'Please enter the details';
     }
+}
 }
 ?>
 
@@ -76,14 +80,14 @@ if(isset($_POST['changepw'])){
                     <tr>
                         <td><label for="conform_password"><b>Confirm Password</b></label>
                         </td>
-                        <td><input type="password" placeholder="_________________________" class="inputs" name="conform_password" id="                <input type="password" placeholder="_________________________" class="inputs" name="conform_password" id="email"><br>
+                        <td><input type="password" placeholder="_________________________" class="inputs" name="conform_password" id="conform_password"><br>
                         </td>
                     </tr>
                 </table>
             
                 <div class="button_sanga">
-                    <div class="button">  <button type="submit" name="changepw" id="submit">Save</button></div>
-                    <div class="link">Don't have an Account? <a href="userregistration.php">Register</a></a></div>
+                    <div class="button">  <button type="submit" onclick="sure()" name="changepw" id="submit">Save</button></div>
+                    <div id="link">Don't have an Account? <a href="userregistration.php">Register</a></a></div>
 
                 </div>
 
@@ -95,9 +99,12 @@ if(isset($_POST['changepw'])){
     </div>
 
 
+  
     <script>
-       
-    </script>
+   
+</script>
+
+   
     
 </body>
 </html>

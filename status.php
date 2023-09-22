@@ -3,7 +3,7 @@
     include_once('databaseconnection.php');
 $qry='';$data='';
     if(isset($_SESSION['userid'])){
-        if(isset($_GET['id'])){
+        if(isset($_GET['id'])){//ID of the user
             $id=$_GET['id'];
 
 
@@ -53,15 +53,17 @@ $qry='';$data='';
     <style>
         .searchMenue{display:none;}
       
-        .introduction{display:flex;background-color:#249224;color:white;display:flex;align-items:center}
+        .introduction{display:flex;background-color:black;color:white;display:flex;align-items:center}
+        #person{color:gold}
         .description{;width:100%;margin-left:50px;}
         .image img{width:300px}
         tr,table{border:1px solid white;border-collapse:collapse;width:80%;font-size:22px}
-        tr:nth-child(even){background-color: green;color:aliceblue}
+        .right a{color:white}
+        tr:nth-child(even){background-color: #212221;color:aliceblue}
         tr{height:36px}
         th,td{text-align: left;}
         tr:hover{background-color: brown;}
-       nav a{display:nne;}
+       .nav a{border-radius:0px}
        
         
     </style>
@@ -90,10 +92,10 @@ $qry='';$data='';
                         <div class="description">
                             
                            
-                            <h1><?php echo $data['name'];?></h1>
+                            <h1 id="person"><?php echo $data['name'];?></h1>
                            
                             
-                            <h3>Detail</h3>
+                            <h3>Detail as <?php echo $data['role'];?></h3>
                             <table>
                                 <tr>
                                     <th><a href="index.php?id=<?php echo$id."&&tosee=Item_uploaded";?>">Item Uploaded</a></th>
@@ -114,7 +116,7 @@ $qry='';$data='';
                                 </tr></a>
 
                                 <tr>
-                                    <th><a href="index.php?id=<?php echo$id."&&todo=acceptedRequest";?>">Accepted Request</a></th>
+                                    <th><a href="acceptedrequest.php?id=<?php echo$id."&&todo=acceptedRequest";?>">Accepted Request</a></th>
                                     <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM orderproposal op 
                                                 INNER JOIN clothes c ON op.forcloth = c.cid 
                                                 WHERE c.retailer_id = '$id' and accept=1");

@@ -54,7 +54,7 @@
        .intro h1,h3{
        }
 
-        .Accepted, .Rejected, .Not-Respond{color:white;background-color:green; text-align:center;height:50px;font-size:36px}
+        .Accepted, .Rejected, .Not-Respond{color:white;background-color:green; text-align:center;height:23px;font-size:16px}
         .Rejected{background-color:red;}
         .Not-Respond{background-color:orange;}
        

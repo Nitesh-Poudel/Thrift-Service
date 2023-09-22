@@ -53,27 +53,6 @@ $id='';
                     
                         $qry = '';
 
-                        if (isset($_POST['search'])) {
-                            $tosearch = mysqli_real_escape_string($con, $_POST['search']);
-                        
-                            $qry = mysqli_query($con, "SELECT * FROM clothes WHERE gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch' Order by cid desc");
-
-                        } 
-                        else {
-                        
-                            $qry = mysqli_query($con, "SELECT * FROM clothes order by cid desc");
-                        }
-                        
-                        
-                        
-                        //to check and filter ordered clothes.
-                            while ($data = mysqli_fetch_assoc($qry)) {
-                                $cltid=$data['cid'];
-
-                                $qry2 = mysqli_query($con,"SELECT * FROM orderproposal where forcloth= $cltid ");
-                                $accepted=mysqli_fetch_assoc($qry2);
-
-                              
 
                               
                                     //Check uploaded status of the the person
@@ -99,63 +78,37 @@ $id='';
                                             }
                                         }
                                     }
+                                
+                           
+                                
+                                //Show every clothes available in platform except one that we have uploaded
+                                    else{    
+                                    
+                                        $qry = mysqli_query($con, "SELECT * FROM clothes c
+                           WHERE c.retailer_id != '$id'
+                           AND (c.cid NOT IN (SELECT forcloth FROM orderproposal WHERE accept = 1)
+                                OR c.cid NOT IN (SELECT forcloth FROM orderproposal WHERE accept = 1))");
 
-                                     if(isset($_GET['tosee'])){
-                                        $tosee=$_GET['tosee'];
-                                        if($tosee=='acceptedRequest'){
-                                            if($accepted['accept']){ 
-                                                if(isset($accepted['byperson'])!==$id){//TO show only those clothes whose proposal in not accepted
-                                                    $qry=mysqli_query($con,"SELECT  * from clothes where retailer_id='$id'");
-                                                    while ($data = mysqli_fetch_assoc($qry)){
-                                                        
-                                                        echo '
-                                                        <a href="product.php?cloth_id=' . $data['cid'] . '"><div class="product">
-                                                            <div class="img">
-                                                                <img src="productimage/' . $data['image'] . '" title='.$data['cid'].'>
-                                                            </div>
-                                               
-                                                                <div class="detail" id="type"><b>' . $data['type'] . '</b></div>
-                                                                <div class="detail"><b>' . $data['price'] . '</b></div>
-                                               
-                                               
-                                               
-                                                        </div></a>';
-        
-                                                    }
-                                                       
-                                                        
-                                                }
-                                            }
+                                        while ($data = mysqli_fetch_assoc($qry)){  
+                                            echo '
+                                            <a href="product.php?cloth_id=' . $data['cid'] . '"><div class="product">
+                                                <div class="img">
+                                                    <img src="productimage/' . $data['image'] . '" title='.$data['cid'].'>
+                                                </div>
+                                   
+                                                    <div class="detail" id="type"><b>' . $data['type'] . '</b></div>
+                                                    <div class="detail"><b>' . $data['price'] . '</b></div>
+                                   
+                                   
+                                   
+                                            </div></a>';
+
                                         }
                                     }
-                             
-                                else{
-                               if(isset($accepted['accept'])){ 
-                                if($accepted['accept']=='1')  {  
-                                    ;
-                                }}
-                                else{     
-                                         echo '
-                                         <a href="product.php?cloth_id=' . $data['cid'] . '"><div class="product">
-                                             <div class="img">
-                                                 <img src="productimage/' . $data['image'] . '" title='.$data['cid'].'>
-                                             </div>
                                 
-                                                 <div class="detail" id="type"><b>' . $data['type'] . '</b></div>
-                                                 <div class="detail"><b>' . $data['price'] . '</b></div>
-                                
-                                
-                                
-                                         </div></a>';
-                                       
-                                        
-                                }
-                            }
-                                    
                             
-                                
-                              
-                                }
+                            
+                               
                                
                             
                             

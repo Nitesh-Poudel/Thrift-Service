@@ -25,8 +25,24 @@
             $otp=rand(000000,999999);
             $_SESSION['otp'] = $otp;
 
+            //sending mail to the related email
+            $to=$data['email'];
+            $subject = "OTP for changing Password";
+            $message = "Hello, ".$data['name']." Your OTP for changing password in CLOTHEX.com is ".$otp." Please don't share it with others";
+            
+            $headers = "From: ntspoudel@gmail.com";
 
+            /*$mailSent = mail($to, $subject, $message, $headers);
 
+                if ($mailSent) {
+                    echo "Email sent successfully.";
+                } else {
+                    echo "Email sending failed.";
+                }
+
+            */
+
+            
             //if account found  only then place for otp will be generated
             $otp_input_box=' <label for="otp"><b>OTP : </b></label>
             <input type="number" placeholder="________________________" class="inputs" name="enteredOTP" id="enteredOTP"><br>
