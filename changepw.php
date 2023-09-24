@@ -3,7 +3,12 @@
 session_start();
 include_once('databaseconnection.php');
 
-$msg='';
+$msg='';$otp;
+if(isset($_SESSION['otp'])) {
+   
+
+   
+
 if(isset($_POST['changepw'])){
    
     $new_password =  mysqli_real_escape_string($con,$_POST['new_password']);
@@ -29,6 +34,9 @@ if(isset($_POST['changepw'])){
     }
 }
 }
+
+}
+
 ?>
 
 
@@ -70,7 +78,8 @@ if(isset($_POST['changepw'])){
         </div>
         <div class="form">
             <form name="myform" onsubmit="return validateForm()" action="" method="Post"  >
-                <div class="title" style="font-size: 12px"><b>We will sent OTP in your Email</b></div>
+                <div class="title" style="font-size: 12px"><b>Enter detail to change password</b></div>
+                <fieldset><legend><b>Change Password</b></legend>
                 <table>
                     <tr>
                         <td> <label for="new_password"><b>New Password </b></label></td>
@@ -91,9 +100,9 @@ if(isset($_POST['changepw'])){
 
                 </div>
 
-                <span id="msg1"><b><?php if(isset($msg)){echo $msg;}?><b></span></br>
+                <span id="msg1"><b><?php if(isset($msg)){echo $msg;} ?><b></span></br>
                
-                    
+                </fieldset>      
             </form>
         </div>
     </div>

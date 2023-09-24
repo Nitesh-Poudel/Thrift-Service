@@ -63,8 +63,8 @@ $msg='';
             
 
         
-                    $sql="INSERT INTO clothes(retailer_id,gender,catagory,season,type,size,fiber,brand,price,description,date,image) 
-                    VALUES('$retailer','$gender','$catagory','','$type','$size','$fiber','$brand','$price','$description','$date','$newname')";
+                    $sql="INSERT INTO clothes(retailer_id,gender,catagory,type,size,fiber,brand,price,description,date,image) 
+                    VALUES('$retailer','$gender','$catagory','$type','$size','$fiber','$brand','$price','$description','$date','$newname')";
 
                     $qry=mysqli_query($con,$sql);
 

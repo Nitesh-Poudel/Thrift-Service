@@ -33,6 +33,7 @@ $id='';
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
+       /**{background-color:black;color:white}*/
        
     </style>
 </head>
@@ -85,9 +86,11 @@ $id='';
                                     else{    
                                     
                                         $qry = mysqli_query($con, "SELECT * FROM clothes c
-                           WHERE c.retailer_id != '$id'
-                           AND (c.cid NOT IN (SELECT forcloth FROM orderproposal WHERE accept = 1)
-                                OR c.cid NOT IN (SELECT forcloth FROM orderproposal WHERE accept = 1))");
+                                        WHERE c.retailer_id != '$id'
+                                        AND c.cid NOT IN (
+                                            SELECT forcloth FROM orderproposal WHERE accept = 0 OR accept = 1
+                                        )
+                                        ORDER BY c.cid DESC;");
 
                                         while ($data = mysqli_fetch_assoc($qry)){  
                                             echo '

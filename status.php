@@ -57,7 +57,7 @@ $qry='';$data='';
         #person{color:gold}
         .description{;width:100%;margin-left:50px;}
         .image img{width:300px}
-        tr,table{border:1px solid white;border-collapse:collapse;width:80%;font-size:22px}
+        tr,table{border:1px solid gray;border-collapse:collapse;width:80%;font-size:22px}
         .right a{color:white}
         tr:nth-child(even){background-color: #212221;color:aliceblue}
         tr{height:36px}

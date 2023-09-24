@@ -61,6 +61,7 @@
         tr{height:26px}
         th,td{text-align: left}
         tr:hover{background-color: #214271;}
+        #table_head{background-color: #214271;}
 
         .container .innercontainer .right .intro {max-width: 1000px;min-width: 1000px;
             height: 30%;display: flex; background-color: rgb(10 10 10); margin-top: 10px;
@@ -70,7 +71,9 @@
         #custumerProfile{
           margin-right:auto;
           margin-left:5px;
-        }        
+          border-radius:8px;
+        } 
+
        
 
     </style>
@@ -103,9 +106,9 @@
                            
                             <div class="productdetail">
                             <div style="text-align: right;">
-    <img id="customerProfile" src="userimage/'.$data['userimg'].'" width="100px" style="margin-left: auto;">
+    <img id="customerProfile" src="userimage/'.$data['userimg'].'" height="80px" title="'.$data['name'].'"style="margin-left: auto;">
 </div>  <table>
-                           
+                           <tr rowspan="2" id="table_head"><th>Personal Detail</th></tr>
                                 <tr>
                                     <th>Receiver Name</th>
                                     <td>'.$data['name'].'</td>
@@ -127,6 +130,23 @@
                                     <th>Price</th>
                                     <td>'.$data['proposalprice'].'</td>
                                 </tr>
+                                <tr>
+                                <th>Dress type</th>
+                                <td>'.$data['type'].'</td>
+                            </tr>
+                           
+                            <tr>
+                                <th>Size</th>
+                                <td>'.$data['size'].'<td>
+                            </tr>
+                            <tr>
+                                <th>Brand</th>
+                                <td>'.$data['brand'].'</td>
+                            </tr>
+                            <tr>
+                                <th>Fiber</th>
+                                <td>'.$data['fiber'].'</td>
+                            </tr>
 
                             <table>
                               

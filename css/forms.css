@@ -17,11 +17,11 @@ body{
 .container{
     border:1px solid white;
     border-radius: 10px;
-    padding:20px 32px;
+    padding: 138px 32px;
     display:flex;
     flex-direction: column;
     background: transparent;
-    box-shadow: 8px 8px 14px gray;
+    box-shadow:  8px 8px 14px 14px #911c1c;
     min-width: 25vw;
     background-color: aliceblue;
 }
@@ -57,7 +57,7 @@ body{
     display: flex;
     align-items: center;
   }
-  #submit{
+  #submit, .buttons{
     border:none;
     outline:none;
     padding:12px 24px;

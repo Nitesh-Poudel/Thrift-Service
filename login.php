@@ -26,7 +26,7 @@
            
                 $_SESSION['role']=$data['role'];
             
-          
+                $_SESSION['clothexPass']="thisispass";
 
                 
                 $_SESSION['userid']=$data['uid'];
@@ -72,25 +72,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login <?php echo $data['name']?></title>
+    <title>Login </title>
     
     <link rel="stylesheet" href="css/forms.css">
 </head>
 <style>
-    #msg1{
-        font-size:10px;
-        color:red;
-    }
-.container{
+     body{background:url('images/cover.png');opacity: 1;background:cover;}
+    #msg1{font-size:10px;color:red;}
+    .container{background-color:white;opacity: 1;}
+    legend{background-color: #eeeeee;text:bold}
+    table{text-align:left}
    
-    background-color:white;
-    opacity: 1;
-}
-    body{
-        background:url('images/cover.png');
-        opacity: 1;
-        background:cover;
-    }
+
 </style>
 <body>
     <div class="container">
@@ -103,19 +96,28 @@
         </div>
         <div class="form">
             <form name="myform" onsubmit="return validateForm()" action="" method="Post"  >
-                <div class="title">Login</div>
-              
-                <input type="text" placeholder="email" class="inputs" name="email" id="email"><br>
-                <input type="password" placeholder="Password" class="inputs" name="password" id="password"><br>
-            
-                <div class="button_sanga">
-                    <div class="button">  <button type="submit" name="login" id="submit">Login</button></div>
-                    <div class="link">Don't have an Account? <a href="userregistration.php">Register</a></a></div>
-
-                </div>
-                <a href="forgetpw.php"><b>Forget password</b></a>
-                <span id="msg1"><b><?php if(isset($msg)){echo $msg;}?><b></span>
-
+            <fieldset>
+                    <table>
+                    
+                    <legend><b>Login</b></legend>
+                    <table>
+                        <tr>
+                            <th><label for="email"><b>Email</b></label></th>
+                            <td><input type="text" placeholder="___________________" class="inputs" name="email" id="email"><br></td>
+                        </tr>
+                        <tr>
+                            <th><label for="password"><b>Password</b></label></th>
+                            <td><input type="password" placeholder="___________________" class="inputs" name="password" id="password"><br></td>
+                        </tr>
+                        
+                    </table>
+                    <div class="button_sanga">
+                        <div class="button"><button type="submit" name="login" id="submit">Login</button></div>
+                        <div class="link">Don't have an Account? <a href="userregistration.php">Register</a></div>
+                    </div>
+                    <a href="forgetpw.php"><b>Forget password</b></a>
+                    <span id="msg1"><b><?php if(isset($msg)){echo $msg;}?></b></span>
+                </fieldset>
             </form>
         </div>
     </div>

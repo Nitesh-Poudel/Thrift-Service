@@ -236,8 +236,9 @@
   
     justify-content: center;
     margin-top:20px;
-    box-shadow: 5px 3px 18px 0px #888888;
+    box-shadow: 5px 3px 18px 0px #000000;
     overflow:hidden;
+    background-color: rgb(224, 226, 227);
    
     
     
@@ -252,6 +253,7 @@
     justify-content: center;
     background-color: #000000;
     overflow:hidden;
+    box-shadow: 5px 3px 18px 0px #0000
 }
 
 .products .product .img img{
@@ -259,7 +261,8 @@
 
 }
 .products .product .img img:HOVER{
-    opacity: 1;
+    opacity: 0.8;
+    
     transition: 0.5s;
   
 }
@@ -267,6 +270,8 @@
 width:100%;
    
    text-align: center;
+   font-family: cursive;
+ color:rgb(52, 19, 19)
 
 }
 
