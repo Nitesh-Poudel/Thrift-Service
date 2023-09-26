@@ -30,8 +30,7 @@
 
                 
                 $_SESSION['userid']=$data['uid'];
-               // setcookie("user_email",$data['email'],time()+(60*60*24));//one day cookie
-                setcookie("user_id",$data['uid'],time()+(60*60*24));
+                  setcookie("user_id",$data['uid'],time()+(60*60*24));
               
                    header('Location:index.php');
                    
