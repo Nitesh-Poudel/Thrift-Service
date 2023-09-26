@@ -8,7 +8,7 @@
  
         if(isset($_SESSION['role'])){
             $role=$_SESSION['role'];
-            if($role=='retailer'){
+            if($role=='seller'){
                 echo '
            
                     <nav class="nav"> 

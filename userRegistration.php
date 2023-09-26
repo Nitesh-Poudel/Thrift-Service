@@ -95,8 +95,8 @@ if (isset($_POST['submit'])) {
                 
                 <select name="role" class="inputs">
                     <option value="" disabled selected>Ragisterr yourself as.....</option>
-                    <option value="customer">Customer</option>
-                    <option value="retailer">Retailer</option>
+                    <option value="buyer">Buyer</option>
+                    <option value="seller">Sellerf</option>
                 </select><br>
 
                 <input type="text" placeholder="Password" class="inputs" name="password" value="admin"><br>

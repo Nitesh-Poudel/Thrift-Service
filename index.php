@@ -15,7 +15,7 @@ $id='';
     }
 
     $link='';
-    ($data['role']=='retailer')?
+    ($data['role']=='seller')?
         $link='<a id="link" href="productupload.php">Upload Product</a>':$link='<a href="">About us</a>';
 
     $title='';

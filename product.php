@@ -10,7 +10,12 @@ include_once('session.php');
        $data=mysqli_fetch_assoc($qry);
 
 
-
+    if($data['retailer_id']==$_SESSION['userid']){
+        //show current status of it
+       
+        
+    }
+    else{
        if(isset($_POST['submit'])){
             $byperson=$_SESSION['userid'];
             $forcloth = $cloth_id;
@@ -40,6 +45,7 @@ include_once('session.php');
             $msg="Please enter every detail";
        }
     }
+}
     $link='';
 
 ?>
@@ -97,6 +103,22 @@ include_once('session.php');
                     <div class="form">
                             <form method="POST">
                                 
+                                <select name="provience">
+                                    <option value="" disabled selected>-- Select Provience --</option>
+                                    <option value="koshi">Koshi</option>
+                                    <option value="madesh">Madhesh</option>
+                                    <option value="bagmati">Bagmati</option>
+                                    <option value="gandaki">Gandaki</option>
+                                    
+                                   
+                                   
+                                    <option value="lumbini">Lumbini</option>
+                                    <option value="karnali">Bagmati</option>
+                                    <option value="sudurpaschi,">Sudurpaschim</option>
+                                    
+
+                                    
+                                </select>
                                 
                                 <select id="" name="district">
                                     <option value="" disabled selected>-- Select District --</option>
@@ -113,7 +135,10 @@ include_once('session.php');
                                 <input type="text" placeholder ="Local Government " value="<?Php echo  $data['address']?>" name="gov"><br>
                                 
                                     <input type="number" placeholder="Ward number" name="ward">
-                               
+                                    <input type="text" placeholder="tole" name="tole">
+
+                                    
+
 
                                
 

@@ -5,7 +5,7 @@ include_once('databaseconnection.php');
 
 if(isset($_SESSION['role'])){
   $role=$_SESSION['role'];
-  if($role!='retailer'){
+  if($role!='seller'){
     header('Location:index.php');
   }
 }
@@ -29,7 +29,7 @@ $msg='';
         if(isset($_POST['submit'])){
 
    
-            $retailer=$_SESSION['userid'];
+            $seller=$_SESSION['userid'];
             $img='';
             $gender=$_POST['gender'];
             $catagory=$_POST['catagory'];
@@ -44,7 +44,7 @@ $msg='';
 
             $newname = '';
 
-            if ($retailer != '' && $gender != '' && $catagory != ''  && $type != '' && $size != '' && $fiber != ''&& $brand != ''&& $price != ''&& $description != '') {
+            if ($seller != '' && $gender != '' && $catagory != ''  && $type != '' && $size != '' && $fiber != ''&& $brand != ''&& $price != ''&& $description != '') {
                 if (isset($_FILES['image'])) {
                     $imgname = $_FILES['image']['name'];
                     $imgtemp = $_FILES['image']['tmp_name'];
@@ -53,7 +53,7 @@ $msg='';
                     $date = date('YmdHisv'); // e.g., 20230719123456789)
                 
                     $imgname = str_replace(' ', '-', $imgname);
-                    $newname = $retailer . '_' . $date . '.' . $extension;
+                    $newname = $seller . '_' . $date . '.' . $extension;
                     $a = move_uploaded_file($imgtemp, "productimage/" . $newname);
                 } 
                 else{
@@ -64,7 +64,7 @@ $msg='';
 
         
                     $sql="INSERT INTO clothes(retailer_id,gender,catagory,type,size,fiber,brand,price,description,date,image) 
-                    VALUES('$retailer','$gender','$catagory','$type','$size','$fiber','$brand','$price','$description','$date','$newname')";
+                    VALUES('$seller','$gender','$catagory','$type','$size','$fiber','$brand','$price','$description','$date','$newname')";
 
                     $qry=mysqli_query($con,$sql);
 
