@@ -30,8 +30,12 @@
 
                 
                 $_SESSION['userid']=$data['uid'];
+               // setcookie("user_email",$data['email'],time()+(60*60*24));//one day cookie
+                setcookie("user_id",$data['uid'],time()+(60*60*24));
+              
                    header('Location:index.php');
-                   echo$_SESSION['role'];
+                   
+
            }
 
            else{
@@ -103,7 +107,7 @@
                     <table>
                         <tr>
                             <th><label for="email"><b>Email</b></label></th>
-                            <td><input type="text" placeholder="___________________" class="inputs" name="email" id="email"><br></td>
+                            <td><input type="text" placeholder="___________________" value="<?php if (isset($_COOKIE["user_email"])){echo $_COOKIE["user_email"];}?>" class="inputs" name="email" id="email"><br></td>
                         </tr>
                         <tr>
                             <th><label for="password"><b>Password</b></label></th>

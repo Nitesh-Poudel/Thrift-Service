@@ -58,7 +58,7 @@
             <li><a href="../index.php">Home</a></li>
             <li><a href="#">Customers</a></li>
             <li><a href="#">Retailers</a></li>
-            <li><a href="adminsetting.php">Settings</a></li>
+            <li><a href="#">Settings</a></li>
             <!-- Add more menu items as needed -->
         </ul>
     </nav>
@@ -66,7 +66,7 @@
     <!-- Main Content -->
     <main class="content">
         <header>
-            <h1>Admin Dashboard</h1>
+            <h1>Setting</h1>
         </header>
 
         <!-- Customer Section -->
