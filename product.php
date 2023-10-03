@@ -12,6 +12,10 @@ include_once('session.php');
 
     if($data['retailer_id']==$_SESSION['userid']){
         //show current status of it
+        //for now simlyredirect to index
+        header("Location: status.php?id=" . $_SESSION['userid']);
+
+
        
         
     }

@@ -11,9 +11,15 @@ body{
     align-items: center;
     background: linear-gradient(to right bottom,#dde3f2,rgb(229, 245, 232));
     color:rgb(11, 11, 11);
-    
+    background-image: linear-gradient(red, yellow);
+    display: flex;
+   justify-content: right;
    
 }
+body{ background-image: linear-gradient(red, yellow);
+    display: flex;
+   justify-content: right;}
+  
 .container{
     border:1px solid white;
     border-radius: 10px;

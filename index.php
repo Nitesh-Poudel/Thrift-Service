@@ -18,7 +18,7 @@ $id='';
     ($data['role']=='seller')?
         $link='<a id="link" href="productupload.php">Upload Product</a>':$link='<a href="">About us</a>';
 
-    $title='';
+    $title='Clothex';
     if(isset($_GET['todo'])){
         $title=$_GET['todo'];
     }
@@ -61,6 +61,15 @@ $id='';
                                         $tosee=$_GET['tosee'];
                                         if($tosee=='Item_uploaded'){
                                             $qry=mysqli_query($con,"SELECT  * from clothes where retailer_id='$id'");
+                                        }
+                                        if($tosee=='Item_onsell'){
+                                            $qry = mysqli_query($con, "SELECT * FROM clothes c
+                                            WHERE c.retailer_id = '$id'
+                                            AND c.cid NOT IN (
+                                                SELECT forcloth FROM orderproposal WHERE accept != 0 OR accept != 1
+                                            )
+                                            ORDER BY c.cid DESC;");
+                                        }
                                             while ($data = mysqli_fetch_assoc($qry)){
                                                 
                                                 echo '
@@ -77,7 +86,7 @@ $id='';
                                                 </div></a>';
 
                                             }
-                                        }
+                                        
                                     }
                                 
                            
@@ -87,7 +96,7 @@ $id='';
                                     
                                         $qry = mysqli_query($con, "SELECT * FROM clothes c
                                         WHERE c.retailer_id != '$id'
-                                        AND c.cid NOT IN (
+                                        AND c.cid  NOT IN (
                                             SELECT forcloth FROM orderproposal WHERE accept = 0 OR accept = 1
                                         )
                                         ORDER BY c.cid DESC;");
@@ -104,7 +113,11 @@ $id='';
                                    
                                    
                                    
-                                            </div></a>';
+                                            </div></a>
+                                            
+                                            ';
+
+                                            
 
                                         }
                                     }

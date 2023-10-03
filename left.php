@@ -5,7 +5,7 @@
                     <div class="innerLeft">
                         <ul type="none">
                             <a href="index.php"><li><i class="fa-solid fa-house"></i> Home</li></a>
-                            <a href="status.php?id=<?php echo$id;?>"><li><i class="fas fa-chart-line" ></i>Status </li></a>
+                            <a href="status.php?id=<?php echo$id;?>&&role=<?php echo $_SESSION['role'];?>"><li><i class="fas fa-chart-line" ></i>Status </li></a>
                          
                             <?php if(isset($link)){ echo $link;}?>
                             <a href="#"><li><i class="fa-regular fa-gear"></i> Setting

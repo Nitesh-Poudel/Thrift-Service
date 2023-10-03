@@ -123,12 +123,7 @@
                  
                     
                 </div>
-                <div class="other">
-                     <ul type="none">
-                        <li><?php $msg;?></li>
-                        <li></li>
-                     </ul>
-                </div>
+                
             </div>
 
 

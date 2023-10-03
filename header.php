@@ -98,9 +98,9 @@
     
     background:rgb(0,100,0);
     
-    width:15%;
-    max-height:60%;
- 
+    width:250px;
+    max-height:55vh;
+ opacity: 1;
    
     display:none;
     overflow:scroll;
@@ -109,6 +109,7 @@
 }
 .notify ul li{
     margin-top:50px;
+    height:50Vh;
     border-bottom:1px dotted gray;
     text-align:left;
 }
@@ -123,7 +124,7 @@
     background-color: rgb(255, 252, 252);
     border-bottom-left-radius: 12px;
     border-top-left-radius: 12px;
-  
+    z-index:1;
     align-items: center;
     box-shadow: 5px 3px 18px 0px #888888;
     
@@ -184,6 +185,9 @@ include_once('session.php');
 
                                                     <div class="notify">
                                                         <ul type=none>
+                                                            <li>Rajesh sent you proposal </li>
+                                                            <li>Rajesh sent you proposal </li>
+                                                            <li>Rajesh sent you proposal </li>
                                                             <li>Rajesh sent you proposal </li>
 
                                                             <li>Hi</li>

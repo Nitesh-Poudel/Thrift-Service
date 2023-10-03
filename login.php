@@ -31,6 +31,7 @@
                 
                 $_SESSION['userid']=$data['uid'];
                   setcookie("user_id",$data['uid'],time()+(60*60*24));
+                  setcookie("user_role",$data['role'],time()+(60*60*24));
               
                    header('Location:index.php');
                    
@@ -80,8 +81,7 @@
     <link rel="stylesheet" href="css/forms.css">
 </head>
 <style>
-     body{background:url('images/cover.png');opacity: 1;background:cover;}
-    #msg1{font-size:10px;color:red;}
+      #msg1{font-size:10px;color:red;}
     .container{background-color:white;opacity: 1;}
     legend{background-color: #eeeeee;text:bold}
     table{text-align:left}
@@ -89,6 +89,7 @@
 
 </style>
 <body>
+    
     <div class="container">
         <div class="heading">
             <div class="logo">
@@ -98,8 +99,10 @@
           
         </div>
         <div class="form">
+        
             <form name="myform" onsubmit="return validateForm()" action="" method="Post"  >
             <fieldset>
+              
                     <table>
                     
                     <legend><b>Login</b></legend>

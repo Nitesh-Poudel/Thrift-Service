@@ -57,7 +57,8 @@
 
 
 .container .innercontainer .left .innerLeft{
-   
+ 
+    
    
 }
 
@@ -257,11 +258,11 @@
 }
 
 .products .product .img img{
-    opacity: 0.7;
+  
 
 }
 .products .product .img img:HOVER{
-    opacity: 0.8;
+   
     
     transition: 0.5s;
   

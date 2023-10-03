@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_COOKIE["user_password"])){
+if(!isset($_COOKIE["user_id"])){
    //if there is session it can pass login nothing to do
  
 
@@ -14,6 +14,7 @@ if(!isset($_SESSION['userid']))
 }
 }else{
    $_SESSION['userid']=$_COOKIE["user_id"];
+   $_SESSION['role']=$_COOKIE["user_role"];
 }
 
 ?>

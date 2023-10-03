@@ -3,24 +3,43 @@
     include_once('databaseconnection.php');
 
     $qry='';$data='';
+
     if(isset($_SESSION['userid'])){
+        if(isset($_GET['order_complete'])){
+            $orderID=$_GET['order_complete'];
+            $completeDate=date("Y-m-d H:i:s");
+            $qry=mysqli_query($con,"UPDATE orders SET complete=1 WHERE oid=$orderID");
+          
+        }
         if(isset($_GET['id'])){
             $id=$_GET['id'];
 
 
         $uid=$_SESSION['userid'];
 
+            if(isset($_GET['todo'])){
+                $_GET['todo']=='pandingOrder'?$complete=0:$complete=1;
+            
+           
 
+                $qry = mysqli_query($con, "SELECT *
+                FROM orderproposal op
+                INNER JOIN clothes c ON op.forcloth = c.cid
+                INNER JOIN User u ON op.byperson = u.uid
+                INNER JOIN orders o ON o.pid = op.poid
+                WHERE op.accept = 1 AND c.retailer_id = $id AND (o.complete = $complete);
+                ");
 
-        $qry = mysqli_query($con, "SELECT *
-        FROM orderproposal op
-        INNER JOIN clothes c ON op.forcloth = c.cid
-        INNER JOIN User u ON op.byperson = u.uid
-        INNER JOIN orders o ON o.pid = op.poid
-        WHERE op.accept = 1 AND c.retailer_id = $id AND (o.complete = 0 OR o.complete = 1);
-        ");
-
-
+            } 
+            else{
+                $qry = mysqli_query($con, "SELECT *
+                FROM orderproposal op
+                INNER JOIN clothes c ON op.forcloth = c.cid
+                INNER JOIN User u ON op.byperson = u.uid
+                INNER JOIN orders o ON o.pid = op.poid
+                WHERE op.accept = 1 AND c.retailer_id = $id;
+                ");
+            } 
         }
     }
     else{
@@ -56,9 +75,9 @@
      
        .intro h1,h3{
        }
-       .productImg{width:40%; border:1px solid gold;display:flex;justify-content:center;align-items:center}
+       .productImg{width:40%;;display:flex;justify-content:center;align-items:center}
        .table{width:60%}
-       tr,table{border:1px solid white;background-color:black;color:white;width:100%;border-collapse:collapse;font-size:22px}
+       tr,table{border-top:5px solid gray;background-color:black;color:white;width:100%;border-collapse:collapse;font-size:22px}
         .right a{color:white}
         tr:nth-child(even){background-color: #212221;color:aliceblue}
         tr{height:26px}
@@ -79,7 +98,8 @@
     font-size: 18px;margin-block:10px;
 }
 .productdetail button:hover{background-color: red;}   
-.productdetail button:active{background-color: tomato;}   
+.productdetail button:active{background-color: tomato;} 
+#completed{background-color: tomato;}  
 
     </style>
 </head>
@@ -103,80 +123,76 @@
                     while($data=mysqli_fetch_assoc($qry)){
                        
                      
-                    echo'
-                    <div class="contents"> 
-                        <div class="introbuyer">
-                           
-                            <div class="image"><img src="userimage/'.$data['userimg'].'"></div>
-                        </div>
-                         
-                       
-                        <div class="productdetail">
-                           
-                            
+                        echo '
+                        <div class="contents">
+                            <div class="introbuyer">
+                                <div class="image"><img src="userimage/' . $data['userimg'] . '" title="' . $data['name'] . '"></div>
+                            </div>
+                    
+                            <div class="productdetail">
                                 <div class="productImg">
-                                    <img id="product_pic" src="productimage/'.$data['image'].'" height="300px" width="200px" title="'.$data['name'].'"">
+                                    <img id="product_pic" src="productimage/' . $data['image'] . '" height="300px" width="200px" title="' . $data['oid'] . '">
                                 </div>
-                                <div class="table">  
+                                <div class="table">
                                     <table>
-                                        <tr colspan="2" id="table_head"><th>Personal Detail</th></tr>
-                                            <tr>
-                                                <th>Receiver Name</th>
-                                                <td>'.$data['name'].'</td>
-
-                                            </tr>
-                                            <tr>
-                                                <th>Email</th>
-                                                <td>'.$data['email'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Phone</th>
-                                                <td>'.$data['phone'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Address</th>
-                                                <td>'.$data['district'].','.$data['localgov'].'-'.$data['ward'].'</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Price</th>
-                                                <td>'.$data['proposalprice'].'.Rs</td>
-                                            </tr>
-                                            <tr>
-                                            <th>Dress type</th>
-                                            <td>'.$data['type'].'</td>
+                                        <tr colspan="2" id="table_head"><th>Customer Personal Detail</th></tr>
+                                        <tr>
+                                            <th>Receiver Name</th>
+                                            <td>' . $data['name'] . '</td>
                                         </tr>
-
+                                        <tr>
+                                            <th><i class="fa-solid fa-envelope"></i>Email</th>
+                                            <td>' . $data['email'] . '</td>
+                                        </tr>
+                                        <tr>
+                                            <th><i class="fa-solid fa-phone"></i> Phone</th>
+                                            <td>' . $data['phone'] . '</td>
+                                        </tr>
+                                        <tr>
+                                            <th><i class="fa-solid fa-location-dot"></i>Address</th>
+                                            <td>' . $data['district'] . ',' . $data['localgov'] . '-' . $data['ward'] . '</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Price</th>
+                                            <td>' . $data['proposalprice'] . '.Rs</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Dress type</th>
+                                            <td>' . $data['type'] . '</td>
+                                        </tr>
                                         <tr>
                                             <th>Size</th>
-                                            <td>'.$data['size'].'<td>
+                                            <td>' . $data['size'] . '</td>
                                         </tr>
                                         <tr>
                                             <th>Brand</th>
-                                            <td>'.$data['brand'].'</td>
+                                            <td>' . $data['brand'] . '</td>
                                         </tr>
                                         <tr>
                                             <th>Fiber</th>
-                                            <td>'.$data['fiber'].'</td>
+                                            <td>' . $data['fiber'] . '</td>
                                         </tr>
-
                                     </table>
-                                    <div id= button><button type="submit" name="order_complete">complete</button></div>
+                                    <form method="GET">
+                                        <input type="hidden" name="oid" value="' . $data['oid'] . '">
+                                        <div id="button">';
+                                        
+                                        if (isset($data['complete'])) {
+                                            if($data['complete']==1){
+                                                echo '<button id="completed" >Completed</button>';
+                                            }
+                                            else{
+                                                echo '<button type="submit" name="order_complete" value="' . $data['oid'] . '">Complete</button>';
+                                            }
+                                        }
+                                        
+                                        echo '
+                                        </div>
+                                    </form>
                                 </div>
-
-
-
-                                
-                                </div>
-                            
-                          
-                      
-                    </div>
-                
-                 
-
-                           
-                   
-                        ';
+                            </div>
+                        </div>';
+                    
                     }
                     
                     
