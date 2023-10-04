@@ -2,6 +2,9 @@
     include_once('session.php');
     include_once('databaseconnection.php');
 $qry='';$data='';
+if($_SESSION['role']=='buyer'){
+    header('Location:proposalview.php');
+}
     if(isset($_SESSION['userid'])){
         if(isset($_GET['id'])){//ID of the user
             $id=$_GET['id'];

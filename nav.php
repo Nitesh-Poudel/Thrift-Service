@@ -17,22 +17,25 @@
                         
                     </nav>';
             }
-            if($role=='buyer'||$_SESSION['role']='seller'){
+        }
+            if($_SESSION['role']=='buyer'||$_GET['role']=='custumer'){
 
                 echo '
            
                 <nav class="nav"> 
             
                 
-                <a href="proposalview.php?id='.$id.'">Proposals</a>
-                <a href="#">Accepted</a>
+                <a href="proposalview.php?id=5">Proposals</a>
+                <a href="proposalview.php?accept=1" id="1">Accepted</a>
+                <a href="proposalview.php?accept=2" id="2">Rejected</a>
+                <a href="proposalview.php?accept=0" id="0">Non-Response</a>
 
 
               
             </nav>';
 
             }
-        }
+        
     ?>
 </body>
 </html>

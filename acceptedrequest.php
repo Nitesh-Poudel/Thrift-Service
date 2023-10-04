@@ -70,7 +70,7 @@
         .introbuyer .image{width:50px;overflow:hidden;display:flex;justify-content:center;margin-right:10px;border-radius:5px}
         .introbuyer img{border-radius:5px}
         .images{display:flex;flex-direction:end;}
-        .productdetail{width:100%;background-color:black; display:flex}
+        .productdetail{width:100%;background-color:black; display:flex;align-items:center}
       
      
        .intro h1,h3{

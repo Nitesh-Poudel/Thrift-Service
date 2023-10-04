@@ -3,27 +3,34 @@
     include_once('databaseconnection.php');
 
     $qry='';$data='';
-    if(isset($_SESSION['userid'])){
-        if(isset($_GET['id'])){
-            $id=$_GET['id'];
-
-
+    if(isset($_SESSION['userid'])) {
         $uid=$_SESSION['userid'];
-
-
-
        
-        $qry=mysqli_query($con,"SELECT *
-        FROM orderproposal op
-        INNER JOIN clothes c 
-        ON op.forcloth = c.cid
-        INNER JOIN User u 
-        ON op.byperson = u.uid
-        WHERE  op.byperson = $id ;");
+         if(isset($_GET['accept'])) {
+            $accept=$_GET['accept'];
+
+            $qry=mysqli_query($con,"SELECT *
+            FROM orderproposal op
+            INNER JOIN clothes c 
+            ON op.forcloth = c.cid
+            INNER JOIN User u 
+            ON op.byperson = u.uid
+            WHERE  op.byperson = $uid AND op.accept=$accept ;");
+         }
+
+         else{
+      
+            $qry=mysqli_query($con,"SELECT *
+            FROM orderproposal op
+            INNER JOIN clothes c 
+            ON op.forcloth = c.cid
+            INNER JOIN User u 
+            ON op.byperson = u.uid
+            WHERE  op.byperson = $uid ;");
+         }
 
 
-
-        }
+        
     }
     else{
         header('location:login.php');
@@ -31,7 +38,7 @@
 
     $link='';
     ($_SESSION['role']=='seller')?
-        $link='<a href="productupload.php">Upload Product</a>':$link='<a href="#">About us</a>';
+        $link='<a href="productupload.php">Upload Product</a>':$link='';
    
 ?>
 
@@ -57,7 +64,7 @@
         .Accepted, .Rejected, .Not-Respond{color:white;background-color:green; text-align:center;height:23px;font-size:16px}
         .Rejected{background-color:red;}
         .Not-Respond{background-color:orange;}
-       
+      
 
     </style>
 </head>

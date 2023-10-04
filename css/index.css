@@ -3,6 +3,17 @@
     display: none;
   }
 .body{overflow: hidden;}
+.name{
+    cursor: pointer;
+    border-bottom:3px solid rgb(29, 16, 3);
+    border-right:9px solid rgb(48, 31, 14);
+    border-radius:33px;
+}
+#logo{
+    font-size: 32px;
+    color:rgb(16, 16, 16);
+
+}
 .container {
     width: 100vw;
     height: 100vh;
@@ -57,10 +68,20 @@
 
 
 .container .innercontainer .left .innerLeft{
- 
+ display: flex;
+ flex-direction: column;
+ height:100vh;
+ align-items: end;
     
    
 }
+.container .innercontainer .left .innerLeft .innerLeftTop{
+    margin-bottom:100%;
+}
+.container .innercontainer .left .innerLeft .innerLeftBottom{
+    margin-top:100%;
+}
+
 
 
 .left .innerLeft a{

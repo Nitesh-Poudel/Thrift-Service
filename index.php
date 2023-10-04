@@ -16,7 +16,7 @@ $id='';
 
     $link='';
     ($data['role']=='seller')?
-        $link='<a id="link" href="productupload.php">Upload Product</a>':$link='<a href="">About us</a>';
+        $link='<a id="link" href="productupload.php">Upload Product</a>':$link='';
 
     $title='Clothex';
     if(isset($_GET['todo'])){

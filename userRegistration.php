@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
             
 
 
-            $sql = "INSERT INTO user(name, phone, email, address, role, password, date, extra) VALUES('$name', '$phone', '$email', '$address', '$role', '$password', '$date', '$newname')";
+            $sql = "INSERT INTO user(name, phone, email, address, role, password, date,userimg) VALUES('$name', '$phone', '$email', '$address', '$role', '$password', '$date', '$newname')";
 
             $qry=mysqli_query($con,$sql);
             
@@ -47,9 +47,7 @@ if (isset($_POST['submit'])) {
                 if ($qry) {
                     header('location: login.php');
                 } 
-                else {
-                    $msg = 'Hertfdgsb  djba  kjbnpadp nfbjsnbpisfb jbnspvbsdp  ldjbnspfbsp jl npfbnpsfbnl ';
-            }
+                
 
 
         } 
@@ -122,7 +120,7 @@ th,td{border-bottom:1px solid gray;padding-left: 15px;}
 
                     <tr>
                         <th><label for="address">Address</label>
-                        <td><input type="text" placeholder="Distric-Local Gov-Ward" class="inputs" name="address"><br></td>
+                        <td><input type="text" placeholder="Distric-Local Gov-Ward" class="inputs" name="address" required><br></td>
                     </tr>
 
                     <tr>
@@ -137,12 +135,12 @@ th,td{border-bottom:1px solid gray;padding-left: 15px;}
 
                     <tr>
                         <th><label for="password">Password</label>
-                        <td> <input type="text" placeholder="Password" class="inputs" name="password" value="admin"><br></td>
+                        <td> <input type="text" placeholder="Password" class="inputs" name="password" value="admin" required><br></td>
                     </tr>
 
                     <tr>
                         <th><label for="cpassword">Conform Password</label>
-                        <td> <input type="text" placeholder="Password" class="inputs" name="cpassword" value="admin"><br></td>
+                        <td> <input type="text" placeholder="Password" class="inputs" name="cpassword" value="admin" required><br></td>
                     </tr>
 
                     <tr>
