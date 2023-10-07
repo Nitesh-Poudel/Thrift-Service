@@ -67,20 +67,28 @@ include_once('session.php');
     <style>
         *{padding:0px;margin:0px}
         .searchMenue{display:none;}
-       .product-container{display:flex;width:100%;height:50vh; background-color:red}
-       .image{width:50%};
-       #img img{height:00px};
+       .p-container{display:flex;width:100%;height:50vh; background-color:red}
+       .image{width:60%};
+       button{
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #FF5733;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+      img{border-radius:10px};
        .detailAndOrder{display:flex;width:70vw; height:50vw;background-color:yellow}
        .product-detail{ background-color:red}
        .product-detail{}
-       tr,table{border:1px solid white;border-collapse:collapse;width:80%;font-size:22px}
-        tr:nth-child(even){background-color: green;color:white}
-        tr:nth-child(odd){background-color: darkgreen;color:aliceblue}
-      
-        tr{height:16px}
-        th,td{text-align: left;}
-        tr:hover{background-color: brown;}
-        .imgandform{display:flex;justify-content:space-around}
+       table{border:1px solid white;border-radius:12px;border-collapse:collapse;width:80%;font-size:26px;color:black}
+
+  
+        ttr:hover{background-color: brown;}
+        .imgandform{display:flex;justify-content:space-around;background-color:#e7e5e1;margin:10px;border-radius:10px;padding:10px}
 
        
     </style>
@@ -149,23 +157,20 @@ include_once('session.php');
                                 <input type="number" placeholder ="Enter your Price" name="cprice"><br>
                                 <button type="submit" name="submit" id="submit">Send proposal</button>
                             </form>
-                        </div> 
-</div>
-               
-                    <div class="detail">
-                        <h1>Upload By <?php echo $data['name'];echo $cloth_id;?></h1>
+                            <div class="detail">
+                       
                         <table>
                             <tr>
                                 <th>Dress type</th>
-                                <td><?php echo $data['type'];?></td>
+                                <td><?php echo $type=$data['type'];?></td>
                             </tr>
                             <tr>
                                 <th>Gender</th>
-                                <td><?php echo $data['gender'];?><td>
+                                <td><?php echo $gender=$data['gender'];?><td>
                             </tr>
                             <tr>
                                 <th>Size</th>
-                                <td><?php echo $data['size'];?><td>
+                                <td><?php echo $size=$data['size'];?><td>
                             </tr>
                             <tr>
                                 <th>Brand</th>
@@ -179,21 +184,100 @@ include_once('session.php');
                                 <th>Price</th>
                                 <td><?php echo $data['price'];?></td>
                             </tr>
-                        </table>     
+                        </table>   
+                        <?php echo $data['description'];?>
                                  
                      </div>
 
 
                      
+                        </div> 
+</div>
+               
+                    
                 </div>
+                <h1>You may also like</h1> 
+
+                <div class="tocenter">
+                    <div class="products">
+
+                    <?php 
+
+                    
+                        $qry = '';
+
+
+                              
+                                
+                                
+                                //Show every clothes available in platform except one that we have uploaded
+                                       
+                                    
+                                $qry = mysqli_query($con, "SELECT *
+                                FROM clothes c
+                                WHERE c.gender = '$gender'
+                                  AND (c.type = '$type'OR c.size='$size')
+                                  AND c.retailer_id != '$id'
+                                  AND c.cid!='$cloth_id'
+                                  AND c.cid NOT IN (
+                                    SELECT forcloth
+                                    FROM orderproposal
+                                    WHERE accept = 0 OR accept = 1
+                                  )
+                                ORDER BY c.cid DESC;
+                                ");
+                                
+
+                                        while ($data = mysqli_fetch_assoc($qry)){  
+                                            echo '
+                                            <a href="product.php?cloth_id=' . $data['cid'] . '"><div class="product">
+                                                <div class="img">
+                                                    <img src="productimage/' . $data['image'] . '" title='.$data['cid'].'>
+                                                </div>
+                                   
+                                                    <div class="detail" id="type"><b>' . $data['type'] . '</b></div>
+                                                    <div class="detail"><b>' . $data['price'] . '</b></div>
+                                   
+                                   
+                                   
+                                            </div></a>
+                                            
+                                            ';
+
+                                            
+
+                                        }
+                                    
+                                
+                            
+                            
+                               
+                               
+                            
+                            
+
+                        
+                    ?>
+
+                        
+
+
+
+                        
+                    </div>
+
+                </div>
+
             </div>
             
-
-                
+           
+               
             </div>
+           
         </div>
+       
     </div>
 
-    
+   
 </body>
 </html>

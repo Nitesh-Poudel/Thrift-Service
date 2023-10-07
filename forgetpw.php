@@ -54,7 +54,7 @@
                
           ';
 
-          $_SESSION['userId']=$data['uid'];
+          $_SESSION['userid']=$data['uid'];
            }
 
            else{

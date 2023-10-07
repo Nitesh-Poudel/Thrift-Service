@@ -5,7 +5,7 @@
                     <div class="innerLeft">
                         <div class="innerLeftTop">
                         <ul type="none">
-                            <a href="index.php"><li><i class="fa-solid fa-house"></i> Home</li></a>
+                            <a href="home.php"><li><i class="fa-solid fa-house"></i> Home</li></a>
                             
                             <a href="status.php?id=<?php echo$_SESSION['userid']?>&&role=<?php echo $_SESSION['role'];?>"><li><i class="fas fa-chart-line" ></i>Status </li></a>
                         
@@ -14,7 +14,18 @@
                                 echo $link;
                                
                             ?>
-                            <a href="#"><li><i class="fa-solid fa-gear"></i></i> Setting</a>
+                            <div id="setting">
+                                <a  href="#"><li><i class="fa-solid fa-gear"></i> Setting</a>
+                                <div class="setting-lists">
+                                                        <ul type=none>
+                                                            
+                                                            
+                                                            <li><a href="changepw.php?task=change">Change Password</a></li>
+                                                        </ul>
+
+
+                                                    </div>
+                            </div>
                              
                            
                             <a onclick="return conformLogout()" href="logout.php" ><li><i class="fa-solid fa-mobile"></i> Logout</li></a>

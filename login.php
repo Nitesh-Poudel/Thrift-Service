@@ -33,7 +33,7 @@
                   setcookie("user_id",$data['uid'],time()+(60*60*24));
                   setcookie("user_role",$data['role'],time()+(60*60*24));
               
-                   header('Location:index.php');
+                   header('Location:home.php');
                    
 
            }
@@ -85,19 +85,17 @@
     .container{background-color:white;opacity: 1;}
     legend{background-color: #eeeeee;text:bold}
     table{text-align:left}
-   
+   body{display:flex;justify-content:space-around;flex-wrap:wrap}
+    .container{
+        opacity: 0.6;
+    }
+    .wlc_msg{width:40%}
 
 </style>
 <body>
-    
+    <div class="wlc_msg" style="font-size:4vw;color:white;opacity:0.7"><h1>Welcome to our Platform</h1></div>
     <div class="container">
-        <div class="heading">
-            <div class="logo">
-
-
-            </div>
-          
-        </div>
+       
         <div class="form">
         
             <form name="myform" onsubmit="return validateForm()" action="" method="Post"  >

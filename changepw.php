@@ -1,41 +1,87 @@
 
 <?php
-session_start();
+
 include_once('databaseconnection.php');
+include_once('session.php');
 
-$msg='';$otp;
-if(isset($_SESSION['otp'])) {
+$msg='';$otp='';
+$tochange= $_SESSION['userid'];
+
+//changing from regular process
+if(isset($_GET['task'])){
+    if($_GET['task']=='change'){
+        $change='<tr><td> <label for="current_password"><b>Password </b></label></td>
+        <td><input type="password" placeholder="_________________________" class="inputs" name="current_password" id="current_password"></tr>';
+
+        
+
+
+    }
+}
+
+//changing password from otp:
+if (isset($_SESSION['otp']) || (isset($_GET['task']) && $_GET['task'] == 'change')){
+
    
-
-   
-
 if(isset($_POST['changepw'])){
    
     $new_password =  mysqli_real_escape_string($con,$_POST['new_password']);
     $confirm_password =   mysqli_real_escape_string($con,$_POST['conform_password']);
+    if(isset($_GET['task'])){$current_password=  mysqli_real_escape_string($con,$_POST['current_password']);}
 
-    if (!empty($new_password) && !empty($confirm_password)) {
-        if ($new_password == $confirm_password) {
+   if(isset($_GET['task'])){
+    if($_GET['task']=='change'){
+    
+        if (!empty($new_password) && !empty($confirm_password)&& !empty($current_password)) {
 
-            $encriptedPassword=md5($new_password);
-            $tochange= $_SESSION['userId'];
-            $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE uid=$tochange");
+            if ($new_password == $confirm_password) {
+
+                $encriptedPassword=md5($new_password);
+                $encripted_current_Password=md5($current_password);
+              
+                $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE password='$encripted_current_Password'AND uid='$tochange'");
            
            if($update){
-            echo "<script>alert('Password updated successfully.'); window.location.href = 'login.php';</script>";
-           //}
+           
+            echo"<script>alert('Password updated successfully.'); </script>";
+            header('Location:logout.php');
+            }
+            else{ 
+                echo"<script>alert('Password updated unsuccess.');</script>";
+            }
         }
-        // else {
-           // $msg = 'Passwords do not match';
-        //}
+       
     } 
-    else {
-        $msg = 'Please enter the details';
-    }
+    $msg='Please enter all information';
+
+   }
+   
+}
+   
+        if(!isset($_GET['task'])){
+            if (!empty($new_password) && !empty($confirm_password)) {
+            
+                       if ($new_password == $confirm_password) {
+                
+                    $encriptedPassword=md5($new_password);
+                    $tochange= $_SESSION['userid'];
+                    $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE uid=$tochange");
+                
+                   if($update){
+                           echo "<script>alert('Password updated successfully.'); window.location.href = 'login.php';</script>";
+                          //}
+                    }
+                
+                } 
+            }
+            else {
+                $msg = 'Please enter the details';
+            }
+        }
+
 }
 }
 
-}
 
 ?>
 
@@ -82,6 +128,7 @@ if(isset($_POST['changepw'])){
                 <fieldset><legend><b>Change Password</b></legend>
                 <table>
                     <tr>
+                        <?php if(isset($_GET['task'])){echo$change;}?>
                         <td> <label for="new_password"><b>New Password </b></label></td>
                         <td><input type="password" placeholder="_________________________" class="inputs" name="new_password" id="new_password">
                         </td>

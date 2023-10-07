@@ -11,8 +11,8 @@
             $qry=mysqli_query($con,"UPDATE orders SET complete=1 WHERE oid=$orderID");
           
         }
-        if(isset($_GET['id'])){
-            $id=$_GET['id'];
+        if(isset($_GET['userid'])){
+            $id=$_GET['userid'];
 
 
         $uid=$_SESSION['userid'];
@@ -37,7 +37,7 @@
                 INNER JOIN clothes c ON op.forcloth = c.cid
                 INNER JOIN User u ON op.byperson = u.uid
                 INNER JOIN orders o ON o.pid = op.poid
-                WHERE op.accept = 1 AND c.retailer_id = $id;
+                WHERE op.accept = 1 AND c.retailer_id = $id ;
                 ");
             } 
         }
@@ -66,24 +66,24 @@
     <style>
         body{background-color:red;}
           .contents{width:100%;  overflow:scroll;margin-bottom:10px;background-COLOR:}
-        .introbuyer{height:50px;display:flex; justify-content:right;background-COLOR:black}
+        .introbuyer{height:50px;display:flex; justify-content:right;background-COLOR:gray;border-bottom:1px solid white}
         .introbuyer .image{width:50px;overflow:hidden;display:flex;justify-content:center;margin-right:10px;border-radius:5px}
         .introbuyer img{border-radius:5px}
         .images{display:flex;flex-direction:end;}
-        .productdetail{width:100%;background-color:black; display:flex;align-items:center}
+        .productdetail{width:100%;background-color:gray; display:flex;align-items:center}
       
      
        .intro h1,h3{
        }
-       .productImg{width:40%;;display:flex;justify-content:center;align-items:center}
+       .productImg{width:40%;display:flex;justify-content:center;align-items:center}
        .table{width:60%}
-       tr,table{border-top:5px solid gray;background-color:black;color:white;width:100%;border-collapse:collapse;font-size:22px}
+       tr,table{border-top:5px solid gray;color:white;width:100%;border-collapse:collapse;font-size:22px}
         .right a{color:white}
-        tr:nth-child(even){background-color: #212221;color:aliceblue}
-        tr{height:26px}
-        th,td{text-align: left}
+
+      
+       
         tr:hover{background-color: #214271;}
-        #table_head{background-color: #214271;}
+        #table_head{color:gold;}
 
         
         #custumerProfile{
@@ -93,7 +93,7 @@
         } 
         #button{width:100%; display:flex; justify-content:right;}
 
-.productdetail button{ border:none;padding:8px 24px;background-color: green;color:white;
+.productdetail button{ border:none;padding:18px 34px;background-color: green;color:white;
     margin-right:auto;margin-left:auto;border-radius: 4px;cursor: pointer;font-weight: 600;
     font-size: 18px;margin-block:10px;
 }
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="table">
                                     <table>
-                                        <tr colspan="2" id="table_head"><th>Customer Personal Detail</th></tr>
+                                        <tr rowspan="2" id="table_head"><th>Customer Personal Detail</th></tr>
                                         <tr>
                                             <th>Receiver Name</th>
                                             <td>' . $data['name'] . '</td>

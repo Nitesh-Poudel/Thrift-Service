@@ -25,10 +25,10 @@
                 <nav class="nav"> 
             
                 
-                <a href="proposalview.php?id=5">Proposals</a>
-                <a href="proposalview.php?accept=1" id="1">Accepted</a>
-                <a href="proposalview.php?accept=2" id="2">Rejected</a>
-                <a href="proposalview.php?accept=0" id="0">Non-Response</a>
+                <a href="proposalview.php?id=5&&role=custumer">Proposals</a>
+                <a href="proposalview.php?accept=1&&role=custumer" id="1">Accepted</a>
+                <a href="proposalview.php?accept=2&&role=custumer" id="2">Rejected</a>
+                <a href="proposalview.php?accept=0&&role=custumer" id="0">Non-Response</a>
 
 
               

@@ -30,6 +30,7 @@
     width:97%;
     background-color: rgb(248, 248, 248);
     display:flex;
+    
     border-radius:12px;
     box-shadow: 0px 10px 100px 0px #888888;
     
@@ -100,6 +101,27 @@
 .left .settingsOptions{
  
 }
+.left .setting-lists{
+    display:none;
+}
+.left #setting:hover .setting-lists{
+   
+   
+        display:flex;
+        flex-direction: column;
+        margin-top:0px;
+        margin-left:-5%;
+        position:absolute;
+        background-color: rgb(255, 252, 252);
+        border-bottom-left-radius: 12px;
+        border-radius: 12px;
+        z-index:1;
+        align-items: center;
+        jbox-shadow: 5px 3px 18px 0px #888888;
+        
+      
+    }
+
 
 
 /*starts from here*/
@@ -124,7 +146,7 @@
     position: relative;
     top: 0;
     right: 0;
-   
+
     width: 100%;
     
 
@@ -179,8 +201,10 @@
 }
 
 .tocenter{
-    width:99%;
-  
+   
+    width:100%;
+    height:85%;
+  overflow: scroll;
     display: flex;
     justify-content: center;
 }
@@ -189,7 +213,7 @@
 .container .innercontainer .right .intro {
     max-width:1000px;
     min-width:1000px;
-    height:30%;
+    height:auto;
    display:flex;
    
     background-color: rgb(255, 255, 255);

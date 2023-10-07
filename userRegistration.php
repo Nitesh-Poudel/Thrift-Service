@@ -79,12 +79,13 @@ if (isset($_POST['submit'])) {
    .container {
     border: 1px solid white;
     border-radius: 10px;
-    margin: 24px 12px;
+    margin: 2px 12px;
     display: flex;
     flex-direction: column;
-    kbackground: transparent;
+   padding:50px 30px;
    opacity:0.6;
    z-index:1;
+   max-height: 80%;
     min-width: 25vw;
     background-color:whitesmoke;
     ;
@@ -96,6 +97,9 @@ th,td{border-bottom:1px solid gray;padding-left: 15px;}
     </style>
 </head>
 <body>
+    <div class="texts">
+    <h1 style="color:White;text-align:center;font-size:100px;font-family:Verdana">heheh</h1>
+    </div>
     <div class="container">
         <div class="heading">
         </div>

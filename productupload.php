@@ -6,11 +6,11 @@ include_once('databaseconnection.php');
 if(isset($_SESSION['role'])){
   $role=$_SESSION['role'];
   if($role!='seller'){
-    header('Location:index.php');
+    header('Location:home.php');
   }
 }
 else{
-    header('Location:index.php');
+    header('Location:home.php');
   }
 
 
@@ -122,35 +122,6 @@ $msg='';
                         </div>
 
 
-                       
-                        <div class="select">  
-                          <select id="gender" name="gender">
-                            <option value="" disabled selected>Select gender for.....</option>
-                              <option value="men">Men</option>
-                              <option value="women">Women</option>
-                              <option value="unisex">Unisex</option>
-                            
-                          </select>
-                      </div>
-
-
-                        <div class="select">
-                          
-                            <select id="dress-category" name="catagory">
-                                <option value="" disabled selected>-- Select a Dress Category --</option>
-                                <option value="casual">Casual</option>
-                                <option value="Formal">Formal</option>
-                                <option value="unisex">party</option>
-                                <option value="sports">Sports</option>
-                                
-                            </select>
-                        </div>
-
-
-                      
-
-
-
                         <div class="select">
                            
                             <select id="dress-type" name="type">
@@ -164,13 +135,61 @@ $msg='';
                                 <option value="lehenga">lehenga</option>
                                 <option value="Hoodie">Hoodie</option>
                                 <option value="Vest">Vest</option>
+                                <option value="shoes">Shoes</option>
                             </select>
                         </div>
+                       
+
+                        <div class="select">
+                          
+                          <select id="dress-category" name="catagory">
+                              <option value="" disabled selected>-- Select a Dress Category --</option>
+                              <option value="casual">Casual</option>
+                              <option value="Formal">Formal</option>
+                              <option value="unisex">party</option>
+                              <option value="sports">Sports</option>
+                              
+                          </select>
+                      </div>
+
+
+                        <div class="select">  
+                          <select id="gender" name="gender">
+                            <option value="" disabled selected>Applicable for.....</option>
+                              <option value="men">Men</option>
+                              <option value="women">Women</option>
+                              <option value="unisex">Unisex</option>
+                            
+                          </select>
+                      </div>
+
+
+                  
+
+                      
+
+
+
+                        
 
 
 
                       
                         </div>
+
+
+                        
+                        <div class="select">
+                            
+                            <select id="size" name="fiber">
+                                <option value="" disabled selected>-- Select Fiber used --</option>
+                                <option value="silk">Silk</option>
+                                <option value="cotton">Cotton</option>
+                                <option value="jeanse">jense</option>
+                                <option value="cotrise">Cotrise</option>
+                            </select>
+                        </div>
+
 
                         <div class="select">
                             
@@ -184,17 +203,6 @@ $msg='';
                         </div>
 
 
-
-                        <div class="select">
-                            
-                            <select id="size" name="fiber">
-                                <option value="" disabled selected>-- Select Fiber used --</option>
-                                <option value="silk">Silk</option>
-                                <option value="cotton">Cotton</option>
-                                <option value="jeanse">jense</option>
-                                <option value="cotrise">Cotrise</option>
-                            </select>
-                        </div>
 
                         <div>
                           
