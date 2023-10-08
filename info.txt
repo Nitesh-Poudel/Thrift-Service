@@ -4,3 +4,4 @@ reject=2;
 neutrol=0;
 
 //.net_Design_pattern,,,,CLR_is_same_as_jvm_used_to_handel_garbage
+//change_pw_through_otp_not_working
