@@ -43,7 +43,7 @@ $qry='';
     <!-- Main Content -->
     <div class="content">
         <header>
-            <h1><?php echo $tomanage." Management"?></h1>
+            <h1><?php echo ucwords($tomanage." Management")?></h1>
         </header>
 
         <!-- Customer Section -->
@@ -61,8 +61,9 @@ $qry='';
             <th>Profile</th>
         </tr>
         <?php
+         $sn=1;
         while($data=mysqli_fetch_assoc($qry)){
-            $sn=1;
+           
          
         
         echo'

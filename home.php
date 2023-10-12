@@ -4,7 +4,9 @@
 $id='';
     if(isset($_SESSION['userid'])){
 
-
+        if($_SESSION['userid']=='admin'){
+            header('Location:admincontrol/admindashboard.php'); 
+        }
         $id=$_SESSION['userid'];
         //to chek role of the user;
         $qry=mysqli_query($con,"SELECT * FROM user WHERE uid=$id");

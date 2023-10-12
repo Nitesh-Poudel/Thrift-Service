@@ -16,16 +16,7 @@ else{
 
 $msg='';
 
- $sql =   "SELECT * FROM balance where rid=$_SESSION[userid]";
- $qry=mysqli_query($con,$sql);
-
-
-    $blc=mysqli_fetch_assoc($qry);
  
-    if ($blc['amt']<200){
-        $msg="You have less balance please add balace first";
-    }
-    else{
         if(isset($_POST['submit'])){
 
    
@@ -70,15 +61,14 @@ $msg='';
 
 
                     if($qry){
-                        mysqli_query($con,"UPDATE balance set amt = amt-200 WHERE rid=$retailer");
-                        $msg="Product upload sucessfully";
+                        header('Location:home.php');
                     }
 
             }
         }
 
 
-    }
+    
 
     
    
@@ -96,6 +86,7 @@ $msg='';
         .rightHead .topic {
             text-align: center;
         }
+        .searchMenue{display:none}
     </style>
 </head>
 <body>

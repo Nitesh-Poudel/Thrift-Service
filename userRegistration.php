@@ -171,7 +171,68 @@ th,td{border-bottom:1px solid gray;padding-left: 15px;}
         </div>
     </div>
     <script>
-        // Your form validation code or other JavaScript code goes here
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.forms["myform"];
+            const nameInput = form.elements["fullname"];
+            const phoneInput = form.elements["phone"];
+            const passwordInput = form.elements["password"];
+            const cpasswordInput = form.elements["cpassword"];
+            const submitButton = form.elements["submit"];
+            const errorDisplay = document.getElementById("error");
+
+            form.addEventListener("submit", function(event) {
+                let isValid = true;
+                let errorMsg = "";
+
+                // Validate name (only alphabet)
+                const namePattern = /^[A-Za-z\s]+$/;
+                if (!namePattern.test(nameInput.value)) {
+                    errorMsg += "Name should contain only alphabets.\n";
+                    isValid = false;
+                }
+
+                // Validate phone number (10 digits)
+                const phonePattern = /^\d{10}$/;
+                if (!phonePattern.test(phoneInput.value)|| phoneInput.value < 0) {
+                    errorMsg += "Phone number should be a positive 10-digit number.\n";
+                    isValid = false;
+                }
+
+                // Validate password (minimum 8 characters)
+                if (passwordInput.value.length < 8) {
+                    errorMsg += "Password should have a minimum of 8 characters.\n";
+                    isValid = false;
+                }
+
+                // Check if password and confirm password match
+                if (passwordInput.value !== cpasswordInput.value) {
+                    errorMsg += "Passwords do not match.\n";
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault(); // Prevent form submission
+                    errorDisplay.textContent = errorMsg;
+                }
+            });
+
+            // Clear error message when user interacts with the form
+            nameInput.addEventListener("input", function() {
+                errorDisplay.textContent = "";
+            });
+
+            phoneInput.addEventListener("input", function() {
+                errorDisplay.textContent = "";
+            });
+
+            passwordInput.addEventListener("input", function() {
+                errorDisplay.textContent = "";
+            });
+
+            cpasswordInput.addEventListener("input", function() {
+                errorDisplay.textContent = "";
+            });
+        });
     </script>
 </body>
 </html>

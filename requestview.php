@@ -92,7 +92,7 @@ $qry='';$data='';
 
        #reject{color:aliceblue; font-size:20px; background-color:red; padding:5px;}
         .productdetail{width:100%}
-       .name{display:flex;width:100%; justify-content:space-between; border-radius:10px;}
+       .name{display:flex;width:100%; justify-content:space-between; border-radius:10px;border:none}
        .name img{border-radius:8px;  margin:5px; border:1px solid gray; cursor:pointer}
        .header{height:10px; }
        

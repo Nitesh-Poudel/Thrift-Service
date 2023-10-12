@@ -68,7 +68,7 @@
           .contents{width:100%;  overflow:scroll;margin-bottom:10px;background-COLOR:}
         .introbuyer{height:50px;display:flex; justify-content:right;background-COLOR:gray;border-bottom:1px solid white}
         .introbuyer .image{width:50px;overflow:hidden;display:flex;justify-content:center;margin-right:10px;border-radius:5px}
-        .introbuyer img{border-radius:5px}
+         img{border-radius:5px}
         .images{display:flex;flex-direction:end;}
         .productdetail{width:100%;background-color:gray; display:flex;align-items:center}
       
@@ -77,7 +77,7 @@
        }
        .productImg{width:40%;display:flex;justify-content:center;align-items:center}
        .table{width:60%}
-       tr,table{border-top:5px solid gray;color:white;width:100%;border-collapse:collapse;font-size:22px}
+       tr,table{border-top:5px solid gray;color:white;width:100%;border-collapse:collapse;font-size:22px;text-align:left}
         .right a{color:white}
 
       
@@ -156,22 +156,9 @@
                                             <th>Price</th>
                                             <td>' . $data['proposalprice'] . '.Rs</td>
                                         </tr>
-                                        <tr>
-                                            <th>Dress type</th>
-                                            <td>' . $data['type'] . '</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Size</th>
-                                            <td>' . $data['size'] . '</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Brand</th>
-                                            <td>' . $data['brand'] . '</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Fiber</th>
-                                            <td>' . $data['fiber'] . '</td>
-                                        </tr>
+                                       
+                                        
+                                        
                                     </table>
                                     <form method="GET">
                                         <input type="hidden" name="oid" value="' . $data['oid'] . '">

@@ -41,7 +41,7 @@ if ($result) {
             <h3>Your Dashboard</h3>
         </div>
         <ul>
-            <li><a href="../index.php">Home</a></li>
+            <li><a href="../admindashboard.php">Home</a></li>
             <li><a href="#">Customers</a></li>
             <li><a href="#">Retailers</a></li>
             <li><a href="adminsetting.php">Settings</a></li>

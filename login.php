@@ -33,8 +33,12 @@
                   setcookie("user_id",$data['uid'],time()+(60*60*24));
                   setcookie("user_role",$data['role'],time()+(60*60*24));
               
+                  if($data['role']=='admin'){
+                    header('Location:admincontrol/admindashboard.php');
+                  }
+                  else{
                    header('Location:home.php');
-                   
+                  } 
 
            }
 

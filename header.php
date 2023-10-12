@@ -140,6 +140,14 @@
 .nav a{color:white;margin-left:auto;margin-right:auto;text-decoration:none;background-color:#1d4251;padding:5px;border-radius:0px;}
 .nav :hover,#active{background-color:#1d4251;color:gold;transition:0.5s;}
 
+/* Styling for the search menu container */
+.searchMenu {
+    display: inline-block;
+    border: 10px solid #ccc;
+    border-radius: 0px;
+    padding: 5px;
+}
+
 
 
 </style>
@@ -163,7 +171,7 @@ include_once('session.php');
                     <div class="searchMenue">
                         <form method="post">
                             <input type="search" placeholder="search product..." name="search">
-                            <button type="submit" name="seearch" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="submit" name="search" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
                     

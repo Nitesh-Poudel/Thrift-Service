@@ -115,49 +115,41 @@ include_once('session.php');
                     <div class="form">
                             <form method="POST">
                                 
-                                <select name="provience">
-                                    <option value="" disabled selected>-- Select Provience --</option>
-                                    <option value="koshi">Koshi</option>
-                                    <option value="madesh">Madhesh</option>
-                                    <option value="bagmati">Bagmati</option>
-                                    <option value="gandaki">Gandaki</option>
-                                    
-                                   
-                                   
-                                    <option value="lumbini">Lumbini</option>
-                                    <option value="karnali">Bagmati</option>
-                                    <option value="sudurpaschi,">Sudurpaschim</option>
-                                    
+                            <select id="province">
+                                <option value="" disabled selected>-- Select provience --</option>
+                                <option value="koshi">Koshi</option>
+                                <option value="madesh">Madesh</option>
+                                <option value="bagmati">Bagmati</option>
+                                <option value="gandaki">Gandaki</option>
+                                <option value="lumbini">Lumbini</option>
+                                <option value="karnali">Karnali</option>
+                                <option value="sudurpaschim">Sudurpaschim</option>
+            
 
-                                    
-                                </select>
-                                
-                                <select id="" name="district">
-                                    <option value="" disabled selected>-- Select District --</option>
-                                    <option value="kathmandu">Kathmandu</option>
-                                    <option value="bhaktapur">Bhaktapur</option>
-                                    <option value="lalitpur">lalitpur</option>
-                                    <option value="kavre">Kavre</option>
-                                    <option value="sinduli">Sindhuli</option>
-                                    <option value="jhapa">Jhapa</option>
-                                    <option value="morang">Morang</option>
-                                    <option value="sunsari">Sunsari</option>
-                                </select>
+                            </select>
 
-                                <input type="text" placeholder ="Local Government " value="<?Php echo  $data['address']?>" name="gov"><br>
+        <!-- District Dropdown -->
+       
+                            <select id="district" disabled>
+                                <option value="" disabled selected>-- Select District --</option>
+                            </select>
+                            <input type="text" placeholder ="Local Government " value="" name="gov"><br>
                                 
-                                    <input type="number" placeholder="Ward number" name="ward">
-                                    <input type="text" placeholder="tole" name="tole">
+                            <input type="number" placeholder="Ward number" name="ward">
+                            <input type="text" placeholder="tole" name="tole">
 
                                     
 
 
                                
 
-                                <input type="number" placeholder ="Enter your Price" name="cprice"><br>
-                                <button type="submit" name="submit" id="submit">Send proposal</button>
-                            </form>
-                            <div class="detail">
+                            <input type="number" placeholder ="Enter your Price" name="cprice"><br>
+                            <button type="submit" name="submit" id="submit">Send proposal</button>
+
+                        </form>
+                    
+                    
+                    <div class="detail">
                        
                         <table>
                             <tr>
@@ -278,6 +270,41 @@ include_once('session.php');
        
     </div>
 
-   
+    <script>
+        const provinceSelect = document.getElementById("province");
+        const districtSelect = document.getElementById("district");
+
+        // Create an object to map provinces to districts
+        const districtsByProvince = {
+            koshi: ["bhojpur","dhankuta","illam","jhapa","khotang","morang","okheldhunga","panchthar","sankuwasabha", "sunsari","taplejung","udayapur"],
+            madesh: ["parsa","bara","rautahat","sarlahi","mahotari","dhanusha","siraha","saptari"],
+            bagmati:["bhaktapur","chitwan","dhading","dolakha","kathmandu","kavrepalanchok","lalitpur","makwanpur","nuwakot","ramechhap","rasuwa","sindhuli","sindupalchok"],
+            gandaki:["baglung","gorkha","kaski","lamjung","manang","mustang","myagdi","nawalpur"],
+            lumbani:["arghakhanchi","banke","bardiya","dang","east-rukum","gulmi","kapilvastu","palpa","parasi","pyuthan","rolpa","rupandehi"],
+            karnali:["dailekh","dolpa","humla","jagarkot","kallikot","mugu","salyan","surkhet","west-rukum"],
+            sudurpaschim:["achham","baitadi","bajhang","dadeldhura","darchula","doti","kailali","kanchanpur"]
+
+            
+        };
+
+        provinceSelect.addEventListener("change", function () {
+            // Enable the district dropdown
+            districtSelect.disabled = false;
+
+            // Clear existing options
+            districtSelect.innerHTML = '<option value="" disabled selected>-- Select District --</option>';
+
+            // Get the selected province
+            const selectedProvince = provinceSelect.value;
+
+            // district dropdown with districts related to the selected province
+            districtsByProvince[selectedProvince].forEach((districtName) => {
+                const option = document.createElement("option");
+                option.value = districtName;
+                option.textContent = districtName;
+                districtSelect.appendChild(option);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -68,14 +68,14 @@
         #l5{color:gold;}
 
         .container .innercontainer .right .intro {
-    max-width: 1010px;
+    
     
     height: auto;
     
 }
 
 .seller_and_item{display:flex;justify-content:space-between}
-
+.seller img{border-radius:50%;width:40px}
     </style>
 </head>
 <body>
@@ -140,8 +140,12 @@
                                     if(isset($data['accept'])&&$data['accept']==1){
                                         echo
                                         '<div class="seller">
-                                            <a href="tel:'.$data['phone'].'"><img src="images/call.png"width="100px"></br><b>Call for queries</b></a>
-                                        </div>';
+                                            <a href="tel:'.$data['phone'].'"><img src="images/call.png"width="100px"></br><b>Call</b></a>
+                                        </div>
+                                        <div class="seller">
+                                            <a href="mailto:'.$data['email'].'"><img src="images/mail.png"width="100px"></br><b>Mail</b></a>
+                                        </div>
+                                     ';
                                     }
                                 echo'
                                 </div>
@@ -153,7 +157,7 @@
                                
                         </div>
                         </div>
-                      
+                     
                         
                  
 
