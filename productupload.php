@@ -127,6 +127,7 @@ $msg='';
                                 <option value="Hoodie">Hoodie</option>
                                 <option value="Vest">Vest</option>
                                 <option value="shoes">Shoes</option>
+                                <option value="others">Others</option>
                             </select>
                         </div>
                        

@@ -5,7 +5,7 @@
     //$renamebuyer = "UPDATE user SET password = '$a'";
     
     // Execute the first query to change "retailer" to "seller"
-  
+  echo$a;
 
     // Execute the second query to change "customer" to "buyer"
     if (mysqli_query($con, $renamebuyer)) {

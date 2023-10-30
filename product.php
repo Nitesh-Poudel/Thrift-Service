@@ -84,7 +84,7 @@ include_once('session.php');
        .detailAndOrder{display:flex;width:70vw; height:50vw;background-color:yellow}
        .product-detail{ background-color:red}
        .product-detail{}
-       table{border:1px solid white;border-radius:12px;border-collapse:collapse;width:80%;font-size:26px;color:black}
+       table{border:1px solid white;border-radius:12px;border-collapse:collapse;width:80%;font-size:26px;color:black;text-align:center}
 
   
         ttr:hover{background-color: brown;}
@@ -150,19 +150,14 @@ include_once('session.php');
                     
                     
                     <div class="detail">
+                    <?php  $gender=$data['gender'];?>
+                    <?php echo $type=$data['type'];?>
                        
                         <table>
+                           
                             <tr>
-                                <th>Dress type</th>
-                                <td><?php echo $type=$data['type'];?></td>
-                            </tr>
-                            <tr>
-                                <th>Gender</th>
-                                <td><?php echo $gender=$data['gender'];?><td>
-                            </tr>
-                            <tr>
-                                <th>Size</th>
-                                <td><?php echo $size=$data['size'];?><td>
+
+                                <td><?php  $size=$data['size'];?><td>
                             </tr>
                             <tr>
                                 <th>Brand</th>

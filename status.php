@@ -2,30 +2,19 @@
     include_once('session.php');
     include_once('databaseconnection.php');
 $qry='';$data='';
-
-if($_SESSION['role']=='admin'){
-    $userid=$_GET['userid'];
-    $id=$userid;
-    $qry=mysqli_query($con,"SELECT *
-    FROM user WHERE uid = $userid ");
-
-  }
-
-
 if($_SESSION['role']=='buyer'){
     header('Location:proposalview.php');
 }
-if (isset($_SESSION['userid']) || isset($_SESSION['role'])) {
-  
-
+    if(isset($_SESSION['userid'])){
         if(isset($_GET['id'])){//ID of the user
             $id=$_GET['id'];
 
 
         $uid=$_SESSION['userid'];
+        
+        $qry=mysqli_query($con,"SELECT *
+        FROM user WHERE uid = $id && uid=$uid ");
 
-    
-     
         //fetching the data
         $data=mysqli_fetch_assoc($qry);
 
@@ -181,12 +170,7 @@ if (isset($_SESSION['userid']) || isset($_SESSION['role'])) {
 
                                 <tr>
                                     <th>Total sales Amount</th>
-                                    <td><?php 
-                                            $qry=mysqli_query($con,"SELECT sum(proposalprice) AS sum FROM orderproposal op left join clothes c ON op.forcloth=c.cid  where accept=1 AND retailer_id=$uid");
-                                            $row = mysqli_fetch_assoc($qry);
-                                            echo $totalClothesCount = $row['sum'].'rs'; 
-                                        ?>
-                                     </td>
+                                    <td><?php $qry=mysqli_query($con,"SELECT sum(proposalprice) AS sum FROM orderproposal op left join clothes c ON op.forcloth=c.cid  where accept=1 AND retailer_id=$uid"); $row = mysqli_fetch_assoc($qry); echo $totalClothesCount = $row['sum'].'rs'; ?></td>
                                 </tr>
                             </table>
 

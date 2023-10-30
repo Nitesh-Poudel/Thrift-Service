@@ -12,7 +12,7 @@ $id='';
 
         $id=$_SESSION['userid'];
         //to chek role of the user;
-        $qry=mysqli_query($con,"SELECT role FROM user WHERE uid=$id");
+        $qry=mysqli_query($con,"SELECT * FROM user WHERE uid=$id");
         $data=mysqli_fetch_assoc($qry);
     }
     else{
@@ -64,7 +64,16 @@ $id='';
                         $qry = '';
 
                                    
+                             //searching
+     if (isset($_POST['search'])) {
+        $tosearch = $_POST['search'];
     
+        echo$tosearch;
+        $qry = mysqli_query($con, "SELECT * FROM clothes WHERE gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch' Order by cid desc");
+    }
+    else{
+        $qry = mysqli_query($con, "SELECT * FROM clothes");
+    }
     
                               
                                     //Check uploaded status of the the person
@@ -104,49 +113,7 @@ $id='';
                            
                                 
                                 //Show every clothes available in platform except one that we have uploaded
-                                    else{ 
-                                        
-                                        
-                                                                       
-                                        //searching
-                                         if (isset($_POST['search'])) {
-                                            $tosearch = $_POST['search'];
-    
-                                          
-                                            //$qry = mysqli_query($con, "SELECT * FROM clothes WHERE gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch'
-                                            // Order by cid desc");
-
-
-                                            //searchhhhhhhhhhhhh
-                                            $qry = mysqli_query($con, "SELECT * FROM clothes c
-                                            WHERE c.retailer_id != '$id'
-                                            AND gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch'  OR catagory like '$tosearch'
-                                            AND c.cid  NOT IN (
-                                               SELECT forcloth FROM orderproposal WHERE accept = 0 OR accept = 1
-                                            )
-                                            ORDER BY c.cid DESC;");
-
-                                            while ($data = mysqli_fetch_assoc($qry)){  
-                                                echo '
-                                                <a href="product.php?cloth_id=' . $data['cid'] . '"><div class="product">
-                                                    <div class="img">
-                                                        <img src="productimage/' . $data['image'] . '" title='.$data['cid'].'>
-                                                    </div>
-                                       
-                                                        <div class="detail" id="type"><b>' . $data['type'] . '</b></div>
-                                                        <div class="detail"><b>' . $data['price'] . '</b></div>
-                                       
-                                       
-                                       
-                                                </div></a>
-                                                
-                                                ';
-    
-                                                
-    
-                                            }
-                                        }
-                                        else{
+                                    else{    
                                     
                                         $qry = mysqli_query($con, "SELECT * FROM clothes c
                                         WHERE c.retailer_id != '$id'
@@ -176,7 +143,7 @@ $id='';
                                         }
                                     }
                                 
-                                    }
+                                
                             
                                
                                

@@ -97,7 +97,7 @@
 
 </style>
 <body>
-    <div class="wlc_msg" style="font-size:4vw;color:white;opacity:0.7"><h1>Welcome to our Platform</h1></div>
+    <div class="wlc_msg" style="font-size:4vw;color:white;opacity:0.7"><h1>Welcome to Online Thrift Store</h1></div>
     <div class="container">
        
         <div class="form">

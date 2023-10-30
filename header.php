@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,6 +150,26 @@
     padding: 5px;
 }
 
+#search-input {
+        padding: 18px; 
+        font-size: 16px; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+    }
+
+    #search-button {
+        background-color: #007BFF; /* Background color for the button */
+        color: #fff; /* Text color */
+        border: none;
+        padding: 12px 15px; /* Adjust padding as needed */
+        border-radius: 5px; /* Rounded corners */
+        cursor: pointer; /* Change cursor on hover */
+    }
+
+    #search-button i {
+        font-size: 8px; /* Adjust the size of the search icon */
+    }
+
 
 
 </style>
@@ -169,9 +191,9 @@ include_once('session.php');
                         </div>
                     
                     <div class="searchMenue">
-                        <form method="post">
-                            <input type="search" placeholder="search product..." name="search">
-                            <button type="submit" name="search" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <form method="POST">
+                            <input id="search-input" type="search" placeholder="search product..." name="search">
+                            <button id="search-button"type="submit" name="search-btn" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
                     
