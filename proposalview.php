@@ -73,6 +73,7 @@
     height: auto;
     
 }
+.image img{height:164px;width:auto}
 
 .seller_and_item{display:flex;justify-content:space-between}
 .seller img{border-radius:50%;width:40px}

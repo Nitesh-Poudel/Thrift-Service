@@ -12,7 +12,7 @@ if ($result) {
     $buyerNum = $row['num_buyers'];
     $sellerNum = $row['num_sellers'];
 } else {
-    $buyerNum = 0; // Set to zero or handle the error as needed
+    $buyerNum = 0; 1// Set to zero or handle the error as needed
     $sellerNum = 0; // Set to zero or handle the error as needed
 }
 

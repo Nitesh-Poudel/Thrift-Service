@@ -64,19 +64,29 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
-        body{background-color:red;}
-          .contents{width:100%;  overflow:scroll;margin-bottom:10px;background-COLOR:}
-        .introbuyer{height:50px;display:flex; justify-content:right;background-COLOR:gray;border-bottom:1px solid white}
+        
+          .contents{width:100%; background-color:#002024; overflow:scroll;margin-bottom:10px;}
+        .introbuyer{height:50px;display:flex; justify-content:right;border-bottom:1px solid white}
         .introbuyer .image{width:50px;overflow:hidden;display:flex;justify-content:center;margin-right:10px;border-radius:5px}
-         img{border-radius:5px}
+         img{border-radius:8px;height:250px;width:auto}
         .images{display:flex;flex-direction:end;}
-        .productdetail{width:100%;background-color:gray; display:flex;align-items:center}
+        .productdetail{width:100%; display:flex;align-items:center}
+        tr,table{border:1px solid gray;border-collapse:collapse;width:80%;font-size:22px;}
       
-     
+        
+
+        button {
+            padding: 8px 220px;
+        }
+
+ 
+
        .intro h1,h3{
        }
+       .aaa{width:100%;height:100%;overflow:scroll
+       }
        .productImg{width:40%;display:flex;justify-content:center;align-items:center}
-       .table{width:60%}
+       .table{width:50%}
        tr,table{border-top:5px solid gray;color:white;width:100%;border-collapse:collapse;font-size:22px;text-align:left}
         .right a{color:white}
 
@@ -116,7 +126,7 @@
            
            
                
-                   
+                <div class="aaa"> 
                     <?php
                    
                  
@@ -185,7 +195,7 @@
                     
                     
                     ?>
-                  
+                  </div>
                  </div>    
                
                 

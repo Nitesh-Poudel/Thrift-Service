@@ -43,7 +43,7 @@ $id='';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <style>
        /**{background-color:black;color:white}*/
-       .img img:hover{opacity:0.7}
+       .img img{}
     </style>
 </head>
 <body>
@@ -113,10 +113,7 @@ $id='';
                                             $tosearch = $_POST['search'];
     
                                           
-                                            //$qry = mysqli_query($con, "SELECT * FROM clothes WHERE gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch'
-                                            // Order by cid desc");
-
-
+                                          
                                             //searchhhhhhhhhhhhh
                                             $qry = mysqli_query($con, "SELECT * FROM clothes c
                                             WHERE c.retailer_id != '$id'
@@ -151,7 +148,7 @@ $id='';
                                         $qry = mysqli_query($con, "SELECT * FROM clothes c
                                         WHERE c.retailer_id != '$id'
                                         AND c.cid  NOT IN (
-                                            SELECT forcloth FROM orderproposal WHERE accept = 0 OR accept = 1
+                                            SELECT forcloth FROM orderproposal WHERE  accept = 1 OR accept = 0
                                         )
                                         ORDER BY c.cid DESC;");
 

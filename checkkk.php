@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,7 @@
     <h1>Nepal Location Selection</h1>
     <form>
         <!-- Province Dropdown -->
+        <!--
         <label for="province">Select Province:</label>
         <select id="province">
         <option value="" disabled selected>-- Select provience --</option>
@@ -23,7 +25,7 @@
 
         </select>
 
-        <!-- District Dropdown -->
+       
         <label for="district">Select District:</label>
         <select id="district" disabled>
             <option value="" disabled selected>-- Select District --</option>
@@ -68,3 +70,22 @@
     </script>
 </body>
 </html>
+    -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <?php
+       $string = "formal shirt for man";
+       $wordsArray = explode(" ", $string);
+       foreach($wordsArray as $words){
+        echo$words.'<br>';
+       }
+        ?>
+        
+    </body>
+    </html>

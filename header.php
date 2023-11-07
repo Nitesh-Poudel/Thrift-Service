@@ -102,7 +102,7 @@
     
     width:250px;
     max-height:55vh;
- opacity: 1;
+    opacity: 1;
    
     display:none;
     overflow:scroll;
@@ -110,18 +110,19 @@
    
 }
 .notify ul li{
-    margin-top:50px;
-    height:50Vh;
+    margin-top:20px;
+   
     border-bottom:1px dotted gray;
     text-align:left;
 }
+
 
 .notification:hover .notify {
    
     display:flex;
     flex-direction: column;
     margin-top:0px;
-    margin-left:-10%;
+    margin-left:-15%;
     position:absolute;
     background-color: rgb(255, 252, 252);
     border-bottom-left-radius: 12px;
@@ -131,6 +132,9 @@
     box-shadow: 5px 3px 18px 0px #888888;
     
   
+}
+.notify ul li:hover{
+    background-color:aliceblue;
 }
 .a{
     width:100%;
@@ -206,7 +210,13 @@ include_once('session.php');
 
                                                         <div class="count">
                                                             <span id="notification">
-                                                                <b>3</b>
+                                                                <b><?php
+                                                                    $notification_count=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM notification 
+                                                                     
+                                                                    WHERE destination=$id");
+                                                                $row = mysqli_fetch_assoc($notification_count);
+                                                                echo  $row['total_count']; ?>
+                                                                </b>
                                                             </span>
                                                         </div>
 
@@ -215,16 +225,33 @@ include_once('session.php');
 
                                                     <div class="notify">
                                                         <ul type=none>
-                                                            <li>Rajesh sent you proposal </li>
-                                                            <li>Rajesh sent you proposal </li>
-                                                            <li>Rajesh sent you proposal </li>
-                                                            <li>Rajesh sent you proposal </li>
+                                                            <?php
+                                                                $notification="SELECT * From notification where destination=$id order by nid desc";
+                                                                $notificationQuery=mysqli_query($con,$notification);
 
-                                                            <li>Hi</li>
+                                                                if(mysqli_num_rows($notificationQuery)>0){
+                                                                   while( $notifications=mysqli_fetch_assoc($notificationQuery)){
+
+                                                                        if(isset($notifications['source'])){
+                                                                            if($notifications['source']!=0){
+                                                                                $source=$notifications['source'];
+                                                                                $qry=mysqli_query($con,"SELECT name FROM user u join notification n ON n.source=u.uid where source=$source ");
+                                                                                $source_name=mysqli_fetch_assoc($qry);
+                                                                                echo'<li>' . $notifications['subject'] . ' by '.$source_name['name'].' <br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></li>';
+                                                                            }
+                                                                            else{
+                                                                                echo '<li>' . $notifications['subject'] . ' <br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></li>';
+                                                                            }
+                                                                        }
+                                                                       
+                                                                   }
+                                                                }
+                                                            ?>
                                                         </ul>
-
-
                                                     </div>
+
+
+                                                   
                                             </div>
                                     </li>
 

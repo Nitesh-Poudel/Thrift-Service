@@ -41,17 +41,27 @@ if(isset($_POST['changepw'])){
               
                 $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE password='$encripted_current_Password'AND uid='$tochange'");
            
-           if($update){
+                if($update){
+                    //setting_notification
+                    $time=date('Y-m-d H:i:s');
+                    $destination=$tochange;
+                    $subject="Password updated sucessfully";
+
+                    $sql="INSERT into notification(destination,source,subject,time)Values('$destination','','$subject','$time')";
+                    $qry=mysqli_query($con,$sql);
+
+                    if($sql){
            
-            echo"<script>alert('Password updated successfully.'); </script>";
-            header('Location:logout.php');
-            }
-            else{ 
-                echo"<script>alert('Password updated unsuccess.');</script>";
-            }
-        }
+                        echo"<script>alert('Password updated successfully.'); </script>";
+                        header('Location:logout.php');
+                    }
+                    else{ 
+                        echo"<script>alert('Password updated unsuccess.');</script>";
+                    }
+                }
        
-    } 
+            } 
+        }
     $msg='Please enter all information';
 
    }
@@ -67,9 +77,22 @@ if(isset($_POST['changepw'])){
                     $tochange= $_SESSION['userid'];
                     $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE uid=$tochange");
                 
-                   if($update){
-                           echo "<script>alert('Password updated successfully.'); window.location.href = 'login.php';</script>";
-                          //}
+                    if($update){
+                        $time=date('Y-m-d H:i:s');
+                        $destination=$tochange;
+                        $subject="Password updated sucessfully";
+    
+                        $sql="INSERT into notification(destination,source,subject,time)Values('$destination','','$subject','$time')";
+                    $qry=mysqli_query($con,$sql);
+    
+                        if($sql){
+               
+                            echo"<script>alert('Password updated successfully.'); </script>";
+                            header('Location:logout.php');
+                        }
+                        else{ 
+                            echo"<script>alert('Password updated unsuccess.');</script>";
+                        }
                     }
                 
                 } 

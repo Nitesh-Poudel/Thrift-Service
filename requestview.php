@@ -8,6 +8,8 @@ $qry='';$data='';
 
 
         $uid=$_SESSION['userid'];
+        
+        
         $qry=mysqli_query($con,"SELECT *
         FROM orderproposal op
         INNER JOIN clothes c 
@@ -52,7 +54,7 @@ $qry='';$data='';
                 $qry2=mysqli_query($con,"UPDATE orderproposal set accept = 1 WHERE poid=$opid");
 
                 if($qry2){$qry3=mysqli_query($con,"UPDATE orderproposal set accept = 2 WHERE forcloth=$clothid and poid!=$opid");}
-                //here 2 means reject 1 means accept 0 is neutrol,, acception 1 means rejection all same.
+                //here 2 means reject 1 means accept 0 is neutral,, acception 1 means rejection all same.
 
 
                 $date=time();

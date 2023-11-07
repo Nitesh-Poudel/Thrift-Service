@@ -40,7 +40,17 @@ include_once('session.php');
                         $qry=mysqli_query($con,$sql);
 
                             if($qry){
-                                $msg="Your purposal have been submitted.";
+                               
+                                    $time=date('Y-m-d H:i:s');
+                                    $destination=$data['retailer_id'];
+                                   
+
+
+                                    $subject="Sent proposal";
+
+                                    
+                                    $sql="INSERT into notification(destination,source,subject,time)Values('$destination','$byperson','$subject','$time')";
+                                    $qry=mysqli_query($con,$sql);
                             }
 
                     }
@@ -130,7 +140,7 @@ include_once('session.php');
 
         <!-- District Dropdown -->
        
-                            <select id="district" disabled>
+                            <select id="district"name="district" disabled>
                                 <option value="" disabled selected>-- Select District --</option>
                             </select>
                             <input type="text" placeholder ="Local Government " value="" name="gov"><br>

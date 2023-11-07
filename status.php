@@ -56,7 +56,7 @@ if($_SESSION['role']=='buyer'){
     <style>
         .searchMenue{display:none;}
       
-        .introduction{display:flex;background-color:gray;color:white;display:flex;align-items:center}
+        .introduction{display:flex;background-color:#002024;color:white;display:flex;align-items:center}
         #person{color:gold}
         
         .description{;width:100%;margin-left:50px;}
