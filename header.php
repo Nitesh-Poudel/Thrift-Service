@@ -117,7 +117,7 @@
 }
 
 
-.notification:hover .notify {
+.notification:active .notify {
    
     display:flex;
     flex-direction: column;
@@ -162,12 +162,12 @@
     }
 
     #search-button {
-        background-color: #007BFF; /* Background color for the button */
+        background-color: #007BFF; 
         color: #fff; /* Text color */
         border: none;
         padding: 12px 15px; /* Adjust padding as needed */
-        border-radius: 5px; /* Rounded corners */
-        cursor: pointer; /* Change cursor on hover */
+        border-radius: 5px; 
+        cursor: pointer; 
     }
 
     #search-button i {

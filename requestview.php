@@ -49,19 +49,19 @@ $qry='';$data='';
 
 
                 $date=time();
-                $qry=mysqli_query($con,"INSERT INTO orders (pid, acceptdate, complete, completedate) VALUES ($opid, '$date', 0, 0);");
+                $accept_qry=mysqli_query($con,"INSERT INTO orders (pid, acceptdate, complete, completedate) VALUES ($opid, '$date', 0, 0);");
 
 
 
-                ///milaunu_bakiii
-                if($qry){
+                ///notifucation
+                if($accept_qry){
                                
                     $time=date('Y-m-d H:i:s');
-                    $destination=$data['retailer_id'];
+                    $destination=$byperson;
                   
-                    $subject="proposal accepted";
+                    $subject="Proposal Accepted";
    
-                    $sql="INSERT into notification(destination,source,subject,time)Values('$destination','$byperson','$subject','$time')";
+                    $sql="INSERT into notification(destination,source,subject,time)Values('$byperson','$uid','$subject','$time')";
                     $qry=mysqli_query($con,$sql);
                 }
 
@@ -69,7 +69,18 @@ $qry='';$data='';
 
             if(isset($_POST['reject'])){
 
-                mysqli_query($con,"UPDATE orderproposal set accept = 2 WHERE poid=$opid");
+                $reject_qry=mysqli_query($con,"UPDATE orderproposal set accept = 2 WHERE poid=$opid");
+                ///notifucation
+                if($reject_qry){
+                               
+                    $time=date('Y-m-d H:i:s');
+                    $destination=$byperson;
+                  
+                    $subject="Proposal Rejected";
+   
+                    $sql="INSERT into notification(destination,source,subject,time)Values('$byperson','$uid','$subject','$time')";
+                    $qry=mysqli_query($con,$sql);
+                }
             }
         }
 
@@ -185,7 +196,8 @@ $qry='';$data='';
                     
                     ?>
                  
-                    
+                   
+                 
                 </div></div>
          
             </div>

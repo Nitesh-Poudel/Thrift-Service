@@ -51,6 +51,15 @@ include_once('session.php');
                                     
                                     $sql="INSERT into notification(destination,source,subject,time)Values('$destination','$byperson','$subject','$time')";
                                     $qry=mysqli_query($con,$sql);
+
+                                    if ($qry) {
+                                        echo '<script>';
+                                        echo 'alert("Proposal sent successfully.");';
+                                        echo 'window.location.href = "home.php";';
+                                        echo '</script>';
+                                        exit; 
+                                    }
+                                   
                             }
 
                     }

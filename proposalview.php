@@ -15,7 +15,7 @@
             ON op.forcloth = c.cid
             INNER JOIN User u 
             ON c.retailer_id = u.uid
-            WHERE  op.byperson = $uid AND op.accept=$accept ;");
+            WHERE  op.byperson = $uid AND op.accept=$accept ORDER BY poid DESC;");
          }
 
          else{
@@ -26,7 +26,7 @@
             ON op.forcloth = c.cid
             INNER JOIN User u 
             ON c.retailer_id = u.uid
-            WHERE  op.byperson = $uid;");
+            WHERE  op.byperson = $uid ORDER BY poid DESC;;");
          }
 
 
