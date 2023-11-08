@@ -235,8 +235,8 @@ include_once('session.php');
                                                                         if(isset($notifications['source'])){
                                                                             if($notifications['source']!=0){
                                                                                 $source=$notifications['source'];
-                                                                                $qry=mysqli_query($con,"SELECT name FROM user u join notification n ON n.source=u.uid where source=$source ");
-                                                                                $source_name=mysqli_fetch_assoc($qry);
+                                                                                $query=mysqli_query($con,"SELECT name FROM user u join notification n ON n.source=u.uid where source=$source ");
+                                                                                $source_name=mysqli_fetch_assoc($query);
                                                                                 echo'<li>' . $notifications['subject'] . ' by '.$source_name['name'].' <br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></li>';
                                                                             }
                                                                             else{

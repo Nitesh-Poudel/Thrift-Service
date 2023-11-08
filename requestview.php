@@ -7,25 +7,16 @@ $qry='';$data='';
             $id=$_GET['id'];
 
 
-        $uid=$_SESSION['userid'];
-        
-        
-        $qry=mysqli_query($con,"SELECT *
-        FROM orderproposal op
-        INNER JOIN clothes c 
-        ON op.forcloth = c.cid
-        INNER JOIN User u 
-        ON c.retailer_id = u.uid
-        WHERE u.uid = $id Order by poid desc;");
+            $uid=$_SESSION['userid'];
+            $qry=mysqli_query($con,"SELECT *
+            FROM orderproposal op
+            INNER JOIN clothes c 
+            ON op.forcloth = c.cid
+            INNER JOIN User u 
+            ON c.retailer_id = u.uid
+            WHERE u.uid = $id Order by poid desc;");
 
-
-
-        
-
-
-
-
-    }
+        }
     }
     else{
         header('location:login.php');
@@ -58,7 +49,22 @@ $qry='';$data='';
 
 
                 $date=time();
-                mysqli_query($con,"INSERT INTO orders (pid, acceptdate, complete, completedate) VALUES ($opid, '$date', 0, 0);");
+                $qry=mysqli_query($con,"INSERT INTO orders (pid, acceptdate, complete, completedate) VALUES ($opid, '$date', 0, 0);");
+
+
+
+                ///milaunu_bakiii
+                if($qry){
+                               
+                    $time=date('Y-m-d H:i:s');
+                    $destination=$data['retailer_id'];
+                  
+                    $subject="proposal accepted";
+   
+                    $sql="INSERT into notification(destination,source,subject,time)Values('$destination','$byperson','$subject','$time')";
+                    $qry=mysqli_query($con,$sql);
+                }
+
             }
 
             if(isset($_POST['reject'])){
@@ -89,17 +95,17 @@ $qry='';$data='';
         .outerintro{background-color:white;        }
        .contents{width:100%;height:90%;  overflow:scroll; font-size:small}
        .other{width:20%;height:100%;  background-color:white; border-radius:8px;   box-shadow: 5px 3px 18px 0px #888888; }
-       .intro {width:100%}
+       .intro {width:100%; display: flex;}
        #accept{color:aliceblue; font-size:20px; background-color:green; padding:5px;}
 
        #reject{color:aliceblue; font-size:20px; background-color:red; padding:5px;}
         .productdetail{width:100%}
        .name{display:flex;width:100%; justify-content:space-between; border-radius:10px;border:none}
-       .name img{border-radius:8px;  margin:5px; border:1px solid gray; cursor:pointer}
+       .name img{border-radius:8px;  margin:5px; border:1px solid gray; cursor:pointer;min-height:30px}
        .header{height:10px; }
        
 .searchMenue{display:none;}
-.intro .image img{width:90%;border-radius: 8px;box-shadow: 3px 3px 18px 0px #888888;
+.intro .image img{width:90%;max-height:200px;border-radius: 8px;box-shadow: 3px 3px 18px 0px #888888;
 }
     </style>
 </head>
