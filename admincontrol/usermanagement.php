@@ -4,8 +4,8 @@ $qry='';
     if($con){
         echo"connected";
     }
-    if(isset($_GET['toManage'])){
-        $tomanage=$_GET['toManage'];
+    if(isset($_GET['catagory'])){
+        $tomanage=$_GET['catagory'];
        
             $qry=mysqli_query($con, "SELECT * from user WHERE role='$tomanage'");
            
@@ -32,10 +32,10 @@ $qry='';
             <h3>Admin Dashboard</h3>
         </div>
         <ul>
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="#">Customers</a></li>
-            <li><a href="#">Retailers</a></li>
-            <li><a href="adminsetting.php">Settings</a></li>
+            <li><a href="ad">Home</a></li>
+            <li><a href="usermanagement.php?catagory=buyer">Customers</a></li>
+            <li><a href="usermanagement.php?catagory=seller">Retailers</a></li>
+           <li><a href="adminsetting.php">Settings</a></li>
             <!-- Add more menu items as needed -->
         </ul>
     </nav>

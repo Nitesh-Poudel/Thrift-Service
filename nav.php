@@ -18,7 +18,7 @@
                     </nav>';
             }
         }
-        if(isset($_GET['role'])){
+        //if(isset($_GET['role'])){
             if($_SESSION['role']=='buyer'||$_GET['role']=='custumer'){
 
                 echo '
@@ -35,7 +35,8 @@
               
             </nav>';
 
-            }}
+            }
+        //}
         
     ?>
 </body>

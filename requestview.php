@@ -127,7 +127,7 @@ $qry='';$data='';
         <?php include_once('left.php')?>
             <div class="right">
                 <?php include_once('header.php');?>
-                <?php include_once('nav.php');?>
+                <?php //include_once('nav.php');?>
                
 
                

@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <style>
 
@@ -89,6 +90,7 @@
    
     text-align:center;
     justify:content:center;
+    cursor:pointer
    
     
 }
@@ -104,9 +106,19 @@
     max-height:55vh;
     opacity: 1;
    
-    display:none;
+
     overflow:scroll;
-   
+    display:flex;
+    flex-direction: column;
+    margin-top:0px;
+    margin-left:-15%;
+    position:absolute;
+    background-color: rgb(255, 252, 252);
+   padding:5px;
+ display:none;
+    align-items: center;
+    box-shadow: 5px 3px 18px 0px #888888;
+
    
 }
 .notify ul li{
@@ -117,19 +129,9 @@
 }
 
 
-.notification:active .notify {
+.notify {
    
-    display:flex;
-    flex-direction: column;
-    margin-top:0px;
-    margin-left:-15%;
-    position:absolute;
-    background-color: rgb(255, 252, 252);
-    border-bottom-left-radius: 12px;
-    border-top-left-radius: 12px;
-    z-index:1;
-    align-items: center;
-    box-shadow: 5px 3px 18px 0px #888888;
+    
     
   
 }
@@ -178,17 +180,17 @@
 
 </style>
 <?php 
-include_once('session.php');
+    include_once('session.php');
    
-  if(isset($_SESSION['userid'])){
-    $id=$_SESSION['userid'];
-    $qry2=mysqli_query($con,"SELECT * FROM user WHERE uid=$id");
-    $data2=mysqli_fetch_assoc($qry2);
-}
+    if(isset($_SESSION['userid'])){
+        $id=$_SESSION['userid'];
+        $qry2=mysqli_query($con,"SELECT * FROM user WHERE uid=$id");
+        $data2=mysqli_fetch_assoc($qry2);
+    }
 
 ?>
 <body>
-        <div class="outer">
+        <div class="outer"id="outer">
                 <div class="header">
 
                     <div class="moto">
@@ -206,14 +208,14 @@ include_once('session.php');
                                 <div class="list">
 
                                    <li >
-                                            <div class="notification">
+                                            <div class="notification" id="notification">
 
                                                         <div class="count">
-                                                            <span id="notification">
+                                                            <span >
                                                                 <b><?php
                                                                     $notification_count=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM notification 
                                                                      
-                                                                    WHERE destination=$id");
+                                                                    WHERE destination=$id AND seen='0'");
                                                                 $row = mysqli_fetch_assoc($notification_count);
                                                                 echo  $row['total_count']; ?>
                                                                 </b>
@@ -223,7 +225,7 @@ include_once('session.php');
                                                         <i class="fa-sharp fa-solid fa-bell"></i>
 
 
-                                                    <div class="notify">
+                                                    <div class="notify" id="notify" >
                                                         <ul type=none>
                                                             <?php
                                                                 $notification="SELECT * From notification where destination=$id order by nid desc";
@@ -237,7 +239,17 @@ include_once('session.php');
                                                                                 $source=$notifications['source'];
                                                                                 $query=mysqli_query($con,"SELECT name FROM user u join notification n ON n.source=u.uid where source=$source ");
                                                                                 $source_name=mysqli_fetch_assoc($query);
-                                                                                echo'<li>' . $notifications['subject'] . ' by '.$source_name['name'].' <br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></li>';
+
+                                                                               // echo'<li><a href="home.php">' . $notifications['subject'] . ' by <b>'.$source_name['name'].' </b><br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></a></li>';
+
+                                                                               // if($notification['subject']=='Proposal Accepted'){
+                                                                                    echo'<li><a href="home.php">' . $notifications['subject'] . ' by <b>'.$source_name['name'].' </b><br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></a></li>';
+                                                                                //}
+                                                                                //else{
+                                                                                //    echo'<li><a href="home.php">' . $notifications['subject'] . ' by <b>'.$source_name['name'].' </b><br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></a></li>';
+                                                                              
+                                                                                //}
+                                                                                
                                                                             }
                                                                             else{
                                                                                 echo '<li>' . $notifications['subject'] . ' <br><h7 style="font-size: 14px;">' . $notifications['time'] . '</h7></li>';
@@ -262,13 +274,41 @@ include_once('session.php');
                             </ul>
 
                        
-                </div>
+                        </div>
  
                         
         </div>
                    
 
 
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let notification = document.getElementById("notification");
+            let notify = document.getElementById("notify");
+            let isNotificationVisible = false;
+
+            // Add click event listener to the notification trigger
+            notification.addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevents the click event from propagating to the document
+                if (!isNotificationVisible) {
+                    notify.style.display = 'block';
+                    isNotificationVisible = true;
+                  
+                } else {
+                    notify.style.display = 'none';
+                    isNotificationVisible = false;
+                }
+            });
+
+            // Add click event listener to the document to hide the notification when clicking anywhere outside it
+            document.addEventListener('click', function () {
+                if (isNotificationVisible) {
+                    notify.style.display = 'none';
+                    isNotificationVisible = false;
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

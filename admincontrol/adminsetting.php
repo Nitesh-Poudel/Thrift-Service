@@ -56,8 +56,8 @@
         </div>
         <ul>
             <li><a href="../index.php">Home</a></li>
-            <li><a href="#">Customers</a></li>
-            <li><a href="#">Retailers</a></li>
+            <li><a href="usermanagement.php?catagory=buyer">Customers</a></li>
+            <li><a href="usermanagement.php?catagory=seller">Retailers</a></li>
             <li><a href="#">Settings</a></li>
             <!-- Add more menu items as needed -->
         </ul>
@@ -87,6 +87,7 @@
 
        
     </main>
+    
 
 </body>
 </html>

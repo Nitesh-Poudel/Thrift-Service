@@ -148,7 +148,7 @@ $id='';
                                         $qry = mysqli_query($con, "SELECT * FROM clothes c
                                         WHERE c.retailer_id != '$id'
                                         AND c.cid  NOT IN (
-                                            SELECT forcloth FROM orderproposal WHERE  accept = 1 OR accept = 0
+                                            SELECT forcloth FROM orderproposal WHERE  accept = 1 
                                         )
                                         ORDER BY c.cid DESC;");
 
