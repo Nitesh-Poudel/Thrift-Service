@@ -199,7 +199,7 @@ $msg='';
                         <div>
                           
                             <input type="text" id="brand" name="brand" placeholder="Brand" required>
-                            <input type="number" placeholder="Your price" name="price" id="price">
+                            <input type="number" placeholder="Your price" name="price" id="price"min="100">
                         </div>
 
                         <div>

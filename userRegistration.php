@@ -4,13 +4,14 @@
 
 include_once('databaseconnection.php');
 
-$aaa ='ejglohgprwighwrp iugerug wrpitg io dsiugripugrwipguwrp ispdighsruoh spi wrpiuwripuwrpiurwpigrpi';
+
 $msg = '';
 $date = date("j M Y");
 $name='';
 $newname='';
 
 if (isset($_POST['submit'])) {
+    echo"xnhubu7gbvyugvuhnjnuhbguvf6yv7yhinbhdcyyyyyyyyyyyyyu";
     $name =mysqli_real_escape_string($con,ucwords($_POST['fullname']));
     $phone = mysqli_real_escape_string($con,ucwords($_POST['phone']));;
     $email = mysqli_real_escape_string($con,ucwords($_POST['email']));
@@ -76,7 +77,7 @@ if (isset($_POST['submit'])) {
        body{ background-image: linear-gradient(red, yellow);
     display: flex;
    justify-content: right;}
-   .container {
+   .ccontainer {
     border: 1px solid white;
     border-radius: 10px;
     margin: 2px 12px;
@@ -119,7 +120,7 @@ th,td{border-bottom:1px solid gray;padding-left: 15px;}
 
                     <tr>
                         <th><label for="phone"> Phone </label>
-                        <td> <input type="number" placeholder="+977" class="inputs" name="phone" required><br> </td>
+                        <td> <input type="number" placeholder="+977" class="inputs" name="phone" min="0000000000"max="9999999999"required><br> </td>
                     </tr>
 
                     <tr>

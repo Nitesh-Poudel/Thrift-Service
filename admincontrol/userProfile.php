@@ -1,89 +1,61 @@
 <?php
-    include_once('session.php');
-    include_once('databaseconnection.php');
-$qry='';$data='';
-if($_SESSION['role']=='buyer'){
-    header('Location:proposalview.php');
-}
-    if(isset($_SESSION['userid'])){
-        if(isset($_GET['id'])){//ID of the user
-            $id=$_GET['id'];
+    include_once('../databaseconnection.php');
 
+$hlo="say_hrrrrrrrrrrello";
+    if(isset($_GET['role'])){
+        if(isset($_GET['userid'])){
+            //echo$_GET['role'];
+            $userid=$_GET['userid'];
+            $hlo="say_hello".$_GET['role'];
 
-        $uid=$_SESSION['userid'];
-        
-        $qry=mysqli_query($con,"SELECT *
-        FROM user WHERE uid = $id && uid=$uid ");
-
-        //fetching the data
-        $data=mysqli_fetch_assoc($qry);
-
-
-        
-       
-
-
-
-
-
+            $qry=mysqli_query($con,"SELECT * from user where uid=$userid");
+            if($qry){
+                $data=mysqli_fetch_assoc($qry);
+            }
+        }
     }
-    }
-    else{
-        header('location:login.php');
-    }
-
-    $link='';
-   // ($data['role']=='seller')?
-     //   $link='<a href="productupload.php">Upload Product</a>':$link='<a href="#">About us</a>';
-   
+    //
 ?>
-
-
-<?php 
-   
-?>
-   
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status_<?php echo $data['name']?></title>
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    
+    <title>Document</title>
+    <link rel="stylesheet" href="admincss/admincss.css">
+</head>
     <style>
-      
-        .searchMenue{display:none;}
-      
-        .introduction{display:flex;background-color:white;display:flex;align-items:center;flex-wrap:wrap;margin:10px}
-        #person{color:gold}
-        
-        .description{margin-left:50px;}
-        .image img{width:300px;border-radius:8px}
-        tr,table{width:50vw;font-size:22px;}
-       
+        *{over}
+        .container{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+        .content{background-color:re;width:76%;height:100%;}
+        .information{display:flex;flex-wrap:wrap}
+        .info{margin:10px}
+        /* General styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
 
-
-       //tablee
-       /* General styles */
-
-
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
 
 /* Table styles */
 table {
     border-collapse: collapse;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     background-color: #fff;
-   
 }
 
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
- 
+    text-align: left;
 }
 
 th {
@@ -99,43 +71,67 @@ tr:hover {
     background-color: #f2f2f2;
 }
 
+/* Table specific styles */
+.info-table {
+    /* Add specific styles for Personal Information table */
+}
 
-       
+.transaction-table {
+    /* Add specific styles for Transaction Information table */
+}
+
         
     </style>
-
-</head>
 <body>
+<nav class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <h3>Admin Dashboard</h3>
+        </div>
+        <ul>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="usermanagement.php?catagory=buyer">Customers</a></li>
+            <li><a href="usermanagement.php?catagory=seller">Retailers</a></li>
+            <li><a href="#">Logout</a></li>
+            <!-- Add more menu items as needed -->
+        </ul>
+</nav>
+
+
 
     <div class="container">
-        <div class="innercontainer">
-        <?php include_once('left.php')?>
+        <div class="content">
+            <header>
+                <h1><?php echo $data['name'];?></h1>
+            </header>
+            <div class="information">
+                <div class="img"><img src="../userimage/<?php echo $data['userimg']; ?>" alt="User Image"width="400" ></div>
 
+                <div class="info">
+                    
+                    <h1>Personal information</h1>
+                    <table>
+                        <tr>
+                            <td>Address: </td>
+                            <td><?php echo $data['address'];?></td>
+                        </tr>
+                        <tr>
+                            <td>phone: </td>
+                            <td><?php echo $data['phone'];?></td>
+                        </tr>
+                        <tr>
+                            <td>Email: </td>
+                            <td><?php echo $data['email'];?></td>
+                        </tr>
 
-            
-            <div class="right">
-                <?php include_once('header.php');echo '</div>'?>
-                <?php include_once('nav.php');?>
-    
-                   
-           
-                <div class="contents">
-                    <div class="introduction">
-                        <div class="image">
-                            <img src=<?php echo '"userimage/'.$data['userimg'].'"'?>>
-        
-                        </div>
-                        <div class="description">
-                            
-                           
-                            <h1 id="person"><?php echo $data['name'];?></h1>
-                           
-                            
-                            <h3>Detail as <?php echo $data['role'];?></h3>
-                            <table>
+                 
+                    </table>
+
+                    <h1>Information As Seller</h1>
+                    <table id="sellertable">
                                 <tr>
                                     <th><a href="home.php?id=<?php echo$id."&&tosee=Item_uploaded";?>">Item Uploaded</a></th>
-                                    <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM clothes WHERE retailer_id='$id' ");
+                                    <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM clothes WHERE retailer_id='$userid' ");
                                         $row = mysqli_fetch_assoc($qry);
                                         $totalClothesCount = $row['total_count'];echo $totalClothesCount?>
                                     </td>
@@ -145,7 +141,7 @@ tr:hover {
                                     <th><a href="requestview.php?id=<?php echo$id."&&todo=Item_upload";?>">Pending Request</a></th>
                                     <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM orderproposal op 
                                                 INNER JOIN clothes c ON op.forcloth = c.cid 
-                                                WHERE c.retailer_id = '$id' and accept=0");
+                                                WHERE c.retailer_id = '$userid' and accept=0");
                                         $row = mysqli_fetch_assoc($qry);
                                         echo  $row['total_count']; ?>
                                     </td>
@@ -155,7 +151,7 @@ tr:hover {
                                     <th><a href="acceptedrequest.php?userid=<?php echo $uid?>">Accepted Request</a></th>
                                     <td><?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM orderproposal op 
                                                 INNER JOIN clothes c ON op.forcloth = c.cid 
-                                                WHERE c.retailer_id = '$id' and accept=1");
+                                                WHERE c.retailer_id = '$userid' and accept=1");
                                         $row = mysqli_fetch_assoc($qry);
                                         echo  $row['total_count']; ?>
                                     </td>
@@ -167,19 +163,19 @@ tr:hover {
                                     <?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM `orders` o
                                             INNER JOIN orderproposal op ON o.pid = op.poid 
                                             INNER JOIN clothes c ON op.forcloth = c.cid 
-                                            WHERE c.retailer_id = '$id' AND o.complete = 0");
+                                            WHERE c.retailer_id = '$userid' AND o.complete = 0");
                                         $row = mysqli_fetch_assoc($qry);
                                         echo  $row['total_count']; ?>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <th><a href="acceptedrequest.php?userid=<?php echo$id."&&todo=completeOrder";?>">Completed Order</th>
+                                    <th><a href="acceptedrequest.php?userid=<?php echo$userid."&&todo=completeOrder";?>">Completed Order</th>
                                     <td>
                                     <?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count FROM `orders` o
                                             INNER JOIN orderproposal op ON o.pid = op.poid 
                                             INNER JOIN clothes c ON op.forcloth = c.cid 
-                                            WHERE c.retailer_id = '$id' AND o.complete = 1");
+                                            WHERE c.retailer_id = '$userid' AND o.complete = 1");
                                         $row = mysqli_fetch_assoc($qry);
                                         echo  $row['total_count']; ?>
                                     </td>
@@ -191,7 +187,7 @@ tr:hover {
                                     <?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count
                                             FROM clothes c
                                             LEFT JOIN orderproposal op ON c.cid = op.forcloth
-                                            WHERE op.forcloth IS NULL and retailer_id='$id';"
+                                            WHERE op.forcloth IS NULL and retailer_id='$userid';"
                                             );
                                         $row = mysqli_fetch_assoc($qry);
                                         echo $totalClothesCount = $row['total_count']; ?>
@@ -201,21 +197,15 @@ tr:hover {
 
                                 <tr>
                                     <th>Total sales Amount</th>
-                                    <td><?php $qry=mysqli_query($con,"SELECT sum(proposalprice) AS sum FROM orderproposal op left join clothes c ON op.forcloth=c.cid  where accept=1 AND retailer_id=$uid"); $row = mysqli_fetch_assoc($qry); echo $totalClothesCount = $row['sum'].'rs'; ?></td>
+                                    <td><?php $qry=mysqli_query($con,"SELECT sum(proposalprice) AS sum FROM orderproposal op left join clothes c ON op.forcloth=c.cid  where accept=1 AND retailer_id=$userid"); $row = mysqli_fetch_assoc($qry); echo $totalClothesCount = $row['sum'].'rs'; ?></td>
                                 </tr>
                             </table>
 
-                        
-                        </div>
-                    </div>
-
                 </div>
+                
+            </div>
+
         </div>
     </div>
-             
-                 
-                    
-                
-         
 </body>
 </html>

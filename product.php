@@ -110,6 +110,23 @@ include_once('session.php');
         .imgandform{display:flex;justify-content:space-around;background-color:#e7e5e1;margin:10px;border-radius:10px;padding:10px}
 
        
+
+        select, input[type="number"], input[type="text"], button {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -154,7 +171,7 @@ include_once('session.php');
                             </select>
                             <input type="text" placeholder ="Local Government " value="" name="gov"><br>
                                 
-                            <input type="number" placeholder="Ward number" name="ward">
+                            <input type="number" placeholder="Ward number" name="ward"min="1"max="32">
                             <input type="text" placeholder="tole" name="tole">
 
                                     
@@ -162,7 +179,7 @@ include_once('session.php');
 
                                
 
-                            <input type="number" placeholder ="Enter your Price" name="cprice"><br>
+                            <input type="number" placeholder ="Enter your Price" name="cprice"min=<?php $minprice =70/100*$data['price'];echo$minprice?><br>
                             <button type="submit" name="submit" id="submit">Send proposal</button>
 
                         </form>

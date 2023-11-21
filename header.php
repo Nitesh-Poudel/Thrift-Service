@@ -287,13 +287,30 @@
             let notify = document.getElementById("notify");
             let isNotificationVisible = false;
 
+
+            function updateDatabase() {
+            $.ajax({
+                type: 'POST',
+                url: 'update_notification.php', // PHP_file_to_handle_the_update
+                data: { seen: 1 }, // Sending_'seen'_as_1_to_update_the_status
+                success: function (response) {
+                    console.log('Notification status updated successfully');
+                },
+                error: function (error) {
+                    console.error('Error updating notification status:', error);
+                }
+            });
+        }
+
+           
             // Add click event listener to the notification trigger
             notification.addEventListener('click', function (event) {
                 event.stopPropagation(); // Prevents the click event from propagating to the document
                 if (!isNotificationVisible) {
                     notify.style.display = 'block';
                     isNotificationVisible = true;
-                  
+                    updateDatabase();
+
                 } else {
                     notify.style.display = 'none';
                     isNotificationVisible = false;

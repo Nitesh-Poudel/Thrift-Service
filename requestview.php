@@ -14,7 +14,7 @@ $qry='';$data='';
             ON op.forcloth = c.cid
             INNER JOIN User u 
             ON c.retailer_id = u.uid
-            WHERE u.uid = $id Order by poid desc;");
+            WHERE u.uid = $id ORDER BY cid DESC;");
 
         }
     }

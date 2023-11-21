@@ -15,7 +15,7 @@
             ON op.forcloth = c.cid
             INNER JOIN User u 
             ON c.retailer_id = u.uid
-            WHERE  op.byperson = $uid AND op.accept=$accept ORDER BY poid DESC;");
+            WHERE  op.byperson = $uid AND op.accept=$accept ORDER BY poid DESC,cid DESC;");
          }
 
          else{
@@ -26,7 +26,7 @@
             ON op.forcloth = c.cid
             INNER JOIN User u 
             ON c.retailer_id = u.uid
-            WHERE  op.byperson = $uid ORDER BY poid DESC;;");
+            WHERE  op.byperson = $uid ORDER BY poid DESC;");
          }
 
 
@@ -69,7 +69,7 @@
 
         .container .innercontainer .right .intro {
     
-    
+    width:100px;        
     height: auto;
     
 }
@@ -77,6 +77,9 @@
 
 .seller_and_item{display:flex;justify-content:space-between}
 .seller img{border-radius:50%;width:40px}
+
+
+
     </style>
 </head>
 <body>

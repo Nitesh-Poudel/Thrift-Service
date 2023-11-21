@@ -21,7 +21,29 @@ $qry='';
     <title><?php echo ucwords($tomanage)." Management"?></title>
     <link rel="stylesheet" href="admincss/admincss.css">
     <style>
-       
+        table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f2f2f2;
+    }
+    
     </style>
 </head>
 <body>
@@ -73,7 +95,7 @@ $qry='';
             <td>'.$data['phone'].'</td>
             <td>'.$data['email'].'</td>
             <td>'.$data['address'].'</td>
-            <td><a href="../status.php?userid='.$data['uid'].'">Profile</td>
+            <td><a href="userProfile.php?userid='.$data['uid'].' & role='.$data['role'].'">Profile</td>
         </tr>';}
         ?>
     </table>
