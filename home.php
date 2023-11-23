@@ -117,7 +117,7 @@ $id='';
                                             //searchhhhhhhhhhhhh
                                             $qry = mysqli_query($con, "SELECT * FROM clothes c
                                             WHERE c.retailer_id != '$id'
-                                            AND gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch'  OR catagory like '$tosearch'
+                                            AND gender LIKE '%$tosearch%' OR size LIKE '%$tosearch%' OR size LIKE '%$tosearch%'  OR type LIKE '%$tosearch%' OR brand LIKE '%$tosearch%' OR type LIKE '%$tosearch%' OR price<='$tosearch'  OR catagory like '$tosearch' OR description like '$tosearch'
                                             AND c.cid  NOT IN (
                                                SELECT forcloth FROM orderproposal WHERE accept = 0 OR accept = 1
                                             )

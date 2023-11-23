@@ -49,45 +49,8 @@
 </head>
 <body>
     <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
-            <h3>Your Dashboard</h3>
-        </div>
-        <ul>
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="usermanagement.php?catagory=buyer">Buyer</a></li>
-            <li><a href="usermanagement.php?catagory=seller">Seller</a></li>
-            <li><a href="usermanagement.php?catagory=non-seller">Request</a></li>
-            <li><a href="#">Settings</a></li>
-            <!-- Add more menu items as needed -->
-        </ul>
-    </nav>
+    <?php include_once('left.php')?>
 
-    <!-- Main Content -->
-    <main class="content">
-        <header>
-            <h1>Setting</h1>
-        </header>
-
-        <!-- Customer Section -->
-       <!-- Customer Section -->
-<section class="section">
-    <h2>Customer Management</h2>
-    <div class="customer-list">
-    </h1>Total custumer : 67</h1>
-    </div>
-</section>
-
-
-        <!-- Retailer Section -->
-        <section class="section">
-            <h2>Retailer Management</h2>
-            <!-- Add retailer management content here -->
-        </section>
-
-       
-    </main>
     
 
 </body>

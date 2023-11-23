@@ -95,7 +95,7 @@
 }
 
 .left .innerLeft ul li{
-    margin-top: 1vh;
+    margin-top: 10vh;
     margin-bottom: 9vh;
 
 }
@@ -104,14 +104,26 @@
  
 }
 .fa-solid {
-    position: relative;
+    
 }
-.left .setting-lists{
+.left #setting .setting-lists{
     display:none;
+    position:absolute;
+   left:10px;
+    
 }
 .left #setting:hover .setting-lists{
    
-   
+    display:flex;
+    flex-direction: column;
+  
+    position:absolute;
+    background-color: rgb(255, 252, 252);
+    border-bottom-left-radius: 12px;
+    border-radius: 12px;
+    z-index:1;
+    align-items: center;
+    box-shadow: 5px 3px 18px 0px #888888;
       
     }
 

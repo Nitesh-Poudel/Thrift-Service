@@ -55,53 +55,117 @@ if($_SESSION['role']=='buyer'){
     
     <style>
       
-        .searchMenue{display:none;}
-      
-        .introduction{display:flex;background-color:white;display:flex;align-items:center;flex-wrap:wrap;margin:10px}
-        #person{color:gold}
-        
-        .description{margin-left:50px;}
-        .image img{width:300px;border-radius:8px}
-        tr,table{width:50vw;font-size:22px;}
-       
+        /* Resetting some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f5f5f5;
+  color: #333;
+}
 
-       //tablee
-       /* General styles */
+/* Container styles */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px;
+}
 
+/* Inner container styles */
+.innercontainer {
+  flex: 1;
+}
 
+/* Header styles */
+header {
+  background-color: #444;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Navigation styles */
+nav {
+  background-color: #ddd;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Contents styles */
+.contents {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+/* Introduction styles */
+.introduction {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.image img {
+  width: 300px;
+  border-radius: 8px;
+}
+
+.description {
+  margin-left: 50px;
+}
+
+#person {
+  color: gold;
+}
 
 /* Table styles */
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 10px;
-    background-color: #fff;
-   
+  width: 50vw;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
- 
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 tr:hover {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
-
-       
-        
     </style>
 
 </head>

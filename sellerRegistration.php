@@ -2,7 +2,7 @@
 <?php
    session_start();
 
-   if(isset($_SESSION['sellerid'])){
+   if(isset($_SESSION['sellerid'])||isset($_SESSION['userid'])){
         include_once('databaseconnection.php');
         //if(isset($_SESSION['']))
         if(isset($_POST['submit'])){
@@ -26,7 +26,7 @@
         }
         if($newname!=''&&$CitizenshipNo!=''&&$issueDate!=''){
 
-            $sellerid=$_SESSION['sellerid'];
+            $sellerid=$_SESSION['sellerid']??$_SESSION['userid']??null;
 
             $sql = "INSERT INTO sellerinfo(sellerId, citizenshipNo, citizenshipImg, issueDate) VALUES('$sellerid', '$CitizenshipNo', '$newname','$issueDate')";
             $qry=mysqli_query($con,$sql);
@@ -60,13 +60,18 @@
     <link rel="stylesheet" href="css/forms.css">
 </head>
 <style>
-     body{ background-image: linear-gradient(red, yellow);
+     body{ 
      display: flex;
     justify-content: right;}
     #msg1{font-size:10px;color:red;}
-    .container{background-color:white;opacity: 1;}
+    .container{background-color:white;opacity: 1;width:100vw}
     legend{background-color: #eeeeee;text:bold}
-    table{text-align:left}
+    table{text-align:left};
+    .form{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
    
 
 </style>
@@ -106,9 +111,9 @@
                     </table>
                     <div class="button_sanga">
                         <div class="button"><button type="submit" name="submit" id="submit">Submit</button></div>
-                        <div class="link">Don't have an Account? <a href="userregistration.php">Register</a></div>
+                        <div class="link">Skip for now? <a href="login.php"><b>Login</b></a></div>
                     </div>
-                    <a href="forgetpw.php"><b>Forget password</b></a>
+                   
                     <span id="msg1"><b><?php if(isset($msg)){echo $msg;}?></b></span>
                 </fieldset>
             </form>

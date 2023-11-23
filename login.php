@@ -91,14 +91,14 @@
     table{text-align:left}
    body{display:flex;justify-content:space-around;flex-wrap:wrap}
     .container{
-        opacity: 0.6;
+        opacity:1;width:50vw;
     }
     .wlc_msg{width:40%}
     .form{height:200px}
 
 </style>
 <body>
-    <div class="wlc_msg" style="font-size:4vw;color:white;opacity:0.7"><h1>Welcome to Online Thrift Store</h1></div>
+   
     <div class="container">
        
         <div class="form">
@@ -130,6 +130,7 @@
             </form>
         </div>
     </div>
+    <div class="wlc_msg" style="font-size:4vw;color:white;opacity:0.7"><h1>Welcome to Online Thrift Store</h1></div>
 
 
     <script>

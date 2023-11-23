@@ -8,7 +8,7 @@ $hlo="say_hrrrrrrrrrrello";
             $userid=$_GET['userid'];
             $hlo="say_hello".$_GET['role'];
 
-            $qry=mysqli_query($con,"SELECT * from user u LEFT Join sellerinfo s ON u.uid=s.sellerid where uid=$userid");
+            $qry=mysqli_query($con,"SELECT * from user u LEFT Join sellerinfo s ON u.uid=s.sellerid where uid=$userid ORDER BY name desc");
             if($qry){
                 $data=mysqli_fetch_assoc($qry);
             }
@@ -113,20 +113,7 @@ tr:hover {
         
     </style>
 <body>
-<nav class="sidebar">
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
-            <h3>Admin Dashboard</h3>
-        </div>
-        <ul>
-            <li><a href="admin_Home.php">Home</a></li>
-            <li><a href="usermanagement.php?catagory=buyer">Customers</a></li>
-            <li><a href="usermanagement.php?catagory=seller">Seller</a></li>
-            <li><a href="usermanagement.php?catagory=non-seller">Request</a></li>
-            <li><a href="#">Logout</a></li>
-            <!-- Add more menu items as needed -->
-        </ul>
-</nav>
+<?php include_once('left.php')?>
 
 
 

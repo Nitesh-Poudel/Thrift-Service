@@ -6,9 +6,17 @@ $qry='';
     }
     if(isset($_GET['catagory'])){
         $tomanage=$_GET['catagory'];
+
+        if(isset($_POST['search'])){
+            $tosearch=$_POST['tosearch'];
+    
+            $qry=mysqli_query($con, "SELECT * from  user  where role='$tomanage'AND name LIKE '%$tosearch%' OR role like '%$tosearch%' OR address like '%$tosearch%' OR phone like '%$tosearch%'  OR  email like '%$tosearch%'  OR  uid like '%$tosearch%'");
+               
+        }
+        else{
        
             $qry=mysqli_query($con, "SELECT * from user WHERE role='$tomanage'");
-           
+        }   
           
         
     }
@@ -48,28 +56,19 @@ $qry='';
 </head>
 <body>
     <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
-            <h3>Admin Dashboard</h3>
-        </div>
-        <ul>
-            <li><a href="ad">Home</a></li>
-            <li><a href="usermanagement.php?catagory=buyer">Customers</a></li>
-            <li><a href="usermanagement.php?catagory=seller">Retailers</a></li>
-           <li><a href="adminsetting.php">Settings</a></li>
-            <!-- Add more menu items as needed -->
-        </ul>
-    </nav>
+  <?php include_once('left.php')?>
 
     <!-- Main Content -->
     <div class="content">
         <header>
             <h1><?php echo ucwords($tomanage." Management")?></h1>
+            <form method="POST">
+                <input type="text"name="tosearch">
+                <button type="submit" name="search">Search</button>
+            </form>
         </header>
 
-        <!-- Customer Section -->
-       <!-- Customer Section -->
+       
 <div class="section">
 
     <div class="customer-list">
