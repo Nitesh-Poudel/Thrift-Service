@@ -11,25 +11,25 @@ body{
     align-items: center;
     background: linear-gradient(to right bottom,#dde3f2,rgb(229, 245, 232));
     color:rgb(11, 11, 11);
-    background-image: linear-gradient(red, yellow);
-    display: flex;
-   justify-content: center;
+  
    
 }
-body{ background-image: linear-gradient(red, yellow);
+body{ background-image: linear-gradient(rgb(239, 18, 18), rgb(252, 248, 240));
     display: flex;
    justify-content: right;}
   
 .container{
-    border:1px solid white;
+    border:1px solid rgb(240, 13, 13);
     border-radius: 10px;
-    padding: 138px 32px;
+    padding: 10px 32px;
     display:flex;
+    flex-wrap: wrap;
     flex-direction: column;
     background: transparent;
     box-shadow:  8px 8px 14px 14px #911c1c;
-    min-width: 25vw;
-    background-color: aliceblue;
+   
+    background-color: rgb(238, 242, 246);
+   
 }
 .title{
     font-size: 28px;
@@ -47,7 +47,7 @@ body{ background-image: linear-gradient(red, yellow);
 }
 
 .form .inputs::-webkit-input-placeholder { 
-    font-family:cursive;
+    
    border-bottom: #3c3d3e;
     font-size: 18px;
   }
@@ -87,4 +87,8 @@ body{ background-image: linear-gradient(red, yellow);
     font-size: 12px;
     margin-left: 12px;
    
+}
+
+.text{
+    width:200px;
 }

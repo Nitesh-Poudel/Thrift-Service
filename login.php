@@ -86,7 +86,7 @@
 </head>
 <style>
       #msg1{font-size:10px;color:red;}
-    .container{background-color:white;opacity: 1;}
+    .container{background-color:white;opacity: 0;}
     legend{background-color: #eeeeee;text:bold}
     table{text-align:left}
    body{display:flex;justify-content:space-around;flex-wrap:wrap}
@@ -94,6 +94,7 @@
         opacity: 0.6;
     }
     .wlc_msg{width:40%}
+    .form{height:200px}
 
 </style>
 <body>

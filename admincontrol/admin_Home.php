@@ -56,8 +56,9 @@
         </div>
         <ul>
             <li><a href="../index.php">Home</a></li>
-            <li><a href="usermanagement.php?catagory=buyer">Customers</a></li>
-            <li><a href="usermanagement.php?catagory=seller">Retailers</a></li>
+            <li><a href="usermanagement.php?catagory=buyer">Buyer</a></li>
+            <li><a href="usermanagement.php?catagory=seller">Seller</a></li>
+            <li><a href="usermanagement.php?catagory=non-seller">Request</a></li>
             <li><a href="#">Settings</a></li>
             <!-- Add more menu items as needed -->
         </ul>

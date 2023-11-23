@@ -103,10 +103,34 @@ include_once('session.php');
        .detailAndOrder{display:flex;width:70vw; height:50vw;background-color:yellow}
        .product-detail{ background-color:red}
        .product-detail{}
-       table{border:1px solid white;border-radius:12px;border-collapse:collapse;width:80%;font-size:26px;color:black;text-align:center}
 
-  
-        ttr:hover{background-color: brown;}
+       .form{margin:10px}
+      /* Table styles */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
         .imgandform{display:flex;justify-content:space-around;background-color:#e7e5e1;margin:10px;border-radius:10px;padding:10px}
 
        
@@ -128,6 +152,11 @@ include_once('session.php');
         }
 
     </style>
+
+
+
+
+
 </head>
 <body>
     <div class="container">
@@ -164,7 +193,7 @@ include_once('session.php');
 
                             </select>
 
-        <!-- District Dropdown -->
+                            <!-- District Dropdown -->
        
                             <select id="district"name="district" disabled>
                                 <option value="" disabled selected>-- Select District --</option>

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 
 include_once('databaseconnection.php');
@@ -46,7 +46,27 @@ if (isset($_POST['submit'])) {
             
 
                 if ($qry) {
-                    header('location: login.php');
+                    
+                    $sql = "SELECT * from user WHERE phone=$phone AND email='$email'";
+
+                    $qry=mysqli_query($con,$sql);
+
+                    $data=mysqli_fetch_assoc($qry);
+
+                    if($data){
+                        
+                        if($data['role']=='buyer'){
+                            header('location: login.php');
+                        }
+                        else{
+                            $_SESSION['sellerid']=$data['uid'];
+                           echo $_SESSION['sellerid'];
+                            header('location: sellerRegistration.php');
+                        }
+                        }
+                       
+                    }
+                    
                 } 
                 
 
@@ -60,7 +80,7 @@ if (isset($_POST['submit'])) {
     else {
         $msg = 'Please fill in all required fields';
     }
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -75,102 +95,109 @@ if (isset($_POST['submit'])) {
     <style>
        
        body{ background-image: linear-gradient(red, yellow);
-    display: flex;
-   justify-content: right;}
-   .ccontainer {
-    border: 1px solid white;
-    border-radius: 10px;
-    margin: 2px 12px;
-    display: flex;
-    flex-direction: column;
-   padding:50px 30px;
-   opacity:0.6;
-   z-index:1;
-   max-height: 80%;
-    min-width: 25vw;
-    background-color:whitesmoke;
-    ;
-} .form{
-    font-size:18px
+            display: flex;
+            flex-wrap:wrap;
+            align-items: center;
+            justify-content: center;
+            ;
+        }
+ .form{
+    width:500px;
+    
+   
 }
+.form{background-color:white};
+
+.texts{background-color:blue;color:brown;width:300px;background-color:blue}
 th,td{border-bottom:1px solid gray;padding-left: 15px;}
+
+#error{color:red;font-size:10px}
 
     </style>
 </head>
 <body>
+
+
+<div class="container">
     <div class="texts">
-    <h1 style="color:White;text-align:center;font-size:100px;font-family:Verdana">heheh</h1>
+        <h1 style="color:White;text-align:center;font-size:20px;font-family:Verdana"></h1>
     </div>
-    <div class="container">
-        <div class="heading">
-        </div>
-        <div class="form" >
-            <form name="myform"  method="post" enctype="multipart/form-data">
-                <div class="title"><h1>Create an Account</h1></div>
-                <table>
-                    <tr>
-                        <th><label for="fullname">Full Name  </label>
-                        <td> <input type="text"  class="inputs" name="fullname" require><br></td>
-                    </tr>
+    
+       
+    <div class="form" >
+        <form name="myform"  method="post" enctype="multipart/form-data">
+            <fieldset>
+                    <div class="title"><h3>Create an Account</h3></div>
+                    <table>
+                        <tr>
+                            <th><label for="fullname">Full Name  </label>
+                            <td> <input type="text"  class="inputs" name="fullname" require><br></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="email">Email  </label>
-                        <td> <input type="email" placeholder="Email" class="inputs" name="email" require><br></td>
-                    </tr>
+                        <tr>
+                            <th><label for="email">Email  </label>
+                            <td> <input type="email" placeholder="Email" class="inputs" name="email" require><br></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="phone"> Phone </label>
-                        <td> <input type="number" placeholder="+977" class="inputs" name="phone" min="0000000000"max="9999999999"required><br> </td>
-                    </tr>
+                        <tr>
+                            <th><label for="phone"> Phone </label>
+                            <td> <input type="number" placeholder="+977" class="inputs" name="phone" required><br> </td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="address">Address</label>
-                        <td><input type="text" placeholder="Distric-Local Gov-Ward" class="inputs" name="address" required><br></td>
-                    </tr>
+                        <tr>
+                            <th><label for="address">Address</label>
+                            <td><input type="text" placeholder="Distric-Local Gov-Ward" class="inputs" name="address" required><br></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="role">Role</label>
-                        <td> <select name="role" class="inputs">
-                                <option value="" disabled selected>Ragisterr yourself as.....</option>
-                                <option value="buyer">Buyer</option>
-                                <option value="seller">Sellerf</option>
-                            </select><br>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th><label for="role">Role</label>
+                            <td> <select name="role" class="inputs">
+                                    <option value="" disabled selected>Register yourself as.....</option>
+                                    <option value="buyer">Buyer</option>
+                                    <option value="non-seller">Seller</option>
+                                </select><br>
+                            </td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="password">Password</label>
-                        <td> <input type="text" placeholder="Password" class="inputs" name="password" value="admin" required><br></td>
-                    </tr>
+                        <tr>
+                            <th><label for="password">Password</label>
+                            <td> <input type="text" placeholder="Password" class="inputs" name="password" value="admin" required><br></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="cpassword">Conform Password</label>
-                        <td> <input type="text" placeholder="Password" class="inputs" name="cpassword" value="admin" required><br></td>
-                    </tr>
+                        <tr>
+                            <th><label for="cpassword">Conform Password</label>
+                            <td> <input type="text" placeholder="Password" class="inputs" name="cpassword" value="admin" required><br></td>
+                        </tr>
 
-                    <tr>
-                        <th><label for="image">Photo</label>
-                        <td> <input type="file" class="inputs" name="image" accept="image/*"><br></td>
-                    </tr>
+                        <tr>
+                               <th><label for="image">Photo</label>
+                            <td> <input type="file" class="inputs" name="image" accept="image/*"><br></td>
+                        </tr>
                     
-                </table>
+                    </table>
                 
                
                  
-                <div class="button_sanga">
-                    <div class="button">
-                        <button type="submit" name="submit" id="submit">Register</button>
+                    <div class="button_sanga">
+                        <div class="button">
+                               <button type="submit" name="submit" id="submit">Register</button>
+                        </div>
+                        <div class="link">
+                            Already have an account? <a href="login.php">Login</a>
+                        </div>
                     </div>
-                    <div class="link">
-                        Already have an account? <a href="login.php">Login</a>
+
+
+                    <div class="msg">
+                        <p id="error"><b><?php echo $msg; ?><b></p>
                     </div>
-                </div>
-                <div class="msg">
-                    <p id="error"><?php echo $msg; ?></p>
-                </div>
-            </form>
-        </div>
+            </fieldset>
+        </form>
+        
     </div>
+</div>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const form = document.forms["myform"];

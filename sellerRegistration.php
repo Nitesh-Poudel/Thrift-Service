@@ -1,3 +1,54 @@
+
+<?php
+   session_start();
+
+   if(isset($_SESSION['sellerid'])){
+        include_once('databaseconnection.php');
+        //if(isset($_SESSION['']))
+        if(isset($_POST['submit'])){
+             $CitizenshipNo =mysqli_real_escape_string($con,ucwords($_POST['CitizenshipNo']));
+            $issueDate = mysqli_real_escape_string($con,ucwords($_POST['issueDate']));;
+         
+        }
+    
+ 
+        $newname='';
+        if(isset($_FILES['citizenshipImg'])) {
+            $imgname = $_FILES['citizenshipImg']['name'];
+            $imgtemp = $_FILES['citizenshipImg']['tmp_name'];
+            $imgtype = $_FILES['citizenshipImg']['type'];
+            $extension = pathinfo($imgname, PATHINFO_EXTENSION);
+ 
+ 
+            $replaced = str_replace(' ', '-', $CitizenshipNo);
+            $newname =  $replaced . '.' . $extension;
+            $a = move_uploaded_file($imgtemp, "sellerDocument/" . $newname);
+        }
+        if($newname!=''&&$CitizenshipNo!=''&&$issueDate!=''){
+
+            $sellerid=$_SESSION['sellerid'];
+
+            $sql = "INSERT INTO sellerinfo(sellerId, citizenshipNo, citizenshipImg, issueDate) VALUES('$sellerid', '$CitizenshipNo', '$newname','$issueDate')";
+            $qry=mysqli_query($con,$sql);
+
+            if($qry){
+                header('location: login.php');
+            }
+            
+           
+
+        }
+        else{
+         //echo$_SESSION['sellerid'];
+        }
+   }
+   else{
+    echo"no_sessioon";
+   }
+   
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,25 +80,32 @@
           
         </div>
         <div class="form">
-            <form name="myform" onsubmit="return validateForm()" action="" method="Post"  >
+            <form name="myform" onsubmit="return validateForm()"  method="Post" enctype="multipart/form-data" >
             <fieldset>
                     <table>
                     
                     <legend><b>Seller-Registration</b></legend>
-                    <h1>Create an Account</h1>
+                    <h1>Fill the Detail</h1>
                     <table>
                         <tr>
                             <th><label for="citizenship"><b>Citizenship-No</b></label></th>
-                            <td><input type="number" id="citizenship"><br></td>
+                            <td><input type="number" id="citizenship"name="CitizenshipNo"><br></td>
+                        </tr>
+
+                        <tr>
+                            <th><label for="issueDate"><b>Issue Date</b></label></th>
+                            <td><input type="date" name="issueDate"><br></td>
                         </tr>
                         <tr>
                             <th><label for="citizenshipImg"><b>Citizenship Image</b></label></th>
-                            <td><input type="file" accept=".jpg"><br></td>
+                            <td><input type="file" accept=".jpg,.png"name="citizenshipImg"><br></td>
                         </tr>
+
+                       
                         
                     </table>
                     <div class="button_sanga">
-                        <div class="button"><button type="submit" name="login" id="submit">Login</button></div>
+                        <div class="button"><button type="submit" name="submit" id="submit">Submit</button></div>
                         <div class="link">Don't have an Account? <a href="userregistration.php">Register</a></div>
                     </div>
                     <a href="forgetpw.php"><b>Forget password</b></a>

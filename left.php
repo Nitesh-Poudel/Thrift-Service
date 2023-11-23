@@ -21,6 +21,11 @@
                                                             
                                                             
                                                             <li><a href="changepw.php?task=change">Change Password</a></li>
+                                                            <?php if($_SESSION['role']=='non-seller')
+                                                                $link='<a href="sellerRegistration.php"><li><i class="fa-solid fa-upload"></i>Form</li></a>';
+                                                                echo $link;
+                               
+                                                            ?>
                                                         </ul>
 
 
