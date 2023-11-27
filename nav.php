@@ -8,7 +8,7 @@
  
         if(isset($_GET['role'])){
             $role=$_GET['role'];
-            if($role=='seller'){
+            if($role=='seller'OR$role=='non-seller'){
                 echo '
            
                     <nav class="nav"> 

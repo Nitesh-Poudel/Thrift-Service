@@ -34,7 +34,7 @@
                   setcookie("user_role",$data['role'],time()+(60*60*24));
               
                   if($data['role']=='admin'){
-                    header('Location:admincontrol/admindashboard.php');
+                    header('Location:admincontrol/admin_Home.php');
                   }
                   else{
                    header('Location:home.php');

@@ -2,7 +2,7 @@
 $qry='';
     include_once('../databaseconnection.php');
     if($con){
-        echo"connected";
+       
     }
     
     if(isset($_POST['search'])){

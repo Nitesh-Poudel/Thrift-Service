@@ -2,24 +2,27 @@
 $qry='';
     include_once('../databaseconnection.php');
     if($con){
-        echo"connected";
-    }
-    if(isset($_GET['catagory'])){
-        $tomanage=$_GET['catagory'];
-
-        if(isset($_POST['search'])){
-            $tosearch=$_POST['tosearch'];
+        if(isset($_GET['catagory'])){
+            $tomanage=$_GET['catagory'];
     
-            $qry=mysqli_query($con, "SELECT * from  user  where role='$tomanage'AND name LIKE '%$tosearch%' OR role like '%$tosearch%' OR address like '%$tosearch%' OR phone like '%$tosearch%'  OR  email like '%$tosearch%'  OR  uid like '%$tosearch%'");
-               
-        }
-        else{
-       
-            $qry=mysqli_query($con, "SELECT * from user WHERE role='$tomanage'");
-        }   
-          
+            if(isset($_POST['search'])){
+                $tosearch=$_POST['tosearch'];
         
+                $qry=mysqli_query($con, "SELECT * from  user  where role='$tomanage'AND name LIKE '%$tosearch%' OR role like '%$tosearch%' OR address like '%$tosearch%' OR phone like '%$tosearch%'  OR  email like '%$tosearch%'  OR  uid like '%$tosearch%'");
+                   
+            }
+            else{
+           
+                $qry=mysqli_query($con, "SELECT * from user WHERE role='$tomanage'");
+            }   
+              
+            
+        }
     }
+    else{
+        echo"dberror";
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

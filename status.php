@@ -128,7 +128,7 @@ nav ul li a {
 }
 
 .image img {
-  width: 300px;
+  height: 366px;
   border-radius: 8px;
 }
 
@@ -166,6 +166,7 @@ tr:hover {
   background-color: #f2f2f2;
 }
 
+.searchMenue{display: none;}
     </style>
 
 </head>

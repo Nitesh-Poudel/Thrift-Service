@@ -2,6 +2,8 @@
 *::-webkit-scrollbar {
     display: none;
   }
+
+
 .body{overflow: hidden;}
 .name{
     cursor: pointer;
@@ -258,7 +260,7 @@
    background-color: rgb(37, 37, 37);
     border-radius: 8px;
 }
-.container .innercontainer .right  .intro .image img{width:90%;border-radius: 8px;box-shadow: 3px 3px 18px 0px #888888;}
+.container .innercontainer .right  .intro .image img{border-radius: 8px;box-shadow: 3px 3px 18px 0px #888888;}
 
 
 .container .innercontainer .right .intro .productdetail{

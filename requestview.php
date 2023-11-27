@@ -48,8 +48,8 @@ $qry='';$data='';
                 //here 2 means reject 1 means accept 0 is neutral,, acception 1 means rejection all same.
 
 
-                $date=time();
-                $accept_qry=mysqli_query($con,"INSERT INTO orders (pid, acceptdate, complete, completedate) VALUES ($opid, '$date', 0, 0);");
+                $accepted_date=date('Y-m-d H:i:s');
+                $accept_qry=mysqli_query($con,"INSERT INTO orders (pid, acceptdate, complete, completedate) VALUES ($opid, '$accepted_date', 0,0);");
 
 
 
@@ -63,6 +63,9 @@ $qry='';$data='';
    
                     $sql="INSERT into notification(destination,source,subject,time)Values('$byperson','$uid','$subject','$time')";
                     $qry=mysqli_query($con,$sql);
+                    if($qry){
+                        header("Location:requestview.php");
+                    }
                 }
 
             }
@@ -80,6 +83,10 @@ $qry='';$data='';
    
                     $sql="INSERT into notification(destination,source,subject,time)Values('$byperson','$uid','$subject','$time')";
                     $qry=mysqli_query($con,$sql);
+
+                    if($qry){
+                        header("Location:requestview.php");
+                    }
                 }
             }
         }

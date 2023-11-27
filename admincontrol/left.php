@@ -1,7 +1,7 @@
 <nav class="sidebar">
         <div class="logo">
-            <img src="logo.png" alt="Logo">
-            <h3>Your Dashboard</h3>
+           
+            <h3>Admin Dashboard</h3>
         </div>
         <ul>
             <li><a href="admin_Home.php">Home</a></li>

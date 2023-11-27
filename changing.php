@@ -2,7 +2,7 @@
     include_once('databaseconnection.php');
     
     $a=md5('admin');
-    //$renamebuyer = "UPDATE user SET password = '$a'";
+    //$renamebuyer = "UPDATE user SET role = 'non-seller' WHERE role='seller'";
     
     // Execute the first query to change "retailer" to "seller"
   echo$a;

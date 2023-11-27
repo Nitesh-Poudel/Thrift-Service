@@ -2,13 +2,13 @@
 $qry='';
     include_once('../databaseconnection.php');
     if($con){
-        echo"connected";
+        if(isset($_GET['cid'])){
+            $cid=$_GET['cid'];
+            $qry=mysqli_query($con, "SELECT * from clothes WHERE cid='$cid'");
+            $data=mysqli_fetch_assoc($qry);
+        }
     }
-    if(isset($_GET['cid'])){
-        $cid=$_GET['cid'];
-        $qry=mysqli_query($con, "SELECT * from clothes WHERE cid='$cid'");
-        $data=mysqli_fetch_assoc($qry);
-    }
+    
    
        
            
