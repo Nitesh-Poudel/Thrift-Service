@@ -1,7 +1,16 @@
 <?php
+
+session_start(); 
+
+if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
+    header("Location: ../login.php");
+    exit; 
+}
+else{
+
     include_once('../databaseconnection.php');
 
-$hlo="say_hrrrrrrrrrrello";
+
     if(isset($_GET['role'])){
         if(isset($_GET['userid'])){
             //echo$_GET['role'];
@@ -33,6 +42,8 @@ $msg='';
             }
         }
     }
+
+}
     //
 ?>
 <!DOCTYPE html>

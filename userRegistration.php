@@ -131,17 +131,17 @@ th,td{border-bottom:1px solid gray;padding-left: 15px;}
                     <table>
                         <tr>
                             <th><label for="fullname">Full Name  </label>
-                            <td> <input type="text"  class="inputs" name="fullname" require><br></td>
+                            <td> <input type="text"  class="inputs" name="fullname" pattern="[A-Za-z ]+"title="Please enter right name format"require><br></td>
                         </tr>
 
                         <tr>
                             <th><label for="email">Email  </label>
-                            <td> <input type="email" placeholder="Email" class="inputs" name="email" require><br></td>
+                            <td> <input type="email"  class="inputs" name="email" require><br></td>
                         </tr>
 
                         <tr>
                             <th><label for="phone"> Phone </label>
-                            <td> <input type="number" placeholder="+977" class="inputs" name="phone" required><br> </td>
+                            <td> <input type="number"  class="inputs" name="phone" pattern="[0-9]{10}"title="Phone should 10 digit number"required><br> </td>
                         </tr>
 
                         <tr>
@@ -161,12 +161,12 @@ th,td{border-bottom:1px solid gray;padding-left: 15px;}
 
                         <tr>
                             <th><label for="password">Password</label>
-                            <td> <input type="text" placeholder="Password" class="inputs" name="password" value="admin" required><br></td>
+                            <td> <input type="text"  class="inputs" name="password" required><br></td>
                         </tr>
 
                         <tr>
                             <th><label for="cpassword">Conform Password</label>
-                            <td> <input type="text" placeholder="Password" class="inputs" name="cpassword" value="admin" required><br></td>
+                            <td> <input type="password"  class="inputs" name="cpassword"  required><br></td>
                         </tr>
 
                         <tr>

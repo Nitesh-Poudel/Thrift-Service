@@ -1,3 +1,11 @@
+<?php
+    session_start(); 
+
+    if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
+        header("Location: ../login.php");
+        exit; 
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <style>
-        /* Reset some default browser styles */
+       
         body, h1, h2, ul, li {margin: 0;padding: 0;}
 
         /* Sidebar Styles */
@@ -69,7 +77,6 @@
             border-bottom: 1px solid #ddd;
         }
 
-        /* Section Styles */
         .section {
             background-color: #fff;
             padding: 20px;
@@ -78,12 +85,12 @@
             margin-bottom: 20px;
         }
 
-        /* Typography */
+       
         h1, h2 {
             color: #333;
         }
 
-        /* Custom Styles */
+     
         .container {
             width: 100%;
             text-align: center;
@@ -102,31 +109,27 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
+   
     <?php include_once('left.php') ?>
 
-    <!-- Main Content -->
+   
     <div class="content">
         <header>
-            <h1>Welcome to Admin Dashboard</h1>
+            <h1></h1>
         </header>
 
         <!-- New Section -->
         <div class="section">
             <div class="container">
-                <h1>New Section Title</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a libero id lorem ultrices eleifend.</p>
-                <!-- Additional content goes here -->
-            </div>
+                <h1>Welcome to Admin Pannel</h1>
+                <p></p>
+              
         </div>
 
-        <!-- Existing Content -->
-        <div class="container">
-            <h1>Existing Content</h1>
-            <p>This is the existing content. Feel free to add more or modify it as needed.</p>
-        </div>
+     
+      
     </div>
 
-    <!-- Additional content or scripts can be added here -->
+   
 </body>
 </html>

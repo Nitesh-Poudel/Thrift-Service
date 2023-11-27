@@ -78,17 +78,20 @@ if(isset($_POST['changepw'])){
                     $update=mysqli_query($con, "UPDATE user SET password= '$encriptedPassword' WHERE uid=$tochange");
                 
                     if($update){
-                        $time=date('Y-m-d H:i:s');
+                        $date=date('Y-m-d H:i:s');
                         $destination=$tochange;
                         $subject="Password updated sucessfully";
     
-                        $sql="INSERT into notification(destination,source,subject,time)Values('$destination','','$subject','$time')";
-                    $qry=mysqli_query($con,$sql);
+                        $sql="INSERT into notification(destination,source,subject,time)Values('$destination','','$subject','$date')";
+                        $qry=mysqli_query($con,$sql);
     
                         if($sql){
                
-                            echo"<script>alert('Password updated successfully.'); </script>";
-                            header('Location:logout.php');
+                            echo "<script>
+                                alert('Password updated successfully.');
+                                window.location.href = 'logout.php';
+                            </script>";
+                            
                         }
                         else{ 
                             echo"<script>alert('Password updated unsuccess.');</script>";

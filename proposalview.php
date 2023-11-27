@@ -62,7 +62,7 @@
        .intro h1,h3{
        }
 
-        .Accepted, .Rejected, .Not-Respond{color:white;background-color:green; text-align:center;height:23px;font-size:16px;width:50vw}
+        .Accepted, .Rejected, .Not-Respond, .Accepted-Received{color:white;background-color:green; text-align:center;height:23px;font-size:16px;width:50vw}
         .Rejected{background-color:red;}
         .Not-Respond{background-color:orange;}
         #l5{color:gold;}
@@ -104,8 +104,10 @@
                         $status='';
                         if($data['accept']==1){$status='Accepted';}if($data['accept']==2){$status='Rejected';}
                         if($data['accept']==0){$status='Not-Respond';}
+                        if($data['accept']==4){$status='Accepted-Received';}
 
                         if($data['accept']=='1'){$name=$data['name'];}
+                        if($data['accept']=='4'){$name=$data['name'];}
                         
                     echo'
                     
@@ -121,7 +123,7 @@
 
 
                                    if(isset($name)){
-                                    if(isset($data['accept'])&&$data['accept']==1){
+                                    if(isset($data['accept'])&&$data['accept']==1||$data['accept']==4){
                                            echo '<div>
                                                 <h3>Accepted By: ' . $data['name']  .';</h3>
                                                 
@@ -141,7 +143,7 @@
                                     
                                     </div>';
                                 
-                                    if(isset($data['accept'])&&$data['accept']==1){
+                                    if(isset($data['accept'])&&$data['accept']==1||$data['accept']==4){
                                         echo
                                         '<div class="seller">
                                             <a href="tel:'.$data['phone'].'"><img src="images/call.png"width="100px"></br><b>Call</b></a>
@@ -151,6 +153,8 @@
                                         </div>
                                      ';
                                     }
+
+
                                 echo'
                                 </div>
                                 

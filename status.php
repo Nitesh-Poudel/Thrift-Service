@@ -250,24 +250,28 @@ tr:hover {
                                     </td>
                                 </tr>
 
-                                <tr>
-                                <th><a href="home.php?id=<?php echo$id."&&tosee=Item_onsell";?>">Item On Sale</a></th>
-                                    <td>
-                                    <?Php  $qry=mysqli_query($con,"SELECT COUNT(*) AS total_count
-                                            FROM clothes c
-                                            LEFT JOIN orderproposal op ON c.cid = op.forcloth
-                                            WHERE op.forcloth IS NULL and retailer_id='$id';"
-                                            );
-                                        $row = mysqli_fetch_assoc($qry);
-                                        echo $totalClothesCount = $row['total_count']; ?>
-                                   
-                                    </td>
-                                </tr>
+                               
 
                                 <tr>
                                     <th>Total sales Amount</th>
-                                    <td><?php $qry=mysqli_query($con,"SELECT sum(proposalprice) AS sum FROM orderproposal op left join clothes c ON op.forcloth=c.cid  where accept=1 AND retailer_id=$uid"); $row = mysqli_fetch_assoc($qry); echo $totalClothesCount = $row['sum'].'rs'; ?></td>
-                                </tr>
+                                    <?php
+$qry = mysqli_query($con, "SELECT SUM(proposalprice) AS sum FROM orders o 
+                            JOIN orderproposal op 
+                            left JOIN clothes c 
+                            ON o.pid = op.poid AND op.forcloth = c.cid  
+                            WHERE complete = 1  AND retailer_id = $uid  ");
+
+                            if ($qry) {
+                              $row = mysqli_fetch_assoc($qry);
+    
+                              $totalClothesCount = $row['sum'] . ' rs';
+                              echo '<td>' . $totalClothesCount . '</td>';
+                              } else {
+    
+                                echo '<td>No data available</td>';
+                              }
+                            ?>
+                              </tr>
                             </table>
 
                         

@@ -64,7 +64,7 @@ $qry='';$data='';
                     $sql="INSERT into notification(destination,source,subject,time)Values('$byperson','$uid','$subject','$time')";
                     $qry=mysqli_query($con,$sql);
                     if($qry){
-                        header("Location:requestview.php");
+                        header("Location:home.php");
                     }
                 }
 
@@ -85,7 +85,7 @@ $qry='';$data='';
                     $qry=mysqli_query($con,$sql);
 
                     if($qry){
-                        header("Location:requestview.php");
+                        header("Location:home.php");
                     }
                 }
             }

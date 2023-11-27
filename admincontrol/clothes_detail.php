@@ -1,5 +1,13 @@
 <?php
-$qry='';
+
+session_start(); 
+
+if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
+    header("Location: ../login.php");
+    exit; 
+}
+else{
+    $qry='';
     include_once('../databaseconnection.php');
     if($con){
        
@@ -21,7 +29,7 @@ $qry='';
              WHERE c.cid = '' ");
              $row = mysqli_fetch_assoc($qryy);  
         
-    
+}   
 ?>
 <!DOCTYPE html>
 <html lang="en">

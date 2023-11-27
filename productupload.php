@@ -120,13 +120,16 @@ $msg='';
                                 <option value="Shirt">Shirt</option>
                                 <option value="T-shirt">T-shirt</option>
                                 <option value="Paint">Paint</option>
+                                <option value="coat">coat</option>
                                 <option value="Jacket">Jacket</option>
+                                <option value="Hoodie">Hoodie</option>
+                                <option value="Vest">Vest</option>
                                 <option value="Sari">Sari</option>
                                 <option value="kurtha">kurtha</option>
                                 <option value="lehenga">lehenga</option>
-                                <option value="Hoodie">Hoodie</option>
-                                <option value="Vest">Vest</option>
-                                <option value="shoes">Shoes</option>
+                               
+                                <option value="shoes">Shoes</option> 
+                                <option value="sandel">Sandel</option>
                                 <option value="others">Others</option>
                             </select>
                         </div>
@@ -178,7 +181,13 @@ $msg='';
                                 <option value="silk">Silk</option>
                                 <option value="cotton">Cotton</option>
                                 <option value="jeanse">jense</option>
+                                <option value="leather">Leather</option>
                                 <option value="cotrise">Cotrise</option>
+                                <option value="Polyester">Polyester</option>
+                                <option value="Wool">Wool</option>
+                                <option value="Nylon">Nylon</option>
+                                <option value="Polyester">Polyester</option>
+                                <option value="other">other</option>
                             </select>
                         </div>
 

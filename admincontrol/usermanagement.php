@@ -1,5 +1,14 @@
 <?php
-$qry='';
+
+
+    session_start(); 
+
+    if(!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'){
+        header("Location: ../login.php");
+        exit; 
+    }
+    else{
+    $qry='';
     include_once('../databaseconnection.php');
     if($con){
         if(isset($_GET['catagory'])){
@@ -22,6 +31,8 @@ $qry='';
     else{
         echo"dberror";
     }
+
+}
     
 ?>
 <!DOCTYPE html>

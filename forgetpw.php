@@ -1,5 +1,13 @@
 
 <?php 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../Shopping_site/PHPMailer/src/PHPMailer.php';
+require '../Shopping_site/PHPMailer/src/Exception.php';
+require '../Shopping_site/PHPMailer/src/SMTP.php';
+
    session_start();
     if(isset($_POST['forgetpw'])){
 
@@ -26,27 +34,44 @@
             $_SESSION['otp'] = $otp;
 
             //sending mail to the related email
-            $to=$data['email'];
-            $subject = "OTP for changing Password";
-            $message = "Hello, ".$data['name']." Your OTP for changing password in CLOTHEX.com is ".$otp." Please don't share it with others";
-            
-            $headers = "From: ntspoudel@gmail.com";
+           
+            $mail = new PHPMailer(true);
 
-            /*$mailSent = mail($to, $subject, $message, $headers);
+            try {
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com'; // Your SMTP server
+                $mail->SMTPAuth = true;
+                $mail->Username = 'twsnerswt@gmail.com'; // Your email
+                $mail->Password = 'stxy rvpj ljka gvxh'; // Your password
+                $mail->SMTPSecure = 'tls';
+                $mail->Port = 587;
 
-                if ($mailSent) {
-                    echo "Email sent successfully.";
+                $mail->setFrom('twsnerswt@gmail.com', 'ThriftStore');
+                $mail->addAddress($data['email'], $data['name']);
+
+                $mail->isHTML(true);
+                $mail->Subject = 'OTP for changing Password';
+                $mail->Body = "Hello, " . $data['name'] . " Your OTP for changing password in CLOTHEX.com is " . $otp . " Please don't share it with others";
+
+                if ($mail->send()) {
+                    echo "<script><Email sent successfully.</script>";
+                    // Proceed with displaying the OTP input box...
                 } else {
                     echo "Email sending failed.";
                 }
-
-            */
+            } catch (Exception $e) {
+                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            }
+        } else {
+            echo "No account found";
+        }
+          
 
             
             //if account found  only then place for otp will be generated
             
             $otp_input_box=' 
-            <spam  style="font-size: 12px"><b>Please enter otp we sent in email<b></spam><br>
+            <spam  style="font-size: 12px"><b>Please enter otp we sent in '.$data['email'].'<b></spam><br>
             <label for="otp"><b>OTP : </b></label>
             <input type="number" placeholder="________________________" class="inputs" name="enteredOTP" id="enteredOTP"><br>
             <div class="button"> <button type="button" name="otp" class="buttons" id="submitOTP">Submit OTP</button>
@@ -67,7 +92,7 @@
     
        
          
-}
+
 if(isset($_POST['otp'])){
     $formOTP=$_POST['enteredOTP'];
     if($enteredotp==$_SESSION['otp']){
@@ -89,13 +114,16 @@ if(isset($_POST['otp'])){
     
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login <?php echo $data['name']?></title>
+    <title>Change Password</title>
     
     <link rel="stylesheet" href="css/forms.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -128,9 +156,9 @@ if(isset($_POST['otp'])){
                 <div class="title" style="font-size: 12px"><b>We will sent OTP in your Email</b></div>
                 <fieldset><legend>Change Password</legend>
                 <label for="phone"><b>Phone : </b></label>
-                <input type="phone" placeholder="________________________" class="inputs" name="phone" id="phone"><br>
+                <input type="phone" placeholder="________________________" class="inputs" name="phone" id="phone"value="<?php if(isset($data['email'])){echo$data['phone'];}?>"><br>
                 <label for="email"><b>Email : </b></label>
-                <input type="email" placeholder="_________________________" class="inputs" name="email" id="email"><br>
+                <input type="email" placeholder="_________________________" class="inputs" name="email"value="<?php if(isset($data['email'])){echo$data['email'];}?>" id="email"><br>
             
                 <div class="button_sanga">
                     <div class="button">  <button type="submit" class="buttons" name="forgetpw" id="submitEmailPassword">Send OTP</button></div>
@@ -158,24 +186,23 @@ if(isset($_POST['otp'])){
             var enteredOTP = $("#enteredOTP").val();
             var sessionOTP = <?php echo isset($_SESSION['otp']) ? $_SESSION['otp'] : 'null';  ?>
 
-            // Debugging output
+         
           
 
             if( enteredOTP==sessionOTP ){
                 
 
-                // Continue server-side processing here
+            
                 $.ajax({
-                    url: 'forgetpw.php', // Replace with the actual server-side script URL
-                    method: 'POST',
+                    url: 'forgetpw.php', 
                     success: function (response) {
-                        //$("#msg1").html("hgfdsxcvbv OTP");
+                      
                         window.location.href = 'changepw.php';
                     }
                   
                 });
             } else {
-                $("#msg1").html("Wrong OTP from AJAX");
+                $("#msg1").html("Incorrect-OTP");
             }
         });
 
@@ -185,11 +212,7 @@ if(isset($_POST['otp'])){
             var email=$("email").val();
 
 
-            // Validate and sanitize the input here
-
-        // Send data to the server using AJAX
-       
-
+          
 
 
            

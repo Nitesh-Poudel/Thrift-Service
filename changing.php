@@ -1,16 +1,22 @@
-<?php
-    include_once('databaseconnection.php');
-    
-    $a=md5('admin');
-    //$renamebuyer = "UPDATE user SET role = 'non-seller' WHERE role='seller'";
-    
-    // Execute the first query to change "retailer" to "seller"
-  echo$a;
+if($qry){
+            $time=date('Y-m-d H:i:s');
 
-    // Execute the second query to change "customer" to "buyer"
-    if (mysqli_query($con, $renamebuyer)) {
-        echo "Buyer role changed successfully.";
-    } else {
-        echo "Error changing buyer role: " . mysqli_error($con);
-    }
-?>
+            $buyer=mysqli_query($con,"SELECT * FROM orders o 
+                JOIN orderproposal op 
+                JOIN clothes c 
+                JOIN user
+                ON o.pid = op.poid AND op.forcloth = c.byperson 
+                WHERE o.oid=$orderID  "
+            );
+        
+
+            $destination=$byperson;
+            $uid=$_SESSION['userid'];
+            $subject="Seller complete Order";
+
+            //$sql="INSERT into notification(destination,source,subject,time)Values('$byperson','$uid','$subject','$time')";
+            //$qry=mysqli_query($con,$sql);
+            //if($qry){
+            //    header("Location:home.php");
+            //} 
+        }

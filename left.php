@@ -1,5 +1,7 @@
 <div class="left">
-
+<?php
+    date_default_timezone_set('Asia/Kathmandu');
+?>
                     <div class="name"><h1>Clothex.<i id="logo"class="fa-solid fa-shirt"></i></h1></div>
 
                     <div class="innerLeft">

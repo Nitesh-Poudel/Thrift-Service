@@ -5,12 +5,62 @@ include_once('databaseconnection.php');
 $qry = '';
 $data = '';
 
-if (isset($_SESSION['userid'])) {
-    if (isset($_GET['order_complete'])) {
-        $orderID = $_POST['order_complete'];
-        $completed_date = date('Y-m-d H:i:s');
-        $qry = mysqli_query($con, "UPDATE orders SET complete=1, completedate='$completed_date' WHERE oid=$orderID");
+
+
+ if (isset($_SESSION['userid'])) {
+    if($_SESSION['userid']!=$_GET['userid']){
+        header("Location:home.php");
+        exit;
     }
+    if (isset($_POST['order_complete'])) {
+        
+        $orderID = $_POST['oid'];
+        $completed_date = date('Y-m-d H:i:s');
+        //$qry = mysqli_query($con, "UPDATE orders SET complete=1, completedate='$completed_date' WHERE oid=$orderID");
+
+
+        //if($qry){
+            $time=date('Y-m-d H:i:s');
+
+            $find=mysqli_query($con,"SELECT * FROM orders o 
+                JOIN orderproposal op 
+                JOIN user u
+                
+                ON o.pid = op.poid AND op.byperson = u.uid 
+                WHERE o.oid='$orderID'  "
+            );
+            $data=mysqli_fetch_assoc($find);
+            
+
+        
+
+            $destination=$data['byperson'];
+            $uid=$_SESSION['userid'];
+            $subject="Seller complete Order";
+
+            echo$destination;
+
+            //$sql="INSERT into notification(destination,source,subject,time)Values('$destination','$uid','$subject','$time')";
+            //$notificationqry=mysqli_query($con,$sql);
+            //if($notificationqry){
+                
+                 //updating_proposal_order_4_so_that_custumer_will_be_notified
+                $poid=$data['poid'];
+
+                $updateqry=mysqli_query($con,"UPDATE orderproposal set accept=4 WHERE poid='$poid' AND accept=1");
+                if($updateqry){
+                    echo '<script>alert("Order Complete of '.$data['byperson'].'");</script>';
+              
+                }
+            } 
+        }
+    
+
+
+
+
+
+
     if (isset($_GET['userid'])) {
         $id = $_GET['userid'];
         $uid = $_SESSION['userid'];
@@ -35,7 +85,7 @@ if (isset($_SESSION['userid'])) {
             ");
         }
     }
-} else {
+ else {
     header('location:login.php');
 }
 
@@ -161,15 +211,21 @@ button {
                                 <td>' . $data['proposalprice'] . '.Rs</td>
                                 <td><img src="productimage/' . $data['image'] . '" height="50px" width="50px" title="' . $data['oid'] . '"></td>
                                 <td>
-                                <form method="POST">';
+
+
+                                <form method="POST">
+                                <input type="hidden" name="oid" value='.$data['oid'].'>
+                                ';
                                 if (isset($data['complete'])) {
                                     if ($data['complete'] == 1) {
                                         echo '<button id="completed">Completed</button>';
                                     }  else {
-                                        echo '<button id="not-complete"type="submit" name="order_complete" value="' . $data['oid'] . '">Not-Complete</button>';
+                                        echo '<button id="not-complete"type="submit" name="order_complete" >Not-Complete</button>';
                                     }
                                 }
-                                echo '</form></td>
+                                echo '</form>
+
+                                </td>
                             </tr>';
                         // Continue to display the rest of the rows
                         while ($data = mysqli_fetch_assoc($qry)) {
@@ -183,15 +239,23 @@ button {
                                     <td>' . $data['proposalprice'] . '.Rs</td>
                                     <td><img src="productimage/' . $data['image'] . '" height="50px" width="50px" title="' . $data['oid'] . '"width="60px"></td>
                                     <td>
-                                    <form method="POST">';
-                                    if (isset($data['complete'])) {
-                                        if ($data['complete'] == 1) {
-                                            echo '<button id="completed">Completed</button>';
-                                        }  else {
-                                            echo '<button id="not-complete"type="submit" name="order_complete" value="' . $data['oid'] . '">Not-Complete</button>';
+                                    
+                                    
+                                    <form method="POST">
+                                        <input type="hidden" name="oid" value='.$data['oid'].'>
+                                        ';
+                                        if (isset($data['complete'])) {
+                                            if ($data['complete'] == 1) {
+                                                echo '<button id="completed">Completed</button>';
+                                            }  else {
+                                                echo '<button id="not-complete"type="submit" name="order_complete" >Not-Complete</button>';
+                                            }
                                         }
-                                    }
-                                    echo '</form>
+                                        echo '</form>
+
+
+
+
                                     </td>
                                 </tr>';
                         }
